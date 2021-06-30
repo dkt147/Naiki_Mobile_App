@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Naiki</string>
+    <string-array name="type">
+        <item>Donor</item>
+        <item>Reciever</item>
+
+    </string-array>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
