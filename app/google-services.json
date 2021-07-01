@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "927104817087",
+    "project_id": "otp-verification-bd9d0",
+    "storage_bucket": "otp-verification-bd9d0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:927104817087:android:90bc8ce156983d84dbb30a",
+        "android_client_info": {
+          "package_name": "com.example.naiki"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "927104817087-rda57701aoohklf1g6rq5ps7ausiji86.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.naiki",
+            "certificate_hash": "384f6f3737798ac85526b55c5185e4af3e29fd70"
+          }
+        },
+        {
+          "client_id": "927104817087-5dvu017s33sqcdc6lurp9f1ia41n7niq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB_4_H-qMzUAomDoXeDpm2-qaexKQkZwdA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "927104817087-5dvu017s33sqcdc6lurp9f1ia41n7niq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
