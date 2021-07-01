@@ -23,7 +23,9 @@ public class Naviagtion extends AppCompatActivity {
         meowBottomNavigation.add(new MeowBottomNavigation.Model(3, R.drawable.ic_baseline_leaderboard_24 ));
         meowBottomNavigation.add(new MeowBottomNavigation.Model(4, R.drawable.ic_profile ));
 
-        meowBottomNavigation.setOnShowListener(new MeowBottomNavigation.ShowListener() {
+        meowBottomNavigation.setOnShowListener(new MeowBottomNavigation.ShowListener(
+
+        ) {
             @Override
             public void onShowItem(MeowBottomNavigation.Model item) {
                 Fragment fragment = null;
