@@ -15,19 +15,26 @@ import android.text.Html;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.FirebaseException;
+import com.google.firebase.auth.PhoneAuthCredential;
+import com.google.firebase.auth.PhoneAuthProvider;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.concurrent.TimeUnit;
 
 public class Register extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
@@ -35,6 +42,8 @@ public class Register extends AppCompatActivity implements AdapterView.OnItemSel
     EditText uname , reg_pass , email , reg_phone ;
     TextView address;
     FusedLocationProviderClient fusedLocationProviderClient;
+    ProgressBar progressBar;
+    Button button;
 
     Spinner spinner;
     ArrayList<String> data = new ArrayList<>();
@@ -51,12 +60,20 @@ public class Register extends AppCompatActivity implements AdapterView.OnItemSel
         email =(EditText)  findViewById(R.id.email_reg);
         reg_pass =(EditText)  findViewById(R.id.password_reg);
         spinner =  findViewById(R.id.type_reg);
+        progressBar = findViewById(R.id.progressBar);
+        button = findViewById(R.id.register);
 
 
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource ( this, R.array.type , android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
         spinner.setOnItemSelectedListener(this);
+
+        if (ActivityCompat.checkSelfPermission(Register.this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+            getLocation();
+        } else {
+            ActivityCompat.requestPermissions(Register.this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 44);
+        }
 
 
 
@@ -78,11 +95,7 @@ public class Register extends AppCompatActivity implements AdapterView.OnItemSel
 
     public void reg(View view){
 
-        if (ActivityCompat.checkSelfPermission(Register.this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-            getLocation();
-        } else {
-            ActivityCompat.requestPermissions(Register.this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 44);
-        }
+
 
         if(uname.length()==0)
         {
@@ -120,9 +133,54 @@ public class Register extends AppCompatActivity implements AdapterView.OnItemSel
             String tp = spinner.getSelectedItem().toString();
             String phone_text = reg_phone.getText().toString();
 
+            progressBar.setVisibility(View.VISIBLE);
+            button.setVisibility(View.INVISIBLE);
 
-            Background_Worker background_worker = new Background_Worker(this);
-            background_worker.execute("register", user_text, pass_text , address_text  , phone_text , email_text , tp);
+            PhoneAuthProvider.getInstance().verifyPhoneNumber(
+                    "+92" + reg_phone.getText().toString(),
+                    60,
+                    TimeUnit.SECONDS,
+                    Register.this,
+                    new PhoneAuthProvider.OnVerificationStateChangedCallbacks(){
+                        @Override
+                        public void onVerificationCompleted(@NonNull PhoneAuthCredential phoneAuthCredential) {
+                            progressBar.setVisibility(View.GONE);
+                            button.setVisibility(View.VISIBLE);
+                        }
+
+                        @Override
+                        public void onVerificationFailed(@NonNull FirebaseException e) {
+                            progressBar.setVisibility(View.GONE);
+                            button.setVisibility(View.VISIBLE);
+                            Toast.makeText(Register.this , e.getMessage(), Toast.LENGTH_SHORT).show();
+
+                        }
+
+                        @Override
+                        public void onCodeSent(@NonNull String verificationId, @NonNull PhoneAuthProvider.ForceResendingToken forceResendingToken) {
+                            progressBar.setVisibility(View.GONE);
+                            button.setVisibility(View.VISIBLE);
+                            Intent intent = new Intent(Register.this , OTP.class);
+                            intent.putExtra("mobile" , reg_phone.getText().toString());
+
+                            intent.putExtra("verificationId" , verificationId);
+
+
+                            intent.putExtra("user_text" , uname.getText().toString());
+                            intent.putExtra("pass_text" , reg_pass.getText().toString());
+                            intent.putExtra("address_text" , address.getText().toString());
+                            intent.putExtra("email_text" , email.getText().toString());
+                            intent.putExtra("tp" , spinner.getSelectedItem().toString());
+                            intent.putExtra("phone_text" , reg_phone.getText().toString());
+
+                            startActivity(intent);
+                        }
+                    }
+            );
+
+
+
+
         }
     }
 
@@ -130,7 +188,7 @@ public class Register extends AppCompatActivity implements AdapterView.OnItemSel
 
     public void getLocation() {
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-           
+
             return;
         }
         fusedLocationProviderClient.getLastLocation().addOnCompleteListener(new OnCompleteListener<Location>() {

@@ -321,6 +321,7 @@ public class Background_Worker extends AsyncTask<String,Void,String> {
                         editor.commit();
 
                         Intent intent = new Intent(context, Dashboard.class);
+//                        intent.putExtra("mobile" )
                         context.startActivity(intent);
                     } catch (JSONException e) {
                         e.printStackTrace();
