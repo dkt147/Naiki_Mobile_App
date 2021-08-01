@@ -69,11 +69,7 @@ public class Register extends AppCompatActivity implements AdapterView.OnItemSel
         spinner.setAdapter(adapter);
         spinner.setOnItemSelectedListener(this);
 
-        if (ActivityCompat.checkSelfPermission(Register.this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-            getLocation();
-        } else {
-            ActivityCompat.requestPermissions(Register.this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 44);
-        }
+       getLocation();
 
 
 
@@ -95,7 +91,11 @@ public class Register extends AppCompatActivity implements AdapterView.OnItemSel
 
     public void reg(View view){
 
-
+        if (ActivityCompat.checkSelfPermission(Register.this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+            getLocation();
+        } else {
+            ActivityCompat.requestPermissions(Register.this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 44);
+        }
 
         if(uname.length()==0)
         {
@@ -107,6 +107,8 @@ public class Register extends AppCompatActivity implements AdapterView.OnItemSel
         {
             address.requestFocus();
             address.setError("FIELD CANNOT BE EMPTY");
+            Toast.makeText(this, "Please enable Location to proceed", Toast.LENGTH_SHORT).show();
+            ActivityCompat.requestPermissions(Register.this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 44);
         }
         else if(email.length()==0)
         {

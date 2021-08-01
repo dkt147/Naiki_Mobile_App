@@ -35,13 +35,13 @@ public class Naviagtion extends AppCompatActivity {
                         fragment = new home();
                         break;
                     case 2:
-                        fragment = new profile();
-                        break;
-                    case 3:
                         fragment = new donate();
                         break;
-                    case 4:
+                    case 3:
                         fragment = new MyAchievements();
+                        break;
+                    case 4:
+                        fragment = new profile();
                         break;
 
 
