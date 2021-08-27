@@ -57,12 +57,12 @@ public class Naviagtion extends AppCompatActivity {
         meowBottomNavigation.setOnClickMenuListener(new MeowBottomNavigation.ClickListener() {
             @Override
             public void onClickItem(MeowBottomNavigation.Model item) {
-                Toast.makeText(getApplicationContext() , "You clicked" + item.getId(), Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getApplicationContext() , "You clicked" + item.getId(), Toast.LENGTH_SHORT).show();
 
                 meowBottomNavigation.setOnReselectListener(new MeowBottomNavigation.ReselectListener() {
                     @Override
                     public void onReselectItem(MeowBottomNavigation.Model item) {
-                        Toast.makeText(getApplicationContext() , "You reselected" + item.getId(), Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(getApplicationContext() , "You reselected" + item.getId(), Toast.LENGTH_SHORT).show();
                     }
                 });
             }

@@ -203,7 +203,7 @@ public class OTP extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 if(!s.toString().trim().isEmpty()){
-                    t5.requestFocus();
+                    t6.requestFocus();
                 }
             }
 
