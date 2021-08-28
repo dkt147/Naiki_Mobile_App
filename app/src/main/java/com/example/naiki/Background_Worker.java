@@ -28,7 +28,6 @@ public class Background_Worker extends AsyncTask<String,Void,String> {
     Context context;
     AlertDialog alertDialog;
     SharedPreferences sharedPreferences;
-
     Background_Worker(Context ctx) {
         context = ctx;
     }
@@ -36,6 +35,11 @@ public class Background_Worker extends AsyncTask<String,Void,String> {
     @Override
     protected String doInBackground(String... params) {
         type = params[0];
+
+
+//        http://192.168.56.1/naiki/login.php
+//        http://lms-php.000webhostapp.com/LMS_PHP/mlogin.php
+
 
         if (type.equals("login")) {
             try {
@@ -148,7 +152,7 @@ public class Background_Worker extends AsyncTask<String,Void,String> {
             }
         }
 
-        if (type.equals("applyleave")) {
+        if (type.equals("donate")) {
             String reg_url = "http://lms-php.000webhostapp.com/LMS_PHP/applyleave.php";
             String nt = params[1];
             String sd = params[2];
