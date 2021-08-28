@@ -16,16 +16,16 @@
         android:theme="@style/Theme.Naiki">
         <activity android:name=".OTP"></activity>
         <activity android:name=".Naviagtion">
+
+        </activity>
+        <activity android:name=".Register" />
+        <activity android:name=".Dashboard" />
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-        <activity android:name=".Register" />
-        <activity android:name=".Dashboard" />
-        <activity android:name=".MainActivity">
-
         </activity>
     </application>
 

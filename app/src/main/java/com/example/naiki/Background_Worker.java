@@ -153,13 +153,12 @@ public class Background_Worker extends AsyncTask<String,Void,String> {
         }
 
         if (type.equals("donate")) {
-            String reg_url = "http://lms-php.000webhostapp.com/LMS_PHP/applyleave.php";
-            String nt = params[1];
-            String sd = params[2];
-            String ed = params[3];
-            String lt = params[4];
-            String eid = params[5];
-            String mid = params[6];
+            String reg_url = "http://192.168.56.1/naiki/donate.php";
+            String rid = params[1];
+            String it = params[2];
+            String qt = params[3];
+            String ds = params[4];
+
 
 
             try {
@@ -174,12 +173,11 @@ public class Background_Worker extends AsyncTask<String,Void,String> {
                 BufferedWriter bufferedWriter = new BufferedWriter(outputStreamWriter);
 
                 String post_data =
-                        URLEncoder.encode("nt", "UTF-8") + "=" + URLEncoder.encode(nt, "UTF-8") +
-                                "&" + URLEncoder.encode("sd", "UTF-8") + "=" + URLEncoder.encode(sd, "UTF-8") +
-                                "&" + URLEncoder.encode("ed", "UTF-8") + "=" + URLEncoder.encode(ed, "UTF-8") +
-                                "&" + URLEncoder.encode("lt", "UTF-8") + "=" + URLEncoder.encode(lt, "UTF-8") +
-                                "&" + URLEncoder.encode("eid", "UTF-8") + "=" + URLEncoder.encode(eid, "UTF-8") +
-                                "&" + URLEncoder.encode("mid", "UTF-8") + "=" + URLEncoder.encode(mid, "UTF-8");
+                        URLEncoder.encode("it", "UTF-8") + "=" + URLEncoder.encode(it, "UTF-8") +
+                                "&" + URLEncoder.encode("qt", "UTF-8") + "=" + URLEncoder.encode(qt, "UTF-8") +
+                                "&" + URLEncoder.encode("ds", "UTF-8") + "=" + URLEncoder.encode(ds, "UTF-8") +
+                                "&" + URLEncoder.encode("rid", "UTF-8") + "=" + URLEncoder.encode(rid, "UTF-8") ;
+
 
                 bufferedWriter.write(post_data);
                 bufferedWriter.flush();
@@ -310,22 +308,24 @@ public class Background_Worker extends AsyncTask<String,Void,String> {
                     alertDialog.show();
                 } else {
 
+
                     try {
-                        sharedPreferences = context.getSharedPreferences("user", Context.MODE_PRIVATE);
+                        sharedPreferences = context.getSharedPreferences("userr", Context.MODE_PRIVATE);
 
                         JSONObject jobj = new JSONObject(s);
+                        String r_id = jobj.getString("r_id");
                         int uphon = jobj.getInt("uphone");
                         String nam = jobj.getString("uname");
                         String pas = jobj.getString("upass");
 
                         SharedPreferences.Editor editor = sharedPreferences.edit();
                         editor.putInt("uphone", uphon);
+                        editor.putString("rid", r_id);
                         editor.putString("uname", nam);
                         editor.putString("upass", pas);
                         editor.commit();
 
-                        Intent intent = new Intent(context, Dashboard.class);
-//                        intent.putExtra("mobile" )
+                        Intent intent = new Intent(context, Naviagtion.class);
                         context.startActivity(intent);
                     } catch (JSONException e) {
                         e.printStackTrace();
@@ -333,7 +333,7 @@ public class Background_Worker extends AsyncTask<String,Void,String> {
                 }
             }
 
-
+// Register request Result
             if (type.equals("register")) {
 
                 if (s.equals("Register-Filed")) {
@@ -346,12 +346,28 @@ public class Background_Worker extends AsyncTask<String,Void,String> {
                         context.startActivity(intent);
                     }
                 }
+
+//            Donation purpose result
+            if (type.equals("donate")) {
+
+                if (s.equals("Failed")) {
+                    alertDialog.setMessage("Donate Failed");
+                    alertDialog.show();
+                } else {
+                    alertDialog.setMessage("Submitted Successfully");
+                    alertDialog.show();
+                Intent intent = new Intent(context, home.class);
+                context.startActivity(intent);
+                }
             }
+            }
+
+
+    }
 
 
         }
 
-    }
 
 
 

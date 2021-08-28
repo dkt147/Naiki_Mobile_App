@@ -2,7 +2,9 @@ package com.example.naiki;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -11,6 +13,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     EditText phone , pass;
+    SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,6 +21,17 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         phone = findViewById(R.id.phoneid);
         pass = findViewById(R.id.passwordid);
+
+        sharedPreferences = getSharedPreferences("userr" , Context.MODE_PRIVATE);
+
+        if(sharedPreferences.contains("rid") && sharedPreferences.contains("uphone"))
+        {
+           Intent intent = new Intent(this , Naviagtion.class);
+            startActivity(intent);
+
+
+        }
+
 
     }
 
