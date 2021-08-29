@@ -79,78 +79,7 @@ public class Background_Worker extends AsyncTask<String,Void,String> {
         }
 
 
-        if (type.equals("mlogin")) {
-            try {
-                String login_url = "http://lms-php.000webhostapp.com/LMS_PHP/mlogin.php";
-                String mun = params[1];
-                String mps = params[2];
-                URL url = new URL(login_url);
-                HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
-                httpURLConnection.setRequestMethod("POST");
-                httpURLConnection.setDoOutput(true);
-                httpURLConnection.setDoInput(true);
-                OutputStream outputStream = httpURLConnection.getOutputStream();
-                BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(outputStream, "UTF-8"));
-                String post_data = URLEncoder.encode("mun", "UTF-8") + "=" + URLEncoder.encode(mun, "UTF-8") + "&"
-                        + URLEncoder.encode("mps", "UTF-8") + "=" + URLEncoder.encode(mps, "UTF-8");
-                bufferedWriter.write(post_data);
-                bufferedWriter.flush();
-                bufferedWriter.close();
-                outputStream.close();
-                InputStream inputStream = httpURLConnection.getInputStream();
-                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream, "iso-8859-1"));
-                String result = "";
-                String line = "";
-                while ((line = bufferedReader.readLine()) != null) {
-                    result += line;
-                }
-                bufferedReader.close();
-                inputStream.close();
-                httpURLConnection.disconnect();
-                return result;
-            } catch (MalformedURLException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
 
-
-        if (type.equals("alogin")) {
-            try {
-                String login_url = "http://lms-php.000webhostapp.com/LMS_PHP/alogin.php";
-                String aun = params[1];
-                String aps = params[2];
-                URL url = new URL(login_url);
-                HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
-                httpURLConnection.setRequestMethod("POST");
-                httpURLConnection.setDoOutput(true);
-                httpURLConnection.setDoInput(true);
-                OutputStream outputStream = httpURLConnection.getOutputStream();
-                BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(outputStream, "UTF-8"));
-                String post_data = URLEncoder.encode("aun", "UTF-8") + "=" + URLEncoder.encode(aun, "UTF-8") + "&"
-                        + URLEncoder.encode("aps", "UTF-8") + "=" + URLEncoder.encode(aps, "UTF-8");
-                bufferedWriter.write(post_data);
-                bufferedWriter.flush();
-                bufferedWriter.close();
-                outputStream.close();
-                InputStream inputStream = httpURLConnection.getInputStream();
-                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream, "iso-8859-1"));
-                String result = "";
-                String line = "";
-                while ((line = bufferedReader.readLine()) != null) {
-                    result += line;
-                }
-                bufferedReader.close();
-                inputStream.close();
-                httpURLConnection.disconnect();
-                return result;
-            } catch (MalformedURLException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
 
         if (type.equals("donate")) {
             String reg_url = "http://192.168.56.1/naiki/donate.php";
@@ -158,6 +87,7 @@ public class Background_Worker extends AsyncTask<String,Void,String> {
             String it = params[2];
             String qt = params[3];
             String ds = params[4];
+            String ct = params[5];
 
 
 
@@ -176,7 +106,8 @@ public class Background_Worker extends AsyncTask<String,Void,String> {
                         URLEncoder.encode("it", "UTF-8") + "=" + URLEncoder.encode(it, "UTF-8") +
                                 "&" + URLEncoder.encode("qt", "UTF-8") + "=" + URLEncoder.encode(qt, "UTF-8") +
                                 "&" + URLEncoder.encode("ds", "UTF-8") + "=" + URLEncoder.encode(ds, "UTF-8") +
-                                "&" + URLEncoder.encode("rid", "UTF-8") + "=" + URLEncoder.encode(rid, "UTF-8") ;
+                                "&" + URLEncoder.encode("rid", "UTF-8") + "=" + URLEncoder.encode(rid, "UTF-8") +
+                                "&" + URLEncoder.encode("ct", "UTF-8") + "=" + URLEncoder.encode(ct, "UTF-8") ;
 
 
                 bufferedWriter.write(post_data);
