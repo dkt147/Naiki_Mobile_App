@@ -74,7 +74,7 @@ public class MyAchievements extends Fragment {
 
                     try {
 //                        API link
-                        String fetch_url = "http://192.168.56.1/naiki/myDonation.php";
+                        String fetch_url = "http://192.168.56.1/naiki/myDonate.php";
                         URL url = new URL(fetch_url);
                         HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
                         httpURLConnection.setRequestMethod("POST");
@@ -136,10 +136,10 @@ public class MyAchievements extends Fragment {
                                                 "Quantity" + "\t \t \t \t" +
                                                 jsonObject.getString("quantity") + "\n \n" +
                                                 "Note" + "\t \t \t \t" +
-                                                jsonObject.getString("note") + " " +
+                                                jsonObject.getString("note") + " " ;
 
 //                                                jsonObject.getString("item_image")+
-                                                "\n ---------------------------------------------------------------------- \n";
+
 
 
                                 alist.add(row);
