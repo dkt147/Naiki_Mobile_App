@@ -1,5 +1,9 @@
 package com.example.naiki;
 
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.os.AsyncTask;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -7,58 +11,163 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link MyAchievements#newInstance} factory method to
- * create an instance of this fragment.
- */
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLEncoder;
+import java.util.ArrayList;
+
 public class MyAchievements extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+    ArrayList<String> alist = new ArrayList<>();
+    ListView listView;
+    SharedPreferences sharedPreferences;
+    AlertDialog alertDialog;
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
 
+    String rid ;
     public MyAchievements() {
         // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment MyAchievements.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static MyAchievements newInstance(String param1, String param2) {
-        MyAchievements fragment = new MyAchievements();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_my_achievements, container, false);
+        View view = inflater.inflate(R.layout.fragment_my_achievements, container, false);
+
+        listView = view.findViewById(R.id.donation_list);
+
+
+        getMyDonations();
+        return view;
+    }
+
+    public void getMyDonations() {
+
+
+        class bgWorker extends AsyncTask<String, Void, String> {
+
+
+            @Override
+            protected String doInBackground(String... strings) {
+
+//              rid is the vallue we get from sharedpreferences
+                String rid = strings[1];
+                String type = strings[0];
+
+// working for fetch profile from database for which we are using rid to sent this id to mysql api where we get data
+                if (type.equals("myDonation")) {
+
+                    try {
+//                        API link
+                        String fetch_url = "http://192.168.56.1/naiki/myDonation.php";
+                        URL url = new URL(fetch_url);
+                        HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
+                        httpURLConnection.setRequestMethod("POST");
+                        httpURLConnection.setDoOutput(true);
+                        httpURLConnection.setDoInput(true);
+                        OutputStream outputStream = httpURLConnection.getOutputStream();
+                        BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(outputStream, "UTF-8"));
+                        String post_data = URLEncoder.encode("rid", "UTF-8") + "=" + URLEncoder.encode(rid, "UTF-8");
+                        bufferedWriter.write(post_data);
+                        bufferedWriter.flush();
+                        bufferedWriter.close();
+                        outputStream.close();
+                        InputStream inputStream = httpURLConnection.getInputStream();
+                        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream, "iso-8859-1"));
+                        String result = "";
+                        String line = "";
+                        while ((line = bufferedReader.readLine()) != null) {
+                            result += line;
+                        }
+                        bufferedReader.close();
+                        inputStream.close();
+                        httpURLConnection.disconnect();
+                        return result;
+                    } catch (MalformedURLException e) {
+                        e.printStackTrace();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+
+                return null;
+            }
+
+
+            @Override
+            protected void onPreExecute() {
+
+            }
+
+            @Override
+            protected void onPostExecute(String s) {
+                if (s != null) {
+
+                    if (s.equals("Failed")) {
+                        alertDialog.setMessage("Details not found");
+                        alertDialog.show();
+                    } else {
+                        try {
+                            JSONArray jsonArray = new JSONArray(s);
+                            JSONObject jsonObject = null;
+                            alist.clear();
+
+                            for (int i = 0; i < jsonArray.length(); i++) {
+                                jsonObject = jsonArray.getJSONObject(i);
+                                String row = //jsonObject.getInt("uid")+" "+
+
+                                        "Item Name" + "\t \t \t \t" +
+                                                jsonObject.getString("item_name") + "\n \n" +
+                                                "Quantity" + "\t \t \t \t" +
+                                                jsonObject.getString("quantity") + "\n \n" +
+                                                "Note" + "\t \t \t \t" +
+                                                jsonObject.getString("note") + " " +
+
+//                                                jsonObject.getString("item_image")+
+                                                "\n ---------------------------------------------------------------------- \n";
+
+
+                                alist.add(row);
+                            }
+
+
+                            ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1, alist);
+                            listView.setAdapter(adapter);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+
+            }
+        }
+
+
+//        sharedPreferences gettting values
+        sharedPreferences = getContext().getSharedPreferences("userr" , Context.MODE_PRIVATE);
+        if(sharedPreferences.contains("rid") && sharedPreferences.contains("uphone"))
+        {
+            rid = sharedPreferences.getString("rid", "0");
+
+        }
+
+//        Calling object
+        bgWorker bg = new bgWorker();
+        bg.execute("myDonation" , rid);
     }
 }

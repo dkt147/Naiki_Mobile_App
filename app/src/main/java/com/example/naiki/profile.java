@@ -176,10 +176,8 @@ public class profile extends Fragment {
                 }
             }
 
-
-
-
         }
+
 
 //        sharedPreferences gettting values
         sharedPreferences = getContext().getSharedPreferences("userr" , Context.MODE_PRIVATE);
