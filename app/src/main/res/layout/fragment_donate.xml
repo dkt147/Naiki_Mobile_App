@@ -37,13 +37,28 @@
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
+
                 <EditText
-                    android:id="@+id/item_name_id"
+                    android:id="@+id/item_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPersonName"
+                    android:text="Name" />
+
+                <TextView
+                    android:id="@+id/textView13"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
-                    android:ems="10"
-                    android:inputType="textPersonName" />
+                    android:text="Category"
+                    android:textColor="#8BC34A"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <Spinner
+                    android:id="@+id/spinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
 
                 <TextView
                     android:id="@+id/textView10"
@@ -56,12 +71,10 @@
                     android:textStyle="bold" />
 
                 <EditText
-                    android:id="@+id/quantity_id"
+                    android:id="@+id/quantity"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
-                    android:ems="10"
-                    android:inputType="number" />
+                    android:inputType="numberSigned" />
 
                 <TextView
                     android:id="@+id/textView11"
@@ -77,9 +90,8 @@
                     android:id="@+id/description_id"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
-                    android:ems="10"
-                    android:inputType="textPersonName" />
+                    android:inputType="textPersonName"
+                    android:text="Name" />
 
                 <TextView
                     android:id="@+id/textView20"

@@ -7,20 +7,27 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.github.dhaval2404.imagepicker.ImagePicker;
 
-public class donate extends Fragment {
+import java.util.ArrayList;
+
+public class donate extends Fragment implements AdapterView.OnItemSelectedListener {
 
 
     public donate() {
@@ -32,14 +39,18 @@ public class donate extends Fragment {
     Button bt1 , bt2;
     TextView t1 , t2, t3;
     EditText ed1 , ed2 , ed3;
+    Spinner spinner;
 
     String item_name;
     String note;
     String quantity;
     String r_id;
+    String category;
+
 
     SharedPreferences sharedPreferences;
 
+    ArrayList<String> spinner_data = new ArrayList<>();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -52,11 +63,21 @@ public class donate extends Fragment {
         bt1 = view.findViewById(R.id.image_up);
         bt2 = view.findViewById(R.id.button2);
 
-        ed1 = view.findViewById(R.id.item_name_id);
-        ed2 = view.findViewById(R.id.quantity_id);
+        ed1 = view.findViewById(R.id.item_name);
+        ed2 = view.findViewById(R.id.quantity);
         ed3 = view.findViewById(R.id.description_id);
 
         t3 = view.findViewById(R.id.textView22);
+        spinner = view.findViewById(R.id.spinner);
+
+
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource ( getContext(), R.array.category , android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
+        spinner.setOnItemSelectedListener(this);
+
+
+
 
         sharedPreferences = getContext().getSharedPreferences("userr" , Context.MODE_PRIVATE);
 
@@ -71,16 +92,6 @@ public class donate extends Fragment {
 
 
 //         onclick listeneer on button to take picture from gallery or camera ,  then we are using onActivity result to get data of image
-        bt1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ImagePicker.Companion.with(donate.this)
-                .crop()	    			//Crop image(Optional), Check Customization for more option
-//                .compress(1024)			//Final image size will be less than 1 MB(Optional)
-//                .maxResultSize(1080, 1080)	//Final image resolution will be less than 1080 x 1080(Optional)
-                        .start();
-            }
-        });
 
         bt2.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -108,16 +119,15 @@ public class donate extends Fragment {
                     item_name = ed1.getText().toString();
                     quantity = ed2.getText().toString();
                     note = ed3.getText().toString();
+                    category = spinner.getSelectedItem().toString();
 
                     Background_Worker bgworker = new Background_Worker(getContext());
-                    bgworker.execute("donate" ,r_id, item_name , quantity , note);
+                    bgworker.execute("donate" ,r_id, item_name , quantity , note, category);
 
 
                 }
             }
         });
-
-
         return view;
 
 
@@ -135,9 +145,15 @@ public class donate extends Fragment {
     }
 
 
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
+    }
 
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
 
+    }
 }
 
 
