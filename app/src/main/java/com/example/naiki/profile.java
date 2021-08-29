@@ -33,6 +33,7 @@ import java.net.URLEncoder;
 public class profile extends Fragment {
 
 
+//    Inititializing Labels and textboxes
     TextView t19, t22, t24 , t20, t16;
 
     SharedPreferences sharedPreferences;
@@ -41,6 +42,8 @@ public class profile extends Fragment {
 
     AlertDialog alertDialog;
 
+
+//    Fragment Constructor
     public profile() {
 
     }
@@ -51,12 +54,14 @@ public class profile extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
 
+//        Initializing
         t19 = view.findViewById(R.id.textView19);
         t20 = view.findViewById(R.id.textView20);
         t22 = view.findViewById(R.id.textView22);
         t24 = view.findViewById(R.id.textView24);
         t16 = view.findViewById(R.id.textView16);
 
+//        Calling Function
         getProfile();
 
 
@@ -73,14 +78,15 @@ public class profile extends Fragment {
             @Override
             protected String doInBackground(String... strings) {
 
-
+//              rid is the vallue we get from sharedpreferences
                 String rid = strings[1];
                 String type = strings[0];
 
-
+// working for fetch profile from database for which we are using rid to sent this id to mysql api where we get data
                 if (type.equals("profile")) {
 
                     try {
+//                        API link
                         String fetch_url = "http://192.168.56.1/naiki/profile.php";
                         URL url = new URL(fetch_url);
                         HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
@@ -131,11 +137,12 @@ public class profile extends Fragment {
                         alertDialog.show();
                     }
                     else {
+//                        Getting data in JSON Array from PHP MYSQL
                         try
                         {
                             JSONArray jsonArray = new JSONArray(s);
                             JSONObject jsonObject = null;
-//                            sdata.clear();
+
 
                             for (int i=0; i<jsonArray.length(); i++)
                             {
@@ -148,7 +155,7 @@ public class profile extends Fragment {
 
 
 
-
+//Setting values again to textboxes
                                 t19.setText(name);
                                 t20.setText(uphone);
                                 t22.setText(uaddress);
@@ -174,6 +181,7 @@ public class profile extends Fragment {
 
         }
 
+//        sharedPreferences gettting values
         sharedPreferences = getContext().getSharedPreferences("userr" , Context.MODE_PRIVATE);
 
         if(sharedPreferences.contains("rid") && sharedPreferences.contains("uphone"))
@@ -182,6 +190,7 @@ public class profile extends Fragment {
 
         }
 
+//        Calling object
         bgWorker bg = new bgWorker();
         bg.execute("profile" , r_id);
     }
