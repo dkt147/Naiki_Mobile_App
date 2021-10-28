@@ -9,124 +9,107 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="20dp"
         android:orientation="vertical">
 
-        <ScrollView
+        <TextView
+            android:id="@+id/textView22"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content"
+            android:text="DONATE OR REQUEST"
+            android:textSize="24sp"
+            android:textStyle="bold" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical" >
+        <TextView
+            android:id="@+id/textView9"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:text="Item name"
+            android:textColor="#8BC34A"
+            android:textSize="18sp"
+            android:textStyle="bold" />
 
-                <TextView
-                    android:id="@+id/textView22"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="TextView" />
+        <EditText
+            android:id="@+id/item_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="" />
 
-                <TextView
-                    android:id="@+id/textView9"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
-                    android:text="Item name"
-                    android:textColor="#8BC34A"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
+        <TextView
+            android:id="@+id/textView11"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:text="Details"
+            android:textColor="#8BC34A"
+            android:textSize="18sp"
+            android:textStyle="bold" />
 
+        <EditText
+            android:id="@+id/description_id"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName" />
 
-                <EditText
-                    android:id="@+id/item_name"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="textPersonName"
-                    android:text="Name" />
+        <TextView
+            android:id="@+id/textView13"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:text="Category"
+            android:textColor="#8BC34A"
+            android:textSize="18sp"
+            android:textStyle="bold" />
 
-                <TextView
-                    android:id="@+id/textView13"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
-                    android:text="Category"
-                    android:textColor="#8BC34A"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
+        <Spinner
+            android:id="@+id/spinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
-                <Spinner
-                    android:id="@+id/spinner"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/textView10"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:text="Quantity"
+            android:textColor="#8BC34A"
+            android:textSize="18sp"
+            android:textStyle="bold" />
 
-                <TextView
-                    android:id="@+id/textView10"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
-                    android:text="Quantity"
-                    android:textColor="#8BC34A"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
+        <EditText
+            android:id="@+id/quantity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="" />
 
-                <EditText
-                    android:id="@+id/quantity"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="numberSigned" />
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="match_parent"
+            android:layout_height="160dp"
+            android:src="@drawable/ic_photo_camera_black_48dp" />
 
-                <TextView
-                    android:id="@+id/textView11"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
-                    android:text="Details"
-                    android:textColor="#8BC34A"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
+        <Button
+            android:id="@+id/button2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Donate"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:backgroundTint="#8BC34A" />
 
-                <EditText
-                    android:id="@+id/description_id"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="textPersonName"
-                    android:text="Name" />
-
-                <TextView
-                    android:id="@+id/textView20"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="TextView" />
-
-                <ImageView
-                    android:id="@+id/imageView2"
-                    android:layout_width="match_parent"
-                    android:layout_height="150dp"
-                    android:src="@drawable/ic_photo_camera_black_48dp" />
-
-                <Button
-                    android:id="@+id/image_up"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:onClick="image_upload"
-                    android:text="Upload Image"
-                    android:textColor="#FFFFFF"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
-                    app:backgroundTint="#8BC34A" />
-
-                <Button
-                    android:id="@+id/button2"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Donate"
-                    android:textColor="#FFFFFF"
-                    android:textSize="18sp"
-                    app:backgroundTint="#8BC34A" />
-
-            </LinearLayout>
-        </ScrollView>
-
+        <Button
+            android:id="@+id/request_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Request"
+            android:textSize="18sp"
+            android:textStyle="bold" />
     </LinearLayout>
+
 </FrameLayout>

@@ -33,7 +33,7 @@ import java.util.ArrayList;
 public class home extends Fragment {
 
 
-    ListView listView;
+    ListView listView1;
     AlertDialog alertDialog;
     SharedPreferences sharedPreferences;
 
@@ -49,13 +49,12 @@ public class home extends Fragment {
                              Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_home, container, false);
-        listView = view.findViewById(R.id.donation_list);
+        listView1 = view.findViewById(R.id.doante_list);
         donate_list();
 
         // Inflate the layout for this fragment
         return view;
     }
-
 
     private void donate_list() {
         class bgWorker extends AsyncTask<String, Void, String> {
@@ -64,14 +63,17 @@ public class home extends Fragment {
             protected String doInBackground(String... strings) {
 
 
+
+
                 String type = strings[0];
-//                String location = strings[1];
 
 
                 if (type.equals("list")) {
 
 
+
                     try {
+
 
 
                         String fetch_url = "http://192.168.56.1/naiki/donate_list.php";
@@ -82,7 +84,7 @@ public class home extends Fragment {
                         httpURLConnection.setDoInput(true);
                         OutputStream outputStream = httpURLConnection.getOutputStream();
                         BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(outputStream, "UTF-8"));
-//                        String post_data = URLEncoder.encode("d_id", "UTF-8") + "=" + URLEncoder.encode(employeeid, "UTF-8");
+//                        String post_data = URLEncoder.encode("", "UTF-8") + "=" + URLEncoder.encode(manager_t_id, "UTF-8");
 //                        bufferedWriter.write(post_data);
                         bufferedWriter.flush();
                         bufferedWriter.close();
@@ -111,33 +113,28 @@ public class home extends Fragment {
             @Override
             protected void onPreExecute() {
 
-//                alertDialog = new AlertDialog.Builder(context).create();
-//                alertDialog.setTitle("Apply Leave");
-//                sharedPreferences = context.getSharedPreferences("Mypref", Context.MODE_PRIVATE);
             }
 
             @Override
             protected void onPostExecute(String s) {
                 if (s != null) {
 
-//                if (s.equals("Registered")) {
-//                    alertDialog.setMessage("Employee Registered Succesfully");
-//                    alertDialog.show();}
-//                else {
-//                    alertDialog.setMessage("Register Failed");
-//                    alertDialog.show();
-//                }
+//
+
 
                     if (s.equals("Failed")) {
                         alertDialog.setMessage("Details not found");
                         alertDialog.show();
-                    } else {
-                        try {
+                    }
+                    else {
+                        try
+                        {
                             JSONArray jsonArray = new JSONArray(s);
                             JSONObject jsonObject = null;
                             donate_list_data.clear();
 
-                            for (int i = 0; i < jsonArray.length(); i++) {
+                            for (int i=0; i<jsonArray.length(); i++)
+                            {
                                 jsonObject = jsonArray.getJSONObject(i);
                                 String row = //jsonObject.getInt("uid")+" "+
 
@@ -156,34 +153,30 @@ public class home extends Fragment {
                             }
 
 
-                            ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1, donate_list_data);
-                            listView.setAdapter(adapter);
-
-
-                        } catch (JSONException e) {
+//                            ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1,donate_list_data);
+//                            listView1.setAdapter(adapter,R.layout.activity_main2);
+                        }
+                        catch (JSONException e)
+                        {
                             e.printStackTrace();
                         }
 
-
-//                    if (s.equals("inserted")) {
-//                        alertDialog.setMessage("Applied Successfully");
-//                        alertDialog.show();
-//                    } else if (s.equals("Failed")) {
-//                        alertDialog.setMessage("Invalid username or password");
-//                        alertDialog.show();
-//                    }
-
-
                     }
+
+
+//
+
+
                 }
-
-
             }
+
+
+
 
         }
         bgWorker bg = new bgWorker();
         bg.execute("list");
 
-
     }
+
 }

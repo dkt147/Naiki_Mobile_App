@@ -88,6 +88,8 @@ public class Background_Worker extends AsyncTask<String,Void,String> {
             String qt = params[3];
             String ds = params[4];
             String ct = params[5];
+            String im = params[6];
+            String type = "Donate";
 
 
 
@@ -106,7 +108,77 @@ public class Background_Worker extends AsyncTask<String,Void,String> {
                         URLEncoder.encode("it", "UTF-8") + "=" + URLEncoder.encode(it, "UTF-8") +
                                 "&" + URLEncoder.encode("qt", "UTF-8") + "=" + URLEncoder.encode(qt, "UTF-8") +
                                 "&" + URLEncoder.encode("ds", "UTF-8") + "=" + URLEncoder.encode(ds, "UTF-8") +
-                                "&" + URLEncoder.encode("rid", "UTF-8") + "=" + URLEncoder.encode(rid, "UTF-8") +
+                                "&" + URLEncoder.encode("im", "UTF-8") + "=" + URLEncoder.encode(im, "UTF-8") +
+                                "&" + URLEncoder.encode("type", "UTF-8") + "=" + URLEncoder.encode(type, "UTF-8") +
+                                "&" + URLEncoder.encode("ct", "UTF-8") + "=" + URLEncoder.encode(ct, "UTF-8") ;
+
+
+                bufferedWriter.write(post_data);
+                bufferedWriter.flush();
+                bufferedWriter.close();
+                outputStreamWriter.close();
+                outputStream.close();
+
+
+                InputStream inputStream = httpURLConnection.getInputStream();
+                InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
+                BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+
+                String line = "";
+                String result = "";
+
+                while ((line = bufferedReader.readLine()) != null) {
+                    result += line;
+                }
+
+                bufferedReader.close();
+                inputStreamReader.close();
+                inputStream.close();
+
+                httpURLConnection.disconnect();
+
+
+                return result;
+
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+        }
+
+
+        if (type.equals("request")) {
+            String reg_url = "http://192.168.56.1/naiki/donate.php";
+            String rid = params[1];
+            String it = params[2];
+            String qt = params[3];
+            String ds = params[4];
+            String ct = params[5];
+            String im = params[6];
+            String type = "Request";
+
+
+
+            try {
+                URL url = new URL(reg_url);
+                HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
+                httpURLConnection.setRequestMethod("POST");
+                httpURLConnection.setDoInput(true);
+                httpURLConnection.setDoOutput(true);
+
+                OutputStream outputStream = httpURLConnection.getOutputStream();
+                OutputStreamWriter outputStreamWriter = new OutputStreamWriter(outputStream);
+                BufferedWriter bufferedWriter = new BufferedWriter(outputStreamWriter);
+
+                String post_data =
+                        URLEncoder.encode("it", "UTF-8") + "=" + URLEncoder.encode(it, "UTF-8") +
+                                "&" + URLEncoder.encode("qt", "UTF-8") + "=" + URLEncoder.encode(qt, "UTF-8") +
+                                "&" + URLEncoder.encode("ds", "UTF-8") + "=" + URLEncoder.encode(ds, "UTF-8") +
+                                "&" + URLEncoder.encode("im", "UTF-8") + "=" + URLEncoder.encode(im, "UTF-8") +
+                                "&" + URLEncoder.encode("type", "UTF-8") + "=" + URLEncoder.encode(type, "UTF-8") +
+
                                 "&" + URLEncoder.encode("ct", "UTF-8") + "=" + URLEncoder.encode(ct, "UTF-8") ;
 
 
@@ -279,7 +351,8 @@ public class Background_Worker extends AsyncTask<String,Void,String> {
                 }
 
 //            Donation purpose result
-            if (type.equals("donate")) {
+            if (type.equals("donate"))
+            {
 
                 if (s.equals("Failed")) {
                     alertDialog.setMessage("Donate Failed");
@@ -287,11 +360,26 @@ public class Background_Worker extends AsyncTask<String,Void,String> {
                 } else {
                     alertDialog.setMessage("Submitted Successfully");
                     alertDialog.show();
-                Intent intent = new Intent(context, home.class);
-                context.startActivity(intent);
+                    Intent intent = new Intent( context , home.class);
+                    context.startActivity(intent);
                 }
             }
+
+
+            if (type.equals("request"))
+            {
+
+                if (s.equals("Failed")) {
+                    alertDialog.setMessage("Request Failed");
+                    alertDialog.show();
+                } else {
+                    alertDialog.setMessage("Submitted Successfully");
+                    alertDialog.show();
+                    Intent intent = new Intent( context , home.class);
+                    context.startActivity(intent);
+                }
             }
+        }
 
 
     }

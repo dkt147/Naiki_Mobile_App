@@ -39,7 +39,7 @@ public class Naviagtion extends AppCompatActivity {
                         break;
                     case 3:
                         fragment = new MyAchievements();
-                        break;
+
                     case 4:
                         fragment = new profile();
                         break;
