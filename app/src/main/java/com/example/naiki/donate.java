@@ -79,7 +79,7 @@ public class donate extends Fragment implements AdapterView.OnItemSelectedListen
         t3 = view.findViewById(R.id.textView22);
         spinner = view.findViewById(R.id.spinner);
 
-
+// Array adapter for spinner to shoe list
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource ( getContext(), R.array.category , android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
@@ -116,6 +116,7 @@ public class donate extends Fragment implements AdapterView.OnItemSelectedListen
 
 //         onclick listeneer on button to take picture from gallery or camera ,  then we are using onActivity result to get data of image
 
+//        Donate button click functionas
         bt2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -259,6 +260,8 @@ public class donate extends Fragment implements AdapterView.OnItemSelectedListen
 //        return path;
 //    }
 
+
+//    Encoded String for Image upload to folder and get path for that
     public String encodedbitmap(Bitmap bitmap)
     {
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
