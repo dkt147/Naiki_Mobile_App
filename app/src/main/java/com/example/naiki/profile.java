@@ -6,17 +6,22 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.provider.MediaStore;
 import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.bumptech.glide.Glide;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -25,6 +30,7 @@ import org.json.JSONObject;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.ByteArrayOutputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -176,6 +182,7 @@ public class profile extends Fragment {
                             JSONArray jsonArray = new JSONArray(s);
                             JSONObject jsonObject = null;
 
+                            String image = "";
 
                             for (int i=0; i<jsonArray.length(); i++)
                             {
@@ -185,8 +192,8 @@ public class profile extends Fragment {
                                 String uphone = jsonObject.getString("uphone");
                                 String uaddress = jsonObject.getString("uaddress");
                                 String uemail = jsonObject.getString("uemail");
-                                String image = jsonObject.getString("profile_image");
-
+                                String url = "http://192.168.56.1/naiki/profiles/";
+                                image = url + jsonObject.getString("profile_image");
 
 
 //  Setting values again to textboxes
@@ -195,13 +202,16 @@ public class profile extends Fragment {
                                 t22.setText(uaddress);
                                 t24.setText(uemail);
                                 t16.setText(name);
-                                byte[] bytes = Base64.decode(image,Base64.DEFAULT);
-                                Bitmap bitmap = BitmapFactory.decodeByteArray(bytes,0, bytes.length);
 
-                              pf.setImageBitmap(bitmap);
+                                Glide.with(getContext()).load(image).into(pf);
 
 
                             }
+
+//                            pf.setImageURI(Uri.parse(image));
+//                            byte[] bytes = Base64.decode(image,Base64.DEFAULT);
+//                            Bitmap bitmap = BitmapFactory.decodeByteArray(bytes,0, bytes.length);
+//                            pf.setImageBitmap(bitmap);
 
                         }
                         catch (JSONException e)
@@ -215,6 +225,9 @@ public class profile extends Fragment {
             }
 
         }
+
+
+
 
 
 //

@@ -20,9 +20,11 @@
 
             <ImageView
                 android:id="@+id/profile_image"
-                android:layout_width="160dp"
+                android:layout_width="100dp"
                 android:layout_height="150dp"
                 android:layout_weight="1"
+                android:adjustViewBounds="true"
+                app:srcCompat="@drawable/ic_baseline_call_24"
                 tools:src="@mipmap/ic_launcher_foreground" />
 
             <LinearLayout
@@ -146,7 +148,7 @@
                     android:id="@+id/textView21"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="40dp"
+                    android:layout_marginTop="20dp"
                     android:text="About Us"
                     android:textColor="#009688"
                     android:textSize="18sp"

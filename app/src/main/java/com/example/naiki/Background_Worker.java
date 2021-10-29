@@ -110,6 +110,8 @@ public class Background_Worker extends AsyncTask<String,Void,String> {
                                 "&" + URLEncoder.encode("ds", "UTF-8") + "=" + URLEncoder.encode(ds, "UTF-8") +
                                 "&" + URLEncoder.encode("im", "UTF-8") + "=" + URLEncoder.encode(im, "UTF-8") +
                                 "&" + URLEncoder.encode("type", "UTF-8") + "=" + URLEncoder.encode(type, "UTF-8") +
+                                "&" + URLEncoder.encode("rid", "UTF-8") + "=" + URLEncoder.encode(rid, "UTF-8") +
+
                                 "&" + URLEncoder.encode("ct", "UTF-8") + "=" + URLEncoder.encode(ct, "UTF-8") ;
 
 
@@ -178,7 +180,7 @@ public class Background_Worker extends AsyncTask<String,Void,String> {
                                 "&" + URLEncoder.encode("ds", "UTF-8") + "=" + URLEncoder.encode(ds, "UTF-8") +
                                 "&" + URLEncoder.encode("im", "UTF-8") + "=" + URLEncoder.encode(im, "UTF-8") +
                                 "&" + URLEncoder.encode("type", "UTF-8") + "=" + URLEncoder.encode(type, "UTF-8") +
-
+                                "&" + URLEncoder.encode("rid", "UTF-8") + "=" + URLEncoder.encode(rid, "UTF-8") +
                                 "&" + URLEncoder.encode("ct", "UTF-8") + "=" + URLEncoder.encode(ct, "UTF-8") ;
 
 
@@ -362,8 +364,8 @@ public class Background_Worker extends AsyncTask<String,Void,String> {
                 } else {
                     alertDialog.setMessage("Submitted Successfully");
                     alertDialog.show();
-                    Intent intent = new Intent( context , home.class);
-                    context.startActivity(intent);
+//                    Intent intent = new Intent( context , home.class);
+//                    context.startActivity(intent);
                 }
             }
 

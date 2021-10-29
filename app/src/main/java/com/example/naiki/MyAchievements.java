@@ -14,6 +14,8 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.bumptech.glide.Glide;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -74,7 +76,7 @@ public class MyAchievements extends Fragment {
 
                     try {
 //                        API link
-                        String fetch_url = "http://192.168.56.1/naiki/myDonate.php";
+                        String fetch_url = "http://192.168.56.1/naiki/achievements.php";
                         URL url = new URL(fetch_url);
                         HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
                         httpURLConnection.setRequestMethod("POST");
@@ -129,20 +131,20 @@ public class MyAchievements extends Fragment {
 
                             for (int i = 0; i < jsonArray.length(); i++) {
                                 jsonObject = jsonArray.getJSONObject(i);
-                                String row = //jsonObject.getInt("uid")+" "+
+                                String row[];
+                                String name = jsonObject.getString("item_name");
+                                String quantity = jsonObject.getString("quantity");
+                                String image = jsonObject.getString("item_image");
+                                String note = jsonObject.getString("note");
 
-                                        "Item Name" + "\t \t \t \t" +
-                                                jsonObject.getString("item_name") + "\n \n" +
-                                                "Quantity" + "\t \t \t \t" +
-                                                jsonObject.getString("quantity") + "\n \n" +
-                                                "Note" + "\t \t \t \t" +
-                                                jsonObject.getString("note") + " " ;
+//                                Glide.with(getContext()).load(image).into(list_class);
+
 
 //                                                jsonObject.getString("item_image")+
 
 
 
-                                alist.add(row);
+//                                alist.add(row);
                             }
 
 

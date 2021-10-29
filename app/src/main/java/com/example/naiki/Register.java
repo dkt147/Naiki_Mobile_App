@@ -12,6 +12,7 @@ import android.graphics.Bitmap;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
+import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.text.Html;
@@ -53,6 +54,8 @@ public class Register extends AppCompatActivity implements AdapterView.OnItemSel
     ProgressBar progressBar;
     Button button;
     ImageView pr_up;
+    String image_path;
+    Bitmap bitmap;
 
 
     Spinner spinner;
@@ -100,21 +103,21 @@ public class Register extends AppCompatActivity implements AdapterView.OnItemSel
 
     }
 
-//    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-//        super.onActivityResult(requestCode, resultCode, data);
-//
-//        uri1 = data.getData();
-//        try {
-//            bitmap = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), uri1);
-//            im.setImageBitmap(bitmap);
-////        t2.setText(uri1.toString());
-//
-//        }
-//        catch (FileNotFoundException e) {
-//            e.printStackTrace();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        Uri uri1 = data.getData();
+        try {
+            bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), uri1);
+            pr_up.setImageBitmap(bitmap);
+//        t2.setText(uri1.toString());
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 //
 //
 ////        Uri uri = data.getData();
@@ -151,17 +154,17 @@ public class Register extends AppCompatActivity implements AdapterView.OnItemSel
 //    }
 
 
-//    //    Encoded String for Image upload to folder and get path for that
-//    public String encodedbitmap(Bitmap bitmap)
-//    {
-//        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-//        bitmap.compress(Bitmap.CompressFormat.JPEG,100, byteArrayOutputStream);
-//
-//        byte[] byteofimage = byteArrayOutputStream.toByteArray();
-//        image_path = android.util.Base64.encodeToString(byteofimage , Base64.DEFAULT);
-////        t2.setText(image_path);
-//        return image_path;
-//    }
+    //    Encoded String for Image upload to folder and get path for that
+    public String encodedbitmap(Bitmap bitmap)
+    {
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.JPEG,100, byteArrayOutputStream);
+
+        byte[] byteofimage = byteArrayOutputStream.toByteArray();
+        image_path = android.util.Base64.encodeToString(byteofimage , Base64.DEFAULT);
+//        t2.setText(image_path);
+        return image_path;
+    }
 
 
 //    public String getRealPathFromURI(Uri uri) {
@@ -188,14 +191,9 @@ public class Register extends AppCompatActivity implements AdapterView.OnItemSel
 
     }
 
-
-
-
-
-
-
-
     public void reg(View view){
+
+        image_path = encodedbitmap(bitmap);
 
         if (ActivityCompat.checkSelfPermission(Register.this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
             getLocation();
@@ -211,10 +209,10 @@ public class Register extends AppCompatActivity implements AdapterView.OnItemSel
 
         else if(address.length()==0)
         {
-            address.requestFocus();
-            address.setError("FIELD CANNOT BE EMPTY");
-            Toast.makeText(this, "Please enable Location to proceed", Toast.LENGTH_SHORT).show();
-            ActivityCompat.requestPermissions(Register.this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 44);
+//            address.requestFocus();
+//            address.setError("FIELD CANNOT BE EMPTY");
+//            Toast.makeText(this, "Please enable Location to proceed", Toast.LENGTH_SHORT).show();
+//            ActivityCompat.requestPermissions(Register.this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 44);
         }
         else if(email.length()==0)
         {
@@ -241,50 +239,53 @@ public class Register extends AppCompatActivity implements AdapterView.OnItemSel
             String tp = spinner.getSelectedItem().toString();
             String phone_text = reg_phone.getText().toString();
 
-            progressBar.setVisibility(View.VISIBLE);
-            button.setVisibility(View.INVISIBLE);
+            Background_Worker background_worker = new Background_Worker(getApplication());
+            background_worker.execute("register", user_text, pass_text , address_text  , phone_text , email_text , tp, image_path);
 
-            PhoneAuthProvider.getInstance().verifyPhoneNumber(
-                    "+92" + reg_phone.getText().toString(),
-                    60,
-                    TimeUnit.SECONDS,
-                    Register.this,
-                    new PhoneAuthProvider.OnVerificationStateChangedCallbacks(){
-                        @Override
-                        public void onVerificationCompleted(@NonNull PhoneAuthCredential phoneAuthCredential) {
+//            progressBar.setVisibility(View.VISIBLE);
+//            button.setVisibility(View.INVISIBLE);
+//
+//            PhoneAuthProvider.getInstance().verifyPhoneNumber(
+//                    "+92" + reg_phone.getText().toString(),
+//                    60,
+//                    TimeUnit.SECONDS,
+//                    Register.this,
+//                    new PhoneAuthProvider.OnVerificationStateChangedCallbacks(){
+//                        @Override
+//                        public void onVerificationCompleted(@NonNull PhoneAuthCredential phoneAuthCredential) {
+////                            progressBar.setVisibility(View.GONE);
+////                            button.setVisibility(View.VISIBLE);
+//                        }
+//
+//                        @Override
+//                        public void onVerificationFailed(@NonNull FirebaseException e) {
 //                            progressBar.setVisibility(View.GONE);
 //                            button.setVisibility(View.VISIBLE);
-                        }
-
-                        @Override
-                        public void onVerificationFailed(@NonNull FirebaseException e) {
-                            progressBar.setVisibility(View.GONE);
-                            button.setVisibility(View.VISIBLE);
-                            Toast.makeText(Register.this , e.getMessage(), Toast.LENGTH_SHORT).show();
-
-                        }
-
-                        @Override
-                        public void onCodeSent(@NonNull String verificationId, @NonNull PhoneAuthProvider.ForceResendingToken forceResendingToken) {
-                            progressBar.setVisibility(View.GONE);
-                            button.setVisibility(View.VISIBLE);
-                            Intent intent = new Intent(Register.this , OTP.class);
-                            intent.putExtra("mobile" , reg_phone.getText().toString());
-
-                            intent.putExtra("verificationId" , verificationId);
-
-
-                            intent.putExtra("user_text" , uname.getText().toString());
-                            intent.putExtra("pass_text" , reg_pass.getText().toString());
-                            intent.putExtra("address_text" , address.getText().toString());
-                            intent.putExtra("email_text" , email.getText().toString());
-                            intent.putExtra("tp" , spinner.getSelectedItem().toString());
-                            intent.putExtra("phone_text" , reg_phone.getText().toString());
-
-                            startActivity(intent);
-                        }
-                    }
-            );
+//                            Toast.makeText(Register.this , e.getMessage(), Toast.LENGTH_SHORT).show();
+//
+//                        }
+//
+//                        @Override
+//                        public void onCodeSent(@NonNull String verificationId, @NonNull PhoneAuthProvider.ForceResendingToken forceResendingToken) {
+//                            progressBar.setVisibility(View.GONE);
+//                            button.setVisibility(View.VISIBLE);
+//                            Intent intent = new Intent(Register.this , OTP.class);
+//                            intent.putExtra("mobile" , reg_phone.getText().toString());
+//
+//                            intent.putExtra("verificationId" , verificationId);
+//
+//
+//                            intent.putExtra("user_text" , uname.getText().toString());
+//                            intent.putExtra("pass_text" , reg_pass.getText().toString());
+//                            intent.putExtra("address_text" , address.getText().toString());
+//                            intent.putExtra("email_text" , email.getText().toString());
+//                            intent.putExtra("tp" , spinner.getSelectedItem().toString());
+//                            intent.putExtra("phone_text" , reg_phone.getText().toString());
+//
+//                            startActivity(intent);
+//                        }
+//                    }
+//            );
 
 
 

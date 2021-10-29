@@ -207,8 +207,6 @@ public class donate extends Fragment implements AdapterView.OnItemSelectedListen
     }
 
 
-
-
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -245,20 +243,7 @@ public class donate extends Fragment implements AdapterView.OnItemSelectedListen
 ////        image_path = uri.toString();
     }
 
-//    private String getPath(Uri uri) {
-//
-//        Cursor cursor = getActivity().getContentResolver().query(uri, null, null, null, null);
-//        cursor.moveToFirst();
-//        String document_id = cursor.getString(0);
-//        document_id = document_id.substring(document_id.lastIndexOf(":") + 1);
-//        cursor = getActivity().getContentResolver().query(
-//                MediaStore.Images.Media.EXTERNAL_CONTENT_URI, null, MediaStore.Images.Media._ID + "=?", new String[]{document_id}, null
-//        );
-//        cursor.moveToFirst();
-//        String path = cursor.getString(cursor.getColumnIndex(MediaStore.Images.Media.DATA));
-//        cursor.close();
-//        return path;
-//    }
+
 
 
 //    Encoded String for Image upload to folder and get path for that
@@ -273,20 +258,6 @@ public class donate extends Fragment implements AdapterView.OnItemSelectedListen
         return image_path;
     }
 
-
-//    public String getRealPathFromURI(Uri uri) {
-//        String path = "";
-//        if (getActivity().getContentResolver() != null) {
-//            Cursor cursor = getActivity().getContentResolver().query(uri, null, null, null, null);
-//            if (cursor != null) {
-//                cursor.moveToFirst();
-//                int idx = cursor.getColumnIndex(MediaStore.Images.ImageColumns.DATA);
-//                path = cursor.getString(idx);
-//                cursor.close();
-//            }
-//        }
-//        return path;
-//    }
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
