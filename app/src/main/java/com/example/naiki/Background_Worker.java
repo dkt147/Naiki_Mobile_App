@@ -227,6 +227,7 @@ public class Background_Worker extends AsyncTask<String,Void,String> {
             String ph = params[4];
             String em = params[5];
             String tp = params[6];
+            String pr = params[7];
 
 
             try {
@@ -244,6 +245,7 @@ public class Background_Worker extends AsyncTask<String,Void,String> {
                         URLEncoder.encode("un", "UTF-8") + "=" + URLEncoder.encode(un, "UTF-8") +
                                 "&" + URLEncoder.encode("ps", "UTF-8") + "=" + URLEncoder.encode(ps, "UTF-8") +
                                 "&" + URLEncoder.encode("ad", "UTF-8") + "=" + URLEncoder.encode(ad, "UTF-8") +
+                                "&" + URLEncoder.encode("pr", "UTF-8") + "=" + URLEncoder.encode(pr, "UTF-8") +
 
                                 "&" + URLEncoder.encode("ph", "UTF-8") + "=" + URLEncoder.encode(ph, "UTF-8") +
                                 "&" + URLEncoder.encode("tp", "UTF-8") + "=" + URLEncoder.encode(tp, "UTF-8") +
@@ -345,8 +347,8 @@ public class Background_Worker extends AsyncTask<String,Void,String> {
                 } else {
                     alertDialog.setMessage("Registered Successfully");
                     alertDialog.show();
-                        Intent intent = new Intent(context, MainActivity.class);
-                        context.startActivity(intent);
+//                        Intent intent = new Intent(context, MainActivity.class);
+//                        context.startActivity(intent);
                     }
                 }
 

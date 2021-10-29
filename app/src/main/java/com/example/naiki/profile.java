@@ -2,15 +2,20 @@ package com.example.naiki;
 
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import org.json.JSONArray;
@@ -19,6 +24,7 @@ import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -35,12 +41,15 @@ public class profile extends Fragment {
 
 //    Inititializing Labels and textboxes
     TextView t19, t22, t24 , t20, t16;
+    ImageView pf;
 
+    TextView lg;
     SharedPreferences sharedPreferences;
 
     String r_id;
 
     AlertDialog alertDialog;
+    ImageView pr;
 
 
 //    Fragment Constructor
@@ -54,12 +63,36 @@ public class profile extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
 
+//        sharedPreferences gettting values
+                sharedPreferences = getContext().getSharedPreferences("userr" , Context.MODE_PRIVATE);
+
+        if(sharedPreferences.contains("rid") && sharedPreferences.contains("uphone"))
+        {
+            r_id = sharedPreferences.getString("rid", "0");
+
+        }
 //        Initializing
         t19 = view.findViewById(R.id.textView19);
         t20 = view.findViewById(R.id.textView20);
         t22 = view.findViewById(R.id.textView22);
         t24 = view.findViewById(R.id.textView24);
         t16 = view.findViewById(R.id.textView16);
+        pf = view.findViewById(R.id.profile_image);
+        lg = view.findViewById(R.id.logout);
+
+        lg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.remove("rid");
+                editor.remove("uphone");
+                editor.clear();
+                editor.commit();
+                Intent intent5 = new Intent(getContext(),MainActivity.class);
+                startActivity(intent5);
+
+            }
+        });
 
 //        Calling Function
         getProfile();
@@ -152,15 +185,20 @@ public class profile extends Fragment {
                                 String uphone = jsonObject.getString("uphone");
                                 String uaddress = jsonObject.getString("uaddress");
                                 String uemail = jsonObject.getString("uemail");
+                                String image = jsonObject.getString("profile_image");
 
 
 
-//Setting values again to textboxes
+//  Setting values again to textboxes
                                 t19.setText(name);
                                 t20.setText(uphone);
                                 t22.setText(uaddress);
                                 t24.setText(uemail);
                                 t16.setText(name);
+                                byte[] bytes = Base64.decode(image,Base64.DEFAULT);
+                                Bitmap bitmap = BitmapFactory.decodeByteArray(bytes,0, bytes.length);
+
+                              pf.setImageBitmap(bitmap);
 
 
                             }
@@ -179,14 +217,7 @@ public class profile extends Fragment {
         }
 
 
-//        sharedPreferences gettting values
-        sharedPreferences = getContext().getSharedPreferences("userr" , Context.MODE_PRIVATE);
-
-        if(sharedPreferences.contains("rid") && sharedPreferences.contains("uphone"))
-        {
-            r_id = sharedPreferences.getString("rid", "0");
-
-        }
+//
 
 //        Calling object
         bgWorker bg = new bgWorker();

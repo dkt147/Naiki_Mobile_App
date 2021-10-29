@@ -1,27 +1,33 @@
 package com.example.naiki;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.text.Html;
+import android.util.Base64;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.github.dhaval2404.imagepicker.ImagePicker;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -30,6 +36,8 @@ import com.google.firebase.FirebaseException;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthProvider;
 
+import java.io.ByteArrayOutputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -44,6 +52,8 @@ public class Register extends AppCompatActivity implements AdapterView.OnItemSel
     FusedLocationProviderClient fusedLocationProviderClient;
     ProgressBar progressBar;
     Button button;
+    ImageView pr_up;
+
 
     Spinner spinner;
     ArrayList<String> data = new ArrayList<>();
@@ -62,6 +72,21 @@ public class Register extends AppCompatActivity implements AdapterView.OnItemSel
         spinner =  findViewById(R.id.type_reg);
         progressBar = findViewById(R.id.progressBar);
         button = findViewById(R.id.register);
+        pr_up = findViewById(R.id.profile_upload);
+
+        pr_up.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ImagePicker.with(Register.this)
+//                        .crop()	    			//Crop image(Optional), Check Customization for more option
+//                        .compress(1024)			//Final image size will be less than 1 MB(Optional)
+//                        .maxResultSize(1080, 1080)	//Final image resolution will be less than 1080 x 1080(Optional)
+                        .start();
+            }
+        });
+
+
+
 
 
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource ( this, R.array.type , android.R.layout.simple_spinner_item);
@@ -75,6 +100,83 @@ public class Register extends AppCompatActivity implements AdapterView.OnItemSel
 
     }
 
+//    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+//        super.onActivityResult(requestCode, resultCode, data);
+//
+//        uri1 = data.getData();
+//        try {
+//            bitmap = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), uri1);
+//            im.setImageBitmap(bitmap);
+////        t2.setText(uri1.toString());
+//
+//        }
+//        catch (FileNotFoundException e) {
+//            e.printStackTrace();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//
+//
+////        Uri uri = data.getData();
+////        im.setImageURI(uri);
+////        image_path = uri.toString();
+////        t2.setText(image_path);
+////
+////        File finalFile = new File(getRealPathFromURI(uri));
+//
+////        bitmap = (Bitmap) data.getExtras().get("data");
+//////       Bitmap  uri1 = (bitmap) uri.getData.
+//////        bitmap = MediaStore.Images.Media.getContentUri(uri1);
+////
+////        im.setImageBitmap(bitmap);
+////        encodedbitmap(bitmap);
+////
+//////        t2.setText(uri.toString());
+//////        image_path = uri.toString();
+//    }
+
+//    private String getPath(Uri uri) {
+//
+//        Cursor cursor = getActivity().getContentResolver().query(uri, null, null, null, null);
+//        cursor.moveToFirst();
+//        String document_id = cursor.getString(0);
+//        document_id = document_id.substring(document_id.lastIndexOf(":") + 1);
+//        cursor = getActivity().getContentResolver().query(
+//                MediaStore.Images.Media.EXTERNAL_CONTENT_URI, null, MediaStore.Images.Media._ID + "=?", new String[]{document_id}, null
+//        );
+//        cursor.moveToFirst();
+//        String path = cursor.getString(cursor.getColumnIndex(MediaStore.Images.Media.DATA));
+//        cursor.close();
+//        return path;
+//    }
+
+
+//    //    Encoded String for Image upload to folder and get path for that
+//    public String encodedbitmap(Bitmap bitmap)
+//    {
+//        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+//        bitmap.compress(Bitmap.CompressFormat.JPEG,100, byteArrayOutputStream);
+//
+//        byte[] byteofimage = byteArrayOutputStream.toByteArray();
+//        image_path = android.util.Base64.encodeToString(byteofimage , Base64.DEFAULT);
+////        t2.setText(image_path);
+//        return image_path;
+//    }
+
+
+//    public String getRealPathFromURI(Uri uri) {
+//        String path = "";
+//        if (getActivity().getContentResolver() != null) {
+//            Cursor cursor = getActivity().getContentResolver().query(uri, null, null, null, null);
+//            if (cursor != null) {
+//                cursor.moveToFirst();
+//                int idx = cursor.getColumnIndex(MediaStore.Images.ImageColumns.DATA);
+//                path = cursor.getString(idx);
+//                cursor.close();
+//            }
+//        }
+//        return path;
+//    }
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -85,6 +187,10 @@ public class Register extends AppCompatActivity implements AdapterView.OnItemSel
     public void onNothingSelected(AdapterView<?> parent) {
 
     }
+
+
+
+
 
 
 
@@ -146,8 +252,8 @@ public class Register extends AppCompatActivity implements AdapterView.OnItemSel
                     new PhoneAuthProvider.OnVerificationStateChangedCallbacks(){
                         @Override
                         public void onVerificationCompleted(@NonNull PhoneAuthCredential phoneAuthCredential) {
-                            progressBar.setVisibility(View.GONE);
-                            button.setVisibility(View.VISIBLE);
+//                            progressBar.setVisibility(View.GONE);
+//                            button.setVisibility(View.VISIBLE);
                         }
 
                         @Override
