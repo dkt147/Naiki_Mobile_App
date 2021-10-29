@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 29, 2021 at 10:43 PM
+-- Generation Time: Oct 29, 2021 at 11:17 PM
 -- Server version: 10.4.13-MariaDB
 -- PHP Version: 7.4.8
 
@@ -48,6 +48,30 @@ INSERT INTO `donate` (`d_id`, `item_name`, `category`, `quantity`, `note`, `item
 (5, 'shoes', 'School Item', 2, 'shoes', 'IMG1361196666.jpeg', 7, 'Pending', 0, 'Donate'),
 (6, 'coloths', 'Clothes', 3, 'clothe', 'IMG1748977064.jpeg', 7, 'Pending', 0, 'Donate');
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `register`
+--
+
+CREATE TABLE `register` (
+  `r_id` int(100) NOT NULL,
+  `uname` varchar(255) NOT NULL,
+  `upass` varchar(255) NOT NULL,
+  `uphone` int(11) NOT NULL,
+  `uaddress` varchar(255) NOT NULL,
+  `uemail` varchar(255) NOT NULL,
+  `utype` varchar(100) DEFAULT NULL,
+  `profile_image` mediumtext NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `register`
+--
+
+INSERT INTO `register` (`r_id`, `uname`, `upass`, `uphone`, `uaddress`, `uemail`, `utype`, `profile_image`) VALUES
+(7, 'mubeen', 'abc123', 2147483647, '1600 Amphitheatre Pkwy, Mountain View, CA 94043, USA', 'mubeen@gmail.com', 'Donor', 'IMG238152165.jpeg');
+
 --
 -- Indexes for dumped tables
 --
@@ -60,6 +84,12 @@ ALTER TABLE `donate`
   ADD KEY `r_id` (`r_id`);
 
 --
+-- Indexes for table `register`
+--
+ALTER TABLE `register`
+  ADD PRIMARY KEY (`r_id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -68,6 +98,12 @@ ALTER TABLE `donate`
 --
 ALTER TABLE `donate`
   MODIFY `d_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `register`
+--
+ALTER TABLE `register`
+  MODIFY `r_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- Constraints for dumped tables

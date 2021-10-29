@@ -2,6 +2,7 @@ package com.example.naiki;
 
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -17,6 +18,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Spinner;
@@ -43,6 +45,7 @@ import java.util.ArrayList;
 public class home extends Fragment implements AdapterView.OnItemSelectedListener {
 
     private static final String apiurl="http://192.168.56.1/naiki/donate_list.php";
+    private static final String apiurl2="http://192.168.56.1/naiki/request.php";
     ListView listView1;
     AlertDialog alertDialog;
     SharedPreferences sharedPreferences;
@@ -51,9 +54,11 @@ public class home extends Fragment implements AdapterView.OnItemSelectedListener
 
     private static String item_name[];
     private static String item_detail[];
-    private static String image[];
+    private static String phone[];
+    private static String category[];
+    private static String quantity[];
 
-    Spinner sp1, sp2;
+    private static String image[];
 
 
     public home() {
@@ -67,32 +72,49 @@ public class home extends Fragment implements AdapterView.OnItemSelectedListener
 
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         listView1 = view.findViewById(R.id.doante_list);
-        sp1 = view.findViewById(R.id.spinner2);
-        sp2 = view.findViewById(R.id.spinner3);
+        Button b1 = view.findViewById(R.id.button4);
+        Button b2 = view.findViewById(R.id.button5);
 
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource ( getContext(), R.array.category , android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        sp1.setAdapter(adapter);
-        sp1.setOnItemSelectedListener(this);
+        b1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                fetch_data_into_array(listView1);
+            }
+        });
 
-        ArrayAdapter<CharSequence> adapter1 = ArrayAdapter.createFromResource ( getContext(), R.array.type , android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        sp2.setAdapter(adapter);
-        sp2.setOnItemSelectedListener(this);
 
-        fetch_data_into_array(listView1);
+        b2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                fetch_data_into_array(listView1);
+            }
+        });
+
+
+
+
 
         listView1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                String s = listView1.getItemAtPosition(position).toString();
 
-                Toast.makeText(getContext(), s, Toast.LENGTH_LONG).show();
-            }
+
+//                String s = listView1.getChildAt(position);
+                Bundle bundle = new Bundle();
+
+                Intent intent = new Intent(getContext(), Item_Details.class);
+                intent.putExtra("name" , item_name[position]);
+                intent.putExtra("item_detail" , item_detail[position]);
+                intent.putExtra("cat" , category[position]);
+                intent.putExtra("quantity" , quantity[position]);
+                intent.putExtra("phone" , phone[position]);
+
+                startActivity(intent);            }
         });
         // Inflate the layout for this fragment
         return view;
     }
+
 
     public void fetch_data_into_array(View view)
     {
@@ -107,16 +129,24 @@ public class home extends Fragment implements AdapterView.OnItemSelectedListener
 
                     item_name = new String[ja.length()];
                     item_detail = new String[ja.length()];
+                    category = new String[ja.length()];
+                    quantity = new String[ja.length()];
+                    phone = new String[ja.length()];
                     image = new String[ja.length()];
 
                     for (int i = 0; i < ja.length(); i++) {
                         jo = ja.getJSONObject(i);
                         item_name[i] = jo.getString("item_name");;
                         item_detail[i] = jo.getString("note");
+                        category[i] = jo.getString("category");
+                        quantity[i] = jo.getString("quantity");
+                        phone[i] = jo.getString("uphone");
+
                         image[i] ="http://192.168.56.1/naiki/images/" + jo.getString("item_image");;
                     }
 
-                    myadapter adptr = new myadapter(getActivity(), item_name, item_detail, image);
+
+                    myadapter adptr = new myadapter(getActivity(), item_name, item_detail , image  , quantity , category , phone );
                     listView1.setAdapter(adptr);
 
                 } catch (Exception ex) {
@@ -154,6 +184,77 @@ public class home extends Fragment implements AdapterView.OnItemSelectedListener
 
     }
 
+
+    public void fetch_data_into_array2(View view)
+    {
+
+        class  dbManager extends AsyncTask<String,Void,String>
+        {
+            protected void onPostExecute(String data)
+            {
+                try {
+                    JSONArray ja = new JSONArray(data);
+                    JSONObject jo = null;
+
+                    item_name = new String[ja.length()];
+                    item_detail = new String[ja.length()];
+                    category = new String[ja.length()];
+                    quantity = new String[ja.length()];
+                    phone = new String[ja.length()];
+                    image = new String[ja.length()];
+
+                    for (int i = 0; i < ja.length(); i++) {
+                        jo = ja.getJSONObject(i);
+                        item_name[i] = jo.getString("item_name");;
+                        item_detail[i] = jo.getString("note");
+                        category[i] = jo.getString("category");
+                        quantity[i] = jo.getString("quantity");
+                        phone[i] = jo.getString("uphone");
+
+                        image[i] ="http://192.168.56.1/naiki/images/" + jo.getString("item_image");;
+                    }
+
+
+                    myadapter adptr = new myadapter(getActivity(), item_name, item_detail , image  , quantity , category , phone );
+
+                    listView1.setAdapter(adptr);
+
+                } catch (Exception ex) {
+                    Toast.makeText(getContext(), ex.getMessage(), Toast.LENGTH_LONG).show();
+                }
+            }
+
+            @Override
+            protected String doInBackground(String... strings)
+            {
+                try {
+                    URL url = new URL(strings[0]);
+                    HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                    BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+
+                    StringBuffer data = new StringBuffer();
+                    String line;
+
+                    while ((line = br.readLine()) != null) {
+                        data.append(line + "\n");
+                    }
+                    br.close();
+
+                    return data.toString();
+
+                } catch (Exception ex) {
+                    return ex.getMessage();
+                }
+
+            }
+
+        }
+        dbManager obj=new dbManager();
+        obj.execute(apiurl);
+
+    }
+
+
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
@@ -167,18 +268,26 @@ public class home extends Fragment implements AdapterView.OnItemSelectedListener
 
     class myadapter extends ArrayAdapter<String>
     {
+
+
         Context context;
         String ttl[];
         String dsc[];
         String rimg[];
+        String qt[];
+        String cat[];
+        String phone[];
 
-        myadapter(Context c, String ttl[], String dsc[], String rimg[])
+        myadapter(Context c, String ttl[], String dsc[], String rimg[], String qt[] , String cat[] , String phone[])
         {
             super(c,R.layout.list_row,R.id.item_name,ttl);
             context=c;
             this.ttl=ttl;
             this.dsc=dsc;
             this.rimg=rimg;
+            this.qt = qt;
+            this.cat = cat;
+            this.phone = phone;
         }
         @NonNull
         @Override

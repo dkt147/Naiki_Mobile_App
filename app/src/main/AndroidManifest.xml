@@ -14,7 +14,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Naiki">
         <activity android:name=".Item_Details"></activity>
-        <activity android:name=".MainActivity2" />
         <activity android:name=".OTP" />
         <activity android:name=".Naviagtion" />
         <activity android:name=".Register" />
