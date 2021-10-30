@@ -93,7 +93,7 @@ public class donate extends Fragment implements AdapterView.OnItemSelectedListen
         if(sharedPreferences.contains("rid") && sharedPreferences.contains("uphone"))
         {
             r_id = sharedPreferences.getString("rid", "0");
-            t3.setText(r_id);
+
 
 
         }

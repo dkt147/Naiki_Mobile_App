@@ -103,9 +103,12 @@ public class OTP extends AppCompatActivity {
                     progressBar2.setVisibility(View.GONE);
                     verifybtn.setVisibility(View.VISIBLE);
                     if(task.isSuccessful()){
-//                        Intent intent = new Intent(getApplicationContext() , Naviagtion.class);
-//                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-//                        startActivity(intent);
+                        Background_Worker background_worker = new Background_Worker(getApplication());
+                        background_worker.execute("register", user_text, pass_text , address_text  , phone_text , email_text , tp);
+
+                        Intent intent = new Intent(getApplicationContext() , Naviagtion.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        startActivity(intent);
 
                     }
                     else

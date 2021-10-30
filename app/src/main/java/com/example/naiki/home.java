@@ -44,8 +44,8 @@ import java.util.ArrayList;
 
 public class home extends Fragment implements AdapterView.OnItemSelectedListener {
 
-    private static final String apiurl="http://192.168.56.1/naiki/donate_list.php";
-    private static final String apiurl2="http://192.168.56.1/naiki/request.php";
+    private static final String apiurl="http://lms-php.000webhostapp.com/naiki/donate_list.php";
+    private static final String apiurl2="http://lms-php.000webhostapp.com/naiki/request.php";
     ListView listView1;
     AlertDialog alertDialog;
     SharedPreferences sharedPreferences;
@@ -86,7 +86,7 @@ public class home extends Fragment implements AdapterView.OnItemSelectedListener
         b2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                fetch_data_into_array(listView1);
+                fetch_data_into_array2(listView1);
             }
         });
 
@@ -142,7 +142,7 @@ public class home extends Fragment implements AdapterView.OnItemSelectedListener
                         quantity[i] = jo.getString("quantity");
                         phone[i] = jo.getString("uphone");
 
-                        image[i] ="http://192.168.56.1/naiki/images/" + jo.getString("item_image");;
+                        image[i] ="http://lms-php.000webhostapp.com/naiki/images/" + jo.getString("item_image");;
                     }
 
 
@@ -211,7 +211,7 @@ public class home extends Fragment implements AdapterView.OnItemSelectedListener
                         quantity[i] = jo.getString("quantity");
                         phone[i] = jo.getString("uphone");
 
-                        image[i] ="http://192.168.56.1/naiki/images/" + jo.getString("item_image");;
+                        image[i] ="http://lms-php.000webhostapp.com/naiki/images/" + jo.getString("item_image");;
                     }
 
 
@@ -250,7 +250,7 @@ public class home extends Fragment implements AdapterView.OnItemSelectedListener
 
         }
         dbManager obj=new dbManager();
-        obj.execute(apiurl);
+        obj.execute(apiurl2);
 
     }
 

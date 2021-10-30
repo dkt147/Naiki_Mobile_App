@@ -126,7 +126,7 @@ public class profile extends Fragment {
 
                     try {
 //                        API link
-                        String fetch_url = "http://192.168.56.1/naiki/profile.php";
+                        String fetch_url = "http://lms-php.000webhostapp.com/naiki/profile.php";
                         URL url = new URL(fetch_url);
                         HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
                         httpURLConnection.setRequestMethod("POST");
@@ -192,7 +192,7 @@ public class profile extends Fragment {
                                 String uphone = jsonObject.getString("uphone");
                                 String uaddress = jsonObject.getString("uaddress");
                                 String uemail = jsonObject.getString("uemail");
-                                String url = "http://192.168.56.1/naiki/profiles/";
+                                String url = "http://lms-php.000webhostapp.com/naiki/profiles/";
                                 image = url + jsonObject.getString("profile_image");
 
 

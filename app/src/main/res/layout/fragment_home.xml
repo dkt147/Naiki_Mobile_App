@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -30,6 +31,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
+                android:layout_marginTop="10dp"
                 android:gravity="center">
 
                 <Button
@@ -38,7 +40,9 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:onClick="donates_click"
-                    android:text="Donates" />
+                    android:text="Donates"
+                    android:textColor="#FFFFFF"
+                    app:backgroundTint="#8BC34A" />
 
                 <Button
                     android:id="@+id/button5"
@@ -47,7 +51,9 @@
                     android:layout_marginLeft="50dp"
                     android:layout_weight="1"
                     android:onClick="request_click"
-                    android:text="Requests" />
+                    android:text="Requests"
+                    android:textColor="#FFFFFF"
+                    app:backgroundTint="#E91E63" />
 
             </LinearLayout>
 
@@ -58,22 +64,12 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <ScrollView
+            <ListView
+                android:id="@+id/doante_list"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="wrap_content"
+                tools:listitem="@layout/list_row" />
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
-
-                    <ListView
-                        android:id="@+id/doante_list"
-                        android:layout_width="match_parent"
-                        android:layout_height="622dp"
-                        tools:listitem="@layout/list_row" />
-                </LinearLayout>
-            </ScrollView>
         </LinearLayout>
 
     </LinearLayout>

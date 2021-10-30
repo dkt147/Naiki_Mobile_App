@@ -67,7 +67,7 @@ public class Register extends AppCompatActivity implements AdapterView.OnItemSel
 
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
 
-        uname = (EditText) findViewById(R.id.username_reg);
+        uname = (EditText) findViewById(R.id.username);
         reg_phone = (EditText) findViewById(R.id.phone_reg);
         address =(TextView)  findViewById(R.id.address_reg);
         email =(EditText)  findViewById(R.id.email_reg);
@@ -209,10 +209,10 @@ public class Register extends AppCompatActivity implements AdapterView.OnItemSel
 
         else if(address.length()==0)
         {
-//            address.requestFocus();
-//            address.setError("FIELD CANNOT BE EMPTY");
-//            Toast.makeText(this, "Please enable Location to proceed", Toast.LENGTH_SHORT).show();
-//            ActivityCompat.requestPermissions(Register.this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 44);
+            address.requestFocus();
+            address.setError("FIELD CANNOT BE EMPTY");
+            Toast.makeText(this, "Please enable Location to proceed", Toast.LENGTH_SHORT).show();
+            ActivityCompat.requestPermissions(Register.this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 44);
         }
         else if(email.length()==0)
         {
@@ -239,53 +239,52 @@ public class Register extends AppCompatActivity implements AdapterView.OnItemSel
             String tp = spinner.getSelectedItem().toString();
             String phone_text = reg_phone.getText().toString();
 
-            Background_Worker background_worker = new Background_Worker(getApplication());
-            background_worker.execute("register", user_text, pass_text , address_text  , phone_text , email_text , tp, image_path);
 
-//            progressBar.setVisibility(View.VISIBLE);
-//            button.setVisibility(View.INVISIBLE);
-//
-//            PhoneAuthProvider.getInstance().verifyPhoneNumber(
-//                    "+92" + reg_phone.getText().toString(),
-//                    60,
-//                    TimeUnit.SECONDS,
-//                    Register.this,
-//                    new PhoneAuthProvider.OnVerificationStateChangedCallbacks(){
-//                        @Override
-//                        public void onVerificationCompleted(@NonNull PhoneAuthCredential phoneAuthCredential) {
-////                            progressBar.setVisibility(View.GONE);
-////                            button.setVisibility(View.VISIBLE);
-//                        }
-//
-//                        @Override
-//                        public void onVerificationFailed(@NonNull FirebaseException e) {
-//                            progressBar.setVisibility(View.GONE);
-//                            button.setVisibility(View.VISIBLE);
-//                            Toast.makeText(Register.this , e.getMessage(), Toast.LENGTH_SHORT).show();
-//
-//                        }
-//
-//                        @Override
-//                        public void onCodeSent(@NonNull String verificationId, @NonNull PhoneAuthProvider.ForceResendingToken forceResendingToken) {
-//                            progressBar.setVisibility(View.GONE);
-//                            button.setVisibility(View.VISIBLE);
-//                            Intent intent = new Intent(Register.this , OTP.class);
-//                            intent.putExtra("mobile" , reg_phone.getText().toString());
-//
-//                            intent.putExtra("verificationId" , verificationId);
-//
-//
-//                            intent.putExtra("user_text" , uname.getText().toString());
-//                            intent.putExtra("pass_text" , reg_pass.getText().toString());
-//                            intent.putExtra("address_text" , address.getText().toString());
-//                            intent.putExtra("email_text" , email.getText().toString());
-//                            intent.putExtra("tp" , spinner.getSelectedItem().toString());
-//                            intent.putExtra("phone_text" , reg_phone.getText().toString());
-//
-//                            startActivity(intent);
-//                        }
-//                    }
-//            );
+
+            progressBar.setVisibility(View.VISIBLE);
+            button.setVisibility(View.INVISIBLE);
+
+            PhoneAuthProvider.getInstance().verifyPhoneNumber(
+                    "+92" + reg_phone.getText().toString(),
+                    60,
+                    TimeUnit.SECONDS,
+                    Register.this,
+                    new PhoneAuthProvider.OnVerificationStateChangedCallbacks(){
+                        @Override
+                        public void onVerificationCompleted(@NonNull PhoneAuthCredential phoneAuthCredential) {
+                            progressBar.setVisibility(View.GONE);
+                            button.setVisibility(View.VISIBLE);
+                        }
+
+                        @Override
+                        public void onVerificationFailed(@NonNull FirebaseException e) {
+                            progressBar.setVisibility(View.GONE);
+                            button.setVisibility(View.VISIBLE);
+                            Toast.makeText(Register.this , e.getMessage(), Toast.LENGTH_SHORT).show();
+
+                        }
+
+                        @Override
+                        public void onCodeSent(@NonNull String verificationId, @NonNull PhoneAuthProvider.ForceResendingToken forceResendingToken) {
+                            progressBar.setVisibility(View.GONE);
+                            button.setVisibility(View.VISIBLE);
+                            Intent intent = new Intent(Register.this , OTP.class);
+                            intent.putExtra("mobile" , reg_phone.getText().toString());
+
+                            intent.putExtra("verificationId" , verificationId);
+
+
+                            intent.putExtra("user_text" , uname.getText().toString());
+                            intent.putExtra("pass_text" , reg_pass.getText().toString());
+                            intent.putExtra("address_text" , address.getText().toString());
+                            intent.putExtra("email_text" , email.getText().toString());
+                            intent.putExtra("tp" , spinner.getSelectedItem().toString());
+                            intent.putExtra("phone_text" , reg_phone.getText().toString());
+
+                            startActivity(intent);
+                        }
+                    }
+            );
 
 
 

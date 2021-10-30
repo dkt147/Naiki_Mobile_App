@@ -72,11 +72,11 @@ public class MyAchievements extends Fragment {
                 String type = strings[0];
 
 // working for fetch profile from database for which we are using rid to sent this id to mysql api where we get data
-                if (type.equals("myDonation")) {
+                if (type.equals("achievements")) {
 
                     try {
 //                        API link
-                        String fetch_url = "http://192.168.56.1/naiki/achievements.php";
+                        String fetch_url = "http://lms-php.000webhostapp.com/naiki/achievements.php";
                         URL url = new URL(fetch_url);
                         HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
                         httpURLConnection.setRequestMethod("POST");
@@ -131,20 +131,16 @@ public class MyAchievements extends Fragment {
 
                             for (int i = 0; i < jsonArray.length(); i++) {
                                 jsonObject = jsonArray.getJSONObject(i);
-                                String row[];
-                                String name = jsonObject.getString("item_name");
-                                String quantity = jsonObject.getString("quantity");
-                                String image = jsonObject.getString("item_image");
-                                String note = jsonObject.getString("note");
+                                String row = "Item Name :  \t \t" +
+                                 jsonObject.getString("item_name") + "\n"+
+                                        "Quantity : \t \t"
+                                + jsonObject.getString("quantity") + "\n"
+//                                + jsonObject.getString("item_image") +
+                                        + "Description \t \t"
+                                + jsonObject.getString("note") + "\n";
 
-//                                Glide.with(getContext()).load(image).into(list_class);
+                                alist.add(row);
 
-
-//                                                jsonObject.getString("item_image")+
-
-
-
-//                                alist.add(row);
                             }
 
 
@@ -170,6 +166,6 @@ public class MyAchievements extends Fragment {
 
 //        Calling object
         bgWorker bg = new bgWorker();
-        bg.execute("myDonation" , rid);
+        bg.execute("achievements" , rid);
     }
 }

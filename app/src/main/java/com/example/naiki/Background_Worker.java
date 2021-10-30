@@ -43,7 +43,7 @@ public class Background_Worker extends AsyncTask<String,Void,String> {
 
         if (type.equals("login")) {
             try {
-                String login_url = "http://192.168.56.1/naiki/login.php";
+                String login_url = "http://lms-php.000webhostapp.com/naiki/login.php";
                 String un = params[1];
                 String ps = params[2];
 
@@ -82,7 +82,7 @@ public class Background_Worker extends AsyncTask<String,Void,String> {
 
 
         if (type.equals("donate")) {
-            String reg_url = "http://192.168.56.1/naiki/donate.php";
+            String reg_url = "http://lms-php.000webhostapp.com/naiki/donate.php";
             String rid = params[1];
             String it = params[2];
             String qt = params[3];
@@ -152,7 +152,7 @@ public class Background_Worker extends AsyncTask<String,Void,String> {
 
 
         if (type.equals("request")) {
-            String reg_url = "http://192.168.56.1/naiki/donate.php";
+            String reg_url = "http://lms-php.000webhostapp.com/naiki/request.php";
             String rid = params[1];
             String it = params[2];
             String qt = params[3];
@@ -221,15 +221,17 @@ public class Background_Worker extends AsyncTask<String,Void,String> {
 
 
         //REGISTER CODE
+//        REGISTER CODE
         if (type.equals("register")) {
-            String reg_url = "http://192.168.56.1/naiki/register.php";
+            String reg_url = "http://lms-php.000webhostapp.com/naiki/register.php";
             String un = params[1];
-            String ps = params[2];
-            String ad = params[3];
-            String ph = params[4];
-            String em = params[5];
+            String ph = params[2];
+            String em = params[3];
+            String ps = params[4];
+            String ad = params[5];
             String tp = params[6];
-            String pr = params[7];
+//            String im = params[7];
+
 
 
             try {
@@ -245,13 +247,14 @@ public class Background_Worker extends AsyncTask<String,Void,String> {
 
                 String post_data =
                         URLEncoder.encode("un", "UTF-8") + "=" + URLEncoder.encode(un, "UTF-8") +
-                                "&" + URLEncoder.encode("ps", "UTF-8") + "=" + URLEncoder.encode(ps, "UTF-8") +
-                                "&" + URLEncoder.encode("ad", "UTF-8") + "=" + URLEncoder.encode(ad, "UTF-8") +
-                                "&" + URLEncoder.encode("pr", "UTF-8") + "=" + URLEncoder.encode(pr, "UTF-8") +
-
                                 "&" + URLEncoder.encode("ph", "UTF-8") + "=" + URLEncoder.encode(ph, "UTF-8") +
-                                "&" + URLEncoder.encode("tp", "UTF-8") + "=" + URLEncoder.encode(tp, "UTF-8") +
-                                "&" + URLEncoder.encode("em", "UTF-8") + "=" + URLEncoder.encode(em, "UTF-8");
+                                "&" + URLEncoder.encode("em", "UTF-8") + "=" + URLEncoder.encode(em, "UTF-8") +
+                                "&" + URLEncoder.encode("ad", "UTF-8") + "=" + URLEncoder.encode(ad, "UTF-8") +
+                                "&" + URLEncoder.encode("ps", "UTF-8") + "=" + URLEncoder.encode(ps, "UTF-8")+
+                                "&" + URLEncoder.encode("tp", "UTF-8") + "=" + URLEncoder.encode(tp, "UTF-8");
+//                                "&" + URLEncoder.encode("im", "UTF-8") + "=" + URLEncoder.encode(im, "UTF-8");
+
+
 
                 bufferedWriter.write(post_data);
                 bufferedWriter.flush();
@@ -343,14 +346,14 @@ public class Background_Worker extends AsyncTask<String,Void,String> {
 // Register request Result
             if (type.equals("register")) {
 
-                if (s.equals("Register-Filed")) {
+                if (s.equals("Register-Failed")) {
                     alertDialog.setMessage("Regsiteration Failed / Phone Number already Exists '\n' Please Login");
                     alertDialog.show();
                 } else {
                     alertDialog.setMessage("Registered Successfully");
                     alertDialog.show();
-//                        Intent intent = new Intent(context, MainActivity.class);
-//                        context.startActivity(intent);
+                        Intent intent = new Intent(context, MainActivity.class);
+                        context.startActivity(intent);
                     }
                 }
 
@@ -364,8 +367,8 @@ public class Background_Worker extends AsyncTask<String,Void,String> {
                 } else {
                     alertDialog.setMessage("Submitted Successfully");
                     alertDialog.show();
-//                    Intent intent = new Intent( context , home.class);
-//                    context.startActivity(intent);
+                    Intent intent = new Intent( context , home.class);
+                    context.startActivity(intent);
                 }
             }
 
