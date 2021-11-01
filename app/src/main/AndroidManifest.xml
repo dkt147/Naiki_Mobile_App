@@ -18,7 +18,6 @@
         <activity android:name=".OTP" />
         <activity android:name=".Naviagtion" />
         <activity android:name=".Register" />
-        <activity android:name=".Dashboard" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

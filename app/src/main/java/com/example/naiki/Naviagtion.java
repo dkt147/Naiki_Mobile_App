@@ -20,8 +20,9 @@ public class Naviagtion extends AppCompatActivity {
 
         meowBottomNavigation.add(new MeowBottomNavigation.Model(1, R.drawable.ic_nearme ));
         meowBottomNavigation.add(new MeowBottomNavigation.Model(2, R.drawable.ic_donate ));
-        meowBottomNavigation.add(new MeowBottomNavigation.Model(3, R.drawable.ic_baseline_leaderboard_24 ));
-        meowBottomNavigation.add(new MeowBottomNavigation.Model(4, R.drawable.ic_profile ));
+        meowBottomNavigation.add(new MeowBottomNavigation.Model(3, R.drawable.ic_baseline_dashboard_24 ));
+        meowBottomNavigation.add(new MeowBottomNavigation.Model(4, R.drawable.ic_baseline_leaderboard_24 ));
+        meowBottomNavigation.add(new MeowBottomNavigation.Model(5, R.drawable.ic_profile ));
 
         meowBottomNavigation.setOnShowListener(new MeowBottomNavigation.ShowListener(
 
@@ -38,10 +39,12 @@ public class Naviagtion extends AppCompatActivity {
                         fragment = new donate();
                         break;
                     case 3:
+                        fragment = new Dashboard();
+                        break;
+                    case 4:
                         fragment = new MyAchievements();
                         break;
-
-                    case 4:
+                    case 5:
                         fragment = new profile();
                         break;
 
@@ -53,7 +56,7 @@ public class Naviagtion extends AppCompatActivity {
             }
         });
 
-        meowBottomNavigation.setCount(1 , "10");
+        meowBottomNavigation.setCount(1 , "");
         meowBottomNavigation.show(2 , true);
         meowBottomNavigation.setOnClickMenuListener(new MeowBottomNavigation.ClickListener() {
             @Override

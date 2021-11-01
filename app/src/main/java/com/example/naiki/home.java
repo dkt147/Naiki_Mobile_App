@@ -59,6 +59,7 @@ public class home extends Fragment implements AdapterView.OnItemSelectedListener
     private static String quantity[];
 
     private static String image[];
+    String rid;
 
 
     public home() {
@@ -69,6 +70,13 @@ public class home extends Fragment implements AdapterView.OnItemSelectedListener
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        sharedPreferences = getContext().getSharedPreferences("userr" , Context.MODE_PRIVATE);
+
+        if(sharedPreferences.contains("rid") && sharedPreferences.contains("uphone"))
+        {
+            rid = sharedPreferences.getString("rid", "0");
+
+        }
 
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         listView1 = view.findViewById(R.id.doante_list);
@@ -228,9 +236,21 @@ public class home extends Fragment implements AdapterView.OnItemSelectedListener
             protected String doInBackground(String... strings)
             {
                 try {
+                    String id= strings[1];
                     URL url = new URL(strings[0]);
-                    HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-                    BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+                    HttpURLConnection httpURLConnection  = (HttpURLConnection) url.openConnection();
+                    BufferedReader br = new BufferedReader(new InputStreamReader(httpURLConnection .getInputStream()));
+
+                    httpURLConnection.setRequestMethod("POST");
+                    httpURLConnection.setDoOutput(true);
+                    httpURLConnection.setDoInput(true);
+                    OutputStream outputStream = httpURLConnection.getOutputStream();
+                    BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(outputStream, "UTF-8"));
+                    String post_data = URLEncoder.encode("id", "UTF-8") + "=" + URLEncoder.encode(id, "UTF-8") + "&";
+                    bufferedWriter.write(post_data);
+                    bufferedWriter.flush();
+                    bufferedWriter.close();
+                    outputStream.close();
 
                     StringBuffer data = new StringBuffer();
                     String line;
@@ -250,7 +270,7 @@ public class home extends Fragment implements AdapterView.OnItemSelectedListener
 
         }
         dbManager obj=new dbManager();
-        obj.execute(apiurl2);
+        obj.execute(apiurl2 , rid);
 
     }
 

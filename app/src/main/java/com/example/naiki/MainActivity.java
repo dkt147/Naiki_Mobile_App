@@ -9,10 +9,13 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 
+import com.google.android.material.textfield.TextInputEditText;
+
 public class MainActivity extends AppCompatActivity {
 
 
-    EditText phone , pass;
+    TextInputEditText phone ;
+    TextInputEditText pass;
     SharedPreferences sharedPreferences;
 
     @Override

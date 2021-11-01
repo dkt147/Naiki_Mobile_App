@@ -25,6 +25,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.github.dhaval2404.imagepicker.ImagePicker;
+import com.google.android.material.textfield.TextInputEditText;
 
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
@@ -44,7 +45,7 @@ public class donate extends Fragment implements AdapterView.OnItemSelectedListen
     ImageView im;
     Button bt1 , bt2;
     TextView t1 , t2, t3;
-    EditText ed1 , ed2 , ed3;
+    TextInputEditText ed1 , ed2 , ed3;
     Spinner spinner;
 
     String item_name;
@@ -54,7 +55,7 @@ public class donate extends Fragment implements AdapterView.OnItemSelectedListen
     String category;
     Bitmap bitmap;
     String image_path;
-    Uri uri1;
+    Uri uri;
 
 
     SharedPreferences sharedPreferences;
@@ -207,46 +208,22 @@ public class donate extends Fragment implements AdapterView.OnItemSelectedListen
     }
 
 
-    @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        uri1 = data.getData();
+        Uri uri = data.getData();
         try {
-        bitmap = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), uri1);
-        im.setImageBitmap(bitmap);
+            bitmap = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), uri);
+            im.setImageBitmap(bitmap);
 //        t2.setText(uri1.toString());
 
-        }
-         catch (FileNotFoundException e) {
+        } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-
-//        Uri uri = data.getData();
-//        im.setImageURI(uri);
-//        image_path = uri.toString();
-//        t2.setText(image_path);
-//
-//        File finalFile = new File(getRealPathFromURI(uri));
-
-//        bitmap = (Bitmap) data.getExtras().get("data");
-////       Bitmap  uri1 = (bitmap) uri.getData.
-////        bitmap = MediaStore.Images.Media.getContentUri(uri1);
-//
-//        im.setImageBitmap(bitmap);
-//        encodedbitmap(bitmap);
-//
-////        t2.setText(uri.toString());
-////        image_path = uri.toString();
     }
 
-
-
-
-//    Encoded String for Image upload to folder and get path for that
     public String encodedbitmap(Bitmap bitmap)
     {
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
@@ -257,7 +234,6 @@ public class donate extends Fragment implements AdapterView.OnItemSelectedListen
 //        t2.setText(image_path);
         return image_path;
     }
-
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {

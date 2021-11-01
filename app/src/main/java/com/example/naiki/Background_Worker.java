@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
+import android.widget.Toast;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -152,7 +153,7 @@ public class Background_Worker extends AsyncTask<String,Void,String> {
 
 
         if (type.equals("request")) {
-            String reg_url = "http://lms-php.000webhostapp.com/naiki/request.php";
+            String reg_url = "http://lms-php.000webhostapp.com/naiki/donate.php";
             String rid = params[1];
             String it = params[2];
             String qt = params[3];
@@ -181,6 +182,7 @@ public class Background_Worker extends AsyncTask<String,Void,String> {
                                 "&" + URLEncoder.encode("im", "UTF-8") + "=" + URLEncoder.encode(im, "UTF-8") +
                                 "&" + URLEncoder.encode("type", "UTF-8") + "=" + URLEncoder.encode(type, "UTF-8") +
                                 "&" + URLEncoder.encode("rid", "UTF-8") + "=" + URLEncoder.encode(rid, "UTF-8") +
+
                                 "&" + URLEncoder.encode("ct", "UTF-8") + "=" + URLEncoder.encode(ct, "UTF-8") ;
 
 
@@ -230,7 +232,7 @@ public class Background_Worker extends AsyncTask<String,Void,String> {
             String ps = params[4];
             String ad = params[5];
             String tp = params[6];
-//            String im = params[7];
+            String im = params[7];
 
 
 
@@ -251,8 +253,8 @@ public class Background_Worker extends AsyncTask<String,Void,String> {
                                 "&" + URLEncoder.encode("em", "UTF-8") + "=" + URLEncoder.encode(em, "UTF-8") +
                                 "&" + URLEncoder.encode("ad", "UTF-8") + "=" + URLEncoder.encode(ad, "UTF-8") +
                                 "&" + URLEncoder.encode("ps", "UTF-8") + "=" + URLEncoder.encode(ps, "UTF-8")+
-                                "&" + URLEncoder.encode("tp", "UTF-8") + "=" + URLEncoder.encode(tp, "UTF-8");
-//                                "&" + URLEncoder.encode("im", "UTF-8") + "=" + URLEncoder.encode(im, "UTF-8");
+                                "&" + URLEncoder.encode("tp", "UTF-8") + "=" + URLEncoder.encode(tp, "UTF-8")+
+                                "&" + URLEncoder.encode("im", "UTF-8") + "=" + URLEncoder.encode(im, "UTF-8");
 
 
 
@@ -347,13 +349,15 @@ public class Background_Worker extends AsyncTask<String,Void,String> {
             if (type.equals("register")) {
 
                 if (s.equals("Register-Failed")) {
-                    alertDialog.setMessage("Regsiteration Failed / Phone Number already Exists '\n' Please Login");
-                    alertDialog.show();
+//                    alertDialog.setMessage("Regsiteration Failed Phone Number already Exists '\n' Please Login");
+//                    alertDialog.show();
+                    Toast.makeText(context, "Regsiteration Failed Phone Number already Exists '\n'  Please Login", Toast.LENGTH_SHORT).show();
                 } else {
-                    alertDialog.setMessage("Registered Successfully");
-                    alertDialog.show();
-                        Intent intent = new Intent(context, MainActivity.class);
-                        context.startActivity(intent);
+//                    alertDialog.setMessage("Registered Successfully");
+//                    alertDialog.show();
+                    Toast.makeText(context, "Registered", Toast.LENGTH_SHORT).show();
+//                        Intent intent = new Intent(context, MainActivity.class);
+//                        context.startActivity(intent);
                     }
                 }
 
@@ -367,8 +371,8 @@ public class Background_Worker extends AsyncTask<String,Void,String> {
                 } else {
                     alertDialog.setMessage("Submitted Successfully");
                     alertDialog.show();
-                    Intent intent = new Intent( context , home.class);
-                    context.startActivity(intent);
+//                    Intent intent = new Intent(context, home.class);
+//                    context.startActivity(intent);
                 }
             }
 

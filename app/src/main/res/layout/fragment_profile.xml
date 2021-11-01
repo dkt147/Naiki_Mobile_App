@@ -23,18 +23,18 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="150dp"
+                    android:layout_height="wrap_content"
                     android:background="#FFFFFF"
                     android:orientation="horizontal">
 
-                    <ImageView
+                    <de.hdodenhof.circleimageview.CircleImageView
                         android:id="@+id/profile_image"
-                        android:layout_width="100dp"
-                        android:layout_height="150dp"
-                        android:layout_weight="1"
-                        android:adjustViewBounds="true"
-                        app:srcCompat="@drawable/ic_baseline_call_24"
-                        tools:src="@mipmap/ic_launcher_foreground" />
+                        android:layout_width="160dp"
+                        android:layout_height="130dp"
+                        android:layout_marginLeft="10dp"
+                        app:srcCompat="@drawable/ic_profile"
+
+                        />
 
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -47,7 +47,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:textAlignment="viewEnd"
+                            android:paddingLeft="20dp"
+                            android:textAlignment="viewStart"
                             android:textColor="#8BC34A"
                             android:textSize="18sp"
                             android:textStyle="bold" />
@@ -58,8 +59,9 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="20dp"
                             android:layout_weight="1"
+                            android:paddingLeft="20dp"
                             android:text="Logout"
-                            android:textAlignment="viewEnd"
+                            android:textAlignment="viewStart"
                             android:textColor="#000000"
                             android:textSize="14sp"
                             android:textStyle="bold" />

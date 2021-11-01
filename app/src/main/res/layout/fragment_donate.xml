@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FFFFFF"
     tools:context=".donate">
 
     <ScrollView
@@ -13,7 +14,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" >
+            android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -26,7 +27,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="DONATE OR REQUEST"
-                    android:textColor="#E91E63"
+                    android:textColor="#9C27B0"
                     android:textSize="24sp"
                     android:textStyle="bold" />
 
@@ -35,45 +36,57 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
-                    android:layout_marginBottom="10dp"
                     android:text="Item name"
-                    android:textColor="#8BC34A"
-                    android:textSize="18sp"
+                    android:textColor="#9C27B0"
+                    android:textSize="16sp"
                     android:textStyle="bold" />
 
-                <EditText
-                    android:id="@+id/item_name"
+                <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:inputType="textPersonName"
-                    android:text="" />
+                    android:layout_height="match_parent">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/item_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="#FFFFFF"
+                        android:text="Shoes"
+                        android:textColorHint="#E91E63"
+                        android:textSize="16sp" />
+                </com.google.android.material.textfield.TextInputLayout>
 
                 <TextView
                     android:id="@+id/textView11"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="10dp"
                     android:text="Details"
-                    android:textColor="#8BC34A"
-                    android:textSize="18sp"
+                    android:textColor="#9C27B0"
+                    android:textSize="16sp"
                     android:textStyle="bold" />
 
-                <EditText
-                    android:id="@+id/description_id"
+                <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:inputType="textPersonName" />
+                    android:layout_height="match_parent">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/description_id"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="#FFFFFF"
+                        android:text="Shoes for school"
+                        android:textColorHint="#E91E63"
+                        android:textSize="16sp" />
+                </com.google.android.material.textfield.TextInputLayout>
 
                 <TextView
                     android:id="@+id/textView13"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="10dp"
                     android:text="Category"
-                    android:textColor="#8BC34A"
-                    android:textSize="18sp"
+                    android:textColor="#9C27B0"
+                    android:textSize="16sp"
                     android:textStyle="bold" />
 
                 <Spinner
@@ -85,24 +98,33 @@
                     android:id="@+id/textView10"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="10dp"
                     android:text="Quantity"
-                    android:textColor="#8BC34A"
-                    android:textSize="18sp"
+                    android:textColor="#9C27B0"
+                    android:textSize="16sp"
                     android:textStyle="bold" />
 
-                <EditText
-                    android:id="@+id/quantity"
+                <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:inputType="number"
-                    android:text="" />
+                    android:layout_height="match_parent">
 
-                <ImageView
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/quantity"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="#FFFFFF"
+                        android:inputType="number"
+                        android:text="2"
+                        android:textColorHint="#E91E63"
+                        android:textSize="16sp" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/imageView2"
-                    android:layout_width="match_parent"
-                    android:layout_height="160dp"
+                    android:layout_width="140dp"
+                    android:layout_height="130dp"
+                    android:layout_gravity="center"
+                    android:layout_margin="10dp"
                     android:src="@drawable/ic_photo_camera_black_48dp" />
 
                 <Button
@@ -113,15 +135,25 @@
                     android:textColor="#FFFFFF"
                     android:textSize="18sp"
                     android:textStyle="bold"
-                    app:backgroundTint="#8BC34A" />
+                    app:backgroundTint="#9C27B0" />
 
                 <Button
                     android:id="@+id/request_btn"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Request"
+                    android:textColor="#FFFFFF"
                     android:textSize="18sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    app:backgroundTint="#9C27B0" />
+
+                <Button
+                    android:id="@+id/online"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Donate Online"
+                    android:textStyle="bold"
+                    app:backgroundTint="#9C27B0" />
             </LinearLayout>
         </LinearLayout>
     </ScrollView>

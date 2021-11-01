@@ -62,11 +62,11 @@ public class OTP extends AppCompatActivity {
     public void verifybtnclick(View view){
 
 
-        if(t1.getText().toString().trim().isEmpty() ||
-                t2.getText().toString().trim().isEmpty() ||
-                t3.getText().toString().trim().isEmpty() ||
-                t4.getText().toString().trim().isEmpty() ||
-                t5.getText().toString().trim().isEmpty() ||
+        if(t1.getText().toString().trim().isEmpty() &&
+                t2.getText().toString().trim().isEmpty() &&
+                t3.getText().toString().trim().isEmpty() &&
+                t4.getText().toString().trim().isEmpty() &&
+                t5.getText().toString().trim().isEmpty() &&
                 t6.getText().toString().trim().isEmpty()
         )
         {
@@ -89,7 +89,8 @@ public class OTP extends AppCompatActivity {
         String address_text =  getIntent().getStringExtra("address_text");
         String email_text =  getIntent().getStringExtra("email_text");
         String tp =  getIntent().getStringExtra("tp");
-        String phone_text =  getIntent().getStringExtra("phone_text");
+        String phone =  getIntent().getStringExtra("mobile");
+        String image =  getIntent().getStringExtra("image");
 
         if(verificationId!=null){
             progressBar2.setVisibility(View.VISIBLE);
@@ -103,10 +104,10 @@ public class OTP extends AppCompatActivity {
                     progressBar2.setVisibility(View.GONE);
                     verifybtn.setVisibility(View.VISIBLE);
                     if(task.isSuccessful()){
-                        Background_Worker background_worker = new Background_Worker(getApplication());
-                        background_worker.execute("register", user_text, pass_text , address_text  , phone_text , email_text , tp);
+//                        Background_Worker background_worker = new Background_Worker(getApplication());
+//                        background_worker.execute("register", user_text,phone , email_text , pass_text , address_text , tp, image);
 
-                        Intent intent = new Intent(getApplicationContext() , Naviagtion.class);
+                        Intent intent = new Intent(getApplicationContext() , Dashboard.class);
                         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                         startActivity(intent);
 

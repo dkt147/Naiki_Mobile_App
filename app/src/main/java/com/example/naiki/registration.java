@@ -15,6 +15,7 @@ import android.location.Location;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.text.Html;
 import android.util.Base64;
 import android.view.View;
 import android.widget.AdapterView;
@@ -33,6 +34,9 @@ import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.FirebaseException;
+import com.google.firebase.auth.PhoneAuthCredential;
+import com.google.firebase.auth.PhoneAuthProvider;
 
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
@@ -40,6 +44,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -47,8 +52,10 @@ public class registration extends AppCompatActivity implements AdapterView.OnIte
 
 
    EditText ed1 ,ed2,ed3,ed4;
-   TextView t1;
+   TextView t1, t35, t36;
    Button b1;
+    ProgressBar progressBar;
+    Button button;
     ImageView pr_up;
     String image_path;
     Bitmap bitmap;
@@ -62,6 +69,8 @@ public class registration extends AppCompatActivity implements AdapterView.OnIte
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration);
 
+        progressBar = findViewById(R.id.progressBar);
+        button = findViewById(R.id.register);
         ed1 = findViewById(R.id.username);
         ed2 = findViewById(R.id.phone);
         ed3 = findViewById(R.id.email);
@@ -71,6 +80,7 @@ public class registration extends AppCompatActivity implements AdapterView.OnIte
 
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
 
+        getLocation();
 
         t1 =(TextView)  findViewById(R.id.address);
 
@@ -98,7 +108,7 @@ public class registration extends AppCompatActivity implements AdapterView.OnIte
         spinner.setAdapter(adapter);
         spinner.setOnItemSelectedListener(this);
 
-        getLocation();
+
 
 
 
@@ -142,13 +152,73 @@ public class registration extends AppCompatActivity implements AdapterView.OnIte
                     String password = ed4.getText().toString();
                     String address_text = t1.getText().toString();
                     String tp = spinner.getSelectedItem().toString();
-//                    image_path = encodedbitmap(bitmap);
+                    image_path = encodedbitmap(bitmap);
 
                     if (isValidPassword(password))
                     {
 
-                        Background_Worker bgworker = new Background_Worker(registration.this);
-                        bgworker.execute("register",username , phone , email , password, address_text, tp, image_path);
+//                        Intent intent = new Intent(registration.this , OTP.class);
+//                        intent.putExtra("mobile" , phone);
+
+//                        intent.putExtra("verificationId" , verificationId);
+
+                        Background_Worker background_worker = new Background_Worker(getApplication());
+                        background_worker.execute("register", username ,phone , email , password , address_text , tp, image_path);
+
+//                        intent.putExtra("user_text" , username);
+//                        intent.putExtra("pass_text" , password);
+//                        intent.putExtra("address_text" , address_text);
+//                        intent.putExtra("email_text" , email);
+//                        intent.putExtra("tp" , tp);
+//                        intent.putExtra("image" , image_path);
+//
+//                        startActivity(intent);
+
+//                            PhoneAuthProvider.getInstance().verifyPhoneNumber(
+//                                    "+92" + phone,
+//                                    60,
+//                                    TimeUnit.SECONDS,
+//                                    registration.this,
+//                                    new PhoneAuthProvider.OnVerificationStateChangedCallbacks(){
+//                                        @Override
+//                                        public void onVerificationCompleted(@NonNull PhoneAuthCredential phoneAuthCredential) {
+//                                            progressBar.setVisibility(View.GONE);
+//                                            button.setVisibility(View.VISIBLE);
+//                                        }
+//
+//                                        @Override
+//                                        public void onVerificationFailed(@NonNull FirebaseException e) {
+//                                            progressBar.setVisibility(View.GONE);
+//                                            button.setVisibility(View.VISIBLE);
+//                                            Toast.makeText(registration.this , e.getMessage(), Toast.LENGTH_SHORT).show();
+//
+//
+//                                        }
+//
+//                                        @Override
+//                                        public void onCodeSent(@NonNull String verificationId, @NonNull PhoneAuthProvider.ForceResendingToken forceResendingToken) {
+//                                            progressBar.setVisibility(View.GONE);
+//                                            button.setVisibility(View.VISIBLE);
+//                                            Intent intent = new Intent(registration.this , OTP.class);
+//                                            intent.putExtra("mobile" , phone);
+//
+//                                            intent.putExtra("verificationId" , verificationId);
+//
+//
+//                                            intent.putExtra("user_text" , username);
+//                                            intent.putExtra("pass_text" , password);
+//                                            intent.putExtra("address_text" , address_text);
+//                                            intent.putExtra("email_text" , email);
+//                                            intent.putExtra("tp" , tp);
+//                                            intent.putExtra("image" , image_path);
+//
+//                                            startActivity(intent);
+//                                        }
+//                                    }
+//                            );
+
+
+
                     }
                     else{
                         Toast.makeText(registration.this, " Password must has atleast 8 characters that include at least 1 lowercase character, 1 uppercase, 1 number, and 1 special character", Toast.LENGTH_SHORT).show();
@@ -249,11 +319,12 @@ public class registration extends AppCompatActivity implements AdapterView.OnIte
 //                        textView2 = findViewById(R.id.textView6);
 //                        textView2.setText(Html.fromHtml("<font> Latitude : </font>"  +address.get(0).getCountryName()));
 //                        textView3 = findViewById(R.id.textView7);
+                        address1.get(0).getLongitude();
 //                        textView3.setText(Html.fromHtml("<font> Latitude : </font>"  +address.get(0).getLocality()));
-//                        textView4 = findViewById(R.id.textView8);
-//                        textView4.setText(Html.fromHtml("<font> Latitude : </font>"  +address.get(0).getLatitude()));
-//                        textView5 = findViewById(R.id.textView9);
-//                        textView5.setText(Html.fromHtml("<font> Latitude : </font>"  +address.get(0).getLongitude()));
+                        t35 = findViewById(R.id.textView35);
+                        t35.setText(Html.fromHtml("<font> Latitude : </font>"  +address1.get(0).getLatitude()));
+                        t36 = findViewById(R.id.textView36);
+                        t36.setText(Html.fromHtml("<font> Latitude : </font>"  +address1.get(0).getLongitude()));
 
                     } catch (IOException e) {
                         e.printStackTrace();
