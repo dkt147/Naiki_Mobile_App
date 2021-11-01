@@ -43,7 +43,7 @@ public class donate extends Fragment implements AdapterView.OnItemSelectedListen
 
 // Initializing params
     ImageView im;
-    Button bt1 , bt2;
+    Button bt1 , bt2 , bt3;
     TextView t1 , t2, t3;
     TextInputEditText ed1 , ed2 , ed3;
     Spinner spinner;
@@ -56,6 +56,7 @@ public class donate extends Fragment implements AdapterView.OnItemSelectedListen
     Bitmap bitmap;
     String image_path;
     Uri uri;
+    String type;
 
 
     SharedPreferences sharedPreferences;
@@ -72,6 +73,7 @@ public class donate extends Fragment implements AdapterView.OnItemSelectedListen
         t2 = view.findViewById(R.id.textView20);
         bt2 = view.findViewById(R.id.button2);
         bt1 = view.findViewById(R.id.request_btn);
+        bt3 = view.findViewById(R.id.online);
 
         ed1 = view.findViewById(R.id.item_name);
         ed2 = view.findViewById(R.id.quantity);
@@ -91,12 +93,22 @@ public class donate extends Fragment implements AdapterView.OnItemSelectedListen
 
         sharedPreferences = getContext().getSharedPreferences("userr" , Context.MODE_PRIVATE);
 
-        if(sharedPreferences.contains("rid") && sharedPreferences.contains("uphone"))
+        if(sharedPreferences.contains("rid") && sharedPreferences.contains("uphone") )
         {
             r_id = sharedPreferences.getString("rid", "0");
+            type = sharedPreferences.getString("utype", "0");
 
 
 
+        }
+
+        if(type == "Donor")
+        {
+            bt1.setVisibility(View.GONE);
+        }
+        else{
+            bt2.setVisibility(View.GONE);
+            bt3.setVisibility(View.GONE);
         }
 
         im.setOnClickListener(new View.OnClickListener() {

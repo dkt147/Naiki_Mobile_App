@@ -21,23 +21,19 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.util.ArrayList;
@@ -45,7 +41,6 @@ import java.util.ArrayList;
 public class MyAchievements extends Fragment implements AdapterView.OnItemSelectedListener {
 
     private static final String apiurl="http://lms-php.000webhostapp.com/naiki/achievements.php";
-//    private static final String apiurl2="http://lms-php.000webhostapp.com/naiki/request.php";
     ListView listView1;
     AlertDialog alertDialog;
     SharedPreferences sharedPreferences;
@@ -57,7 +52,6 @@ public class MyAchievements extends Fragment implements AdapterView.OnItemSelect
     private static String category[];
     private static String quantity[];
     private static String points[];
-
     private static String image[];
     String rid;
 
@@ -80,16 +74,13 @@ public class MyAchievements extends Fragment implements AdapterView.OnItemSelect
 
         View view = inflater.inflate(R.layout.fragment_my_achievements, container, false);
         listView1 = view.findViewById(R.id.donation_list);
-//        Button b1 = view.findViewById(R.id.button4);
-//        Button b2 = view.findViewById(R.id.button5);
+
         fetch_data_into_array(listView1);
+
 
         // Inflate the layout for this fragment
         return view;
     }
-
-
-
 
 
     public void fetch_data_into_array(View view)
@@ -108,6 +99,7 @@ public class MyAchievements extends Fragment implements AdapterView.OnItemSelect
                     category = new String[ja.length()];
                     quantity = new String[ja.length()];
                     points = new String[ja.length()];
+
                     image = new String[ja.length()];
 
                     for (int i = 0; i < ja.length(); i++) {
@@ -123,8 +115,8 @@ public class MyAchievements extends Fragment implements AdapterView.OnItemSelect
                     }
 
 
-                    myadapter adptr = new myadapter(getActivity(), item_name, item_detail , image  , quantity , category, points );
 
+                    myadapter adptr = new myadapter(getActivity(), item_name, item_detail , image  , quantity , category , points  );
                     listView1.setAdapter(adptr);
 
                 } catch (Exception ex) {
@@ -135,49 +127,30 @@ public class MyAchievements extends Fragment implements AdapterView.OnItemSelect
             @Override
             protected String doInBackground(String... strings)
             {
-                String id= strings[1];
-
                 try {
-
+                    rid = strings[1];
                     URL url = new URL(strings[0]);
                     HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
                     httpURLConnection.setRequestMethod("POST");
-                    httpURLConnection.setDoInput(true);
                     httpURLConnection.setDoOutput(true);
-
+                    httpURLConnection.setDoInput(true);
                     OutputStream outputStream = httpURLConnection.getOutputStream();
-                    OutputStreamWriter outputStreamWriter = new OutputStreamWriter(outputStream);
-                    BufferedWriter bufferedWriter = new BufferedWriter(outputStreamWriter);
-
-                    String post_data =
-                            URLEncoder.encode("id", "UTF-8") + "=" + URLEncoder.encode(id, "UTF-8");
-
-
+                    BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(outputStream, "UTF-8"));
+                    String post_data = URLEncoder.encode("rid", "UTF-8") + "=" + URLEncoder.encode(rid, "UTF-8");
                     bufferedWriter.write(post_data);
                     bufferedWriter.flush();
                     bufferedWriter.close();
-                    outputStreamWriter.close();
                     outputStream.close();
-
-
                     InputStream inputStream = httpURLConnection.getInputStream();
-                    InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
-                    BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
-
-                    String line = "";
+                    BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream, "iso-8859-1"));
                     String result = "";
-
+                    String line = "";
                     while ((line = bufferedReader.readLine()) != null) {
                         result += line;
                     }
-
                     bufferedReader.close();
-                    inputStreamReader.close();
                     inputStream.close();
-
                     httpURLConnection.disconnect();
-
-
                     return result;
 
                 } catch (Exception ex) {
@@ -188,9 +161,11 @@ public class MyAchievements extends Fragment implements AdapterView.OnItemSelect
 
         }
         dbManager obj=new dbManager();
-        obj.execute(apiurl , rid);
+        obj.execute(apiurl, rid);
 
     }
+
+
 
 
     @Override
@@ -217,7 +192,7 @@ public class MyAchievements extends Fragment implements AdapterView.OnItemSelect
         String points[];
 
 
-        myadapter(Context c, String ttl[], String dsc[], String rimg[], String qt[] , String cat[] , String points[] )
+        myadapter(Context c, String ttl[], String dsc[], String rimg[], String qt[] , String cat[] , String points[])
         {
             super(c,R.layout.list_row,R.id.item_name,ttl);
             context=c;
@@ -226,7 +201,7 @@ public class MyAchievements extends Fragment implements AdapterView.OnItemSelect
             this.rimg=rimg;
             this.qt = qt;
             this.cat = cat;
-            this.points = points;
+            this.points =points;
         }
         @NonNull
         @Override
@@ -236,16 +211,11 @@ public class MyAchievements extends Fragment implements AdapterView.OnItemSelect
             View row=inflater.inflate(R.layout.list_row,parent,false);
 
             ImageView img=row.findViewById(R.id.item_image);
-            TextView tv1=row.findViewById(R.id.item_name_id);
+            TextView tv1=row.findViewById(R.id.item_name);
             TextView tv2=row.findViewById(R.id.item_details);
-            TextView tv3=row.findViewById(R.id.textView42);
-            TextView tv4=row.findViewById(R.id.textView43);
-
 
             tv1.setText(ttl[position]);
-            tv2.setText(dsc[position]);
-            tv3.setText(cat[position]);
-            tv4.setText(points[position]);
+            tv2.setText(cat[position]);
 
             String url=rimg[position];
 

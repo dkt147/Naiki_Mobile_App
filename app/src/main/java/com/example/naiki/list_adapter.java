@@ -17,7 +17,6 @@ import androidx.annotation.Nullable;
 
 import java.io.InputStream;
 import java.net.URL;
-import java.util.ArrayList;
 
 public class list_adapter extends ArrayAdapter<String> {
 
@@ -30,7 +29,7 @@ public class list_adapter extends ArrayAdapter<String> {
     String im;
 
     public list_adapter(@NonNull Context c, String it, String dt, String im) {
-        super(c , R.layout.list_row, R.id.item_name_id);
+        super(c , R.layout.list_row, R.id.item_name);
         this.it = it;
         this.dt = dt;
         this.im = im;
@@ -48,7 +47,7 @@ public class list_adapter extends ArrayAdapter<String> {
         View row=inflater.inflate(R.layout.list_row,parent,false);
 
         ImageView img=row.findViewById(R.id.item_image);
-        TextView tv1=row.findViewById(R.id.item_name_id);
+        TextView tv1=row.findViewById(R.id.item_name);
         TextView tv2=row.findViewById(R.id.item_details);
 
 

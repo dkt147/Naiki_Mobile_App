@@ -21,23 +21,19 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.util.ArrayList;
@@ -195,7 +191,6 @@ public class home extends Fragment implements AdapterView.OnItemSelectedListener
 
     public void fetch_data_into_array2(View view)
     {
-
         class  dbManager extends AsyncTask<String,Void,String>
         {
             protected void onPostExecute(String data)
@@ -317,12 +312,12 @@ public class home extends Fragment implements AdapterView.OnItemSelectedListener
             View row=inflater.inflate(R.layout.list_row,parent,false);
 
             ImageView img=row.findViewById(R.id.item_image);
-            TextView tv1=row.findViewById(R.id.item_name_id);
+            TextView tv1=row.findViewById(R.id.item_name);
             TextView tv2=row.findViewById(R.id.item_details);
 
 
             tv1.setText(ttl[position]);
-            tv2.setText(dsc[position]);
+            tv2.setText(cat[position]);
 
             String url=rimg[position];
 

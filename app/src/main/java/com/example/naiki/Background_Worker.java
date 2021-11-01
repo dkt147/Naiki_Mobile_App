@@ -328,6 +328,7 @@ public class Background_Worker extends AsyncTask<String,Void,String> {
                         String r_id = jobj.getString("r_id");
                         int uphon = jobj.getInt("uphone");
                         String nam = jobj.getString("uname");
+                        String type = jobj.getString("utype");
                         String pas = jobj.getString("upass");
 
                         SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -335,6 +336,7 @@ public class Background_Worker extends AsyncTask<String,Void,String> {
                         editor.putString("rid", r_id);
                         editor.putString("uname", nam);
                         editor.putString("upass", pas);
+                        editor.putString("utype", type);
                         editor.commit();
 
                         Intent intent = new Intent(context, Naviagtion.class);
