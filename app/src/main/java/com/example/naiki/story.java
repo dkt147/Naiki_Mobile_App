@@ -12,16 +12,27 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.PhoneAuthCredential;
+import com.google.firebase.auth.PhoneAuthProvider;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -39,31 +50,25 @@ import java.util.ArrayList;
 
 public class story extends AppCompatActivity {
 
-
     private static final String apiurl="http://lms-php.000webhostapp.com/naiki/fetch_story.php";
-//    private static final String apiurl2="http://lms-php.000webhostapp.com/naiki/request.php";
     ListView listView1;
     AlertDialog alertDialog;
     SharedPreferences sharedPreferences;
+
+    ImageView im;
 
     ArrayList<String> donate_list_data = new ArrayList<>();
 
     private static String user_name[];
     private static String story[];
-
     private static String image[];
     String rid;
-    Bitmap result;
-
-    ImageView im;
-
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_story);
-
 
         sharedPreferences = getSharedPreferences("userr" , Context.MODE_PRIVATE);
 
@@ -76,44 +81,24 @@ public class story extends AppCompatActivity {
         listView1 = findViewById(R.id.story_list);
         im = findViewById(R.id.imageView6);
 
-        fetch_data_into_array2(listView1);
-
         im.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), write_story.class);
                 startActivity(intent);
-
             }
         });
 
+        fetch_data_into_array(listView1);
 
-
-//        listView1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//
-//
-////                String s = listView1.getChildAt(position);
-//                Bundle bundle = new Bundle();
-//
-//                Intent intent = new Intent(getContext(), Item_Details.class);
-//                intent.putExtra("name" , item_name[position]);
-//                intent.putExtra("item_detail" , item_detail[position]);
-//                intent.putExtra("cat" , category[position]);
-//                intent.putExtra("quantity" , quantity[position]);
-//                intent.putExtra("phone" , phone[position]);
-//                intent.putExtra("image" , result);
-//
-//                startActivity(intent);            }
-//        });
-        // Inflate the layout for this fragment
 
     }
 
-
-    public void fetch_data_into_array2(View view)
+    public void fetch_data_into_array(View view)
     {
+
+        donate_list_data.clear();
+
         class  dbManager extends AsyncTask<String,Void,String>
         {
             protected void onPostExecute(String data)
@@ -125,23 +110,23 @@ public class story extends AppCompatActivity {
                     user_name = new String[ja.length()];
                     story = new String[ja.length()];
 
-//                    image = new String[ja.length()];
+                    image = new String[ja.length()];
 
                     for (int i = 0; i < ja.length(); i++) {
                         jo = ja.getJSONObject(i);
-                        user_name[i] = jo.getString("user_name");;
+                        user_name[i] = jo.getString("u_name");;
                         story[i] = jo.getString("story");
 
-//                        image[i] ="http://lms-php.000webhostapp.com/naiki/profile/" + jo.getString("item_image");;
+                        image[i] ="http://lms-php.000webhostapp.com/naiki/profiles/" + jo.getString("profile_image");;
                     }
 
 
-                    myadapter adptr = new myadapter(getApplication(), user_name, story );
 
+                    myadapter adptr = new myadapter(getApplicationContext(), user_name, story , image );
                     listView1.setAdapter(adptr);
 
                 } catch (Exception ex) {
-                    Toast.makeText(getApplication(), ex.getMessage(), Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext() , ex.getMessage(), Toast.LENGTH_LONG).show();
                 }
             }
 
@@ -149,27 +134,29 @@ public class story extends AppCompatActivity {
             protected String doInBackground(String... strings)
             {
                 try {
-                    String id= strings[1];
                     URL url = new URL(strings[0]);
-                    HttpURLConnection httpURLConnection  = (HttpURLConnection) url.openConnection();
-                    BufferedReader br = new BufferedReader(new InputStreamReader(httpURLConnection .getInputStream()));
-
+                    HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
                     httpURLConnection.setRequestMethod("POST");
                     httpURLConnection.setDoOutput(true);
                     httpURLConnection.setDoInput(true);
                     OutputStream outputStream = httpURLConnection.getOutputStream();
-
+                    BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(outputStream, "UTF-8"));
+                    String post_data = URLEncoder.encode("rid", "UTF-8") + "=" + URLEncoder.encode(rid, "UTF-8");
+                    bufferedWriter.write(post_data);
+                    bufferedWriter.flush();
+                    bufferedWriter.close();
                     outputStream.close();
-
-                    StringBuffer data = new StringBuffer();
-                    String line;
-
-                    while ((line = br.readLine()) != null) {
-                        data.append(line + "\n");
+                    InputStream inputStream = httpURLConnection.getInputStream();
+                    BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream, "iso-8859-1"));
+                    String result = "";
+                    String line = "";
+                    while ((line = bufferedReader.readLine()) != null) {
+                        result += line;
                     }
-                    br.close();
-
-                    return data.toString();
+                    bufferedReader.close();
+                    inputStream.close();
+                    httpURLConnection.disconnect();
+                    return result;
 
                 } catch (Exception ex) {
                     return ex.getMessage();
@@ -186,23 +173,35 @@ public class story extends AppCompatActivity {
 
 
 
+//    @Override
+//    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+//
+//    }
+//
+//    @Override
+//    public void onNothingSelected(AdapterView<?> parent) {
+//
+//    }
+
+
     class myadapter extends ArrayAdapter<String>
     {
 
 
         Context context;
-        String un[];
-        String st[];
+        String ttl[];
+        String dsc[];
         String rimg[];
 
 
-        myadapter(Context c, String un[], String st[])
+
+        myadapter(Context c, String ttl[], String dsc[], String rimg[])
         {
-            super(c,R.layout.list_row,R.id.textView43,un);
+            super(c,R.layout.list_row,R.id.item_name,ttl);
             context=c;
-            this.un=un;
-
-
+            this.ttl=ttl;
+            this.dsc=dsc;
+            this.rimg=rimg;
 
         }
         @NonNull
@@ -213,47 +212,45 @@ public class story extends AppCompatActivity {
             View row=inflater.inflate(R.layout.story_row,parent,false);
 
             ImageView img=row.findViewById(R.id.user_image);
-            TextView tv1=row.findViewById(R.id.textView42);
-            TextView tv2=row.findViewById(R.id.textView45);
+            TextView tv1=row.findViewById(R.id.textView45);
+            TextView tv2=row.findViewById(R.id.textView43);
+
+            tv1.setText(ttl[position]);
+            tv2.setText(dsc[position]);
+
+            String url=rimg[position];
 
 
-            tv1.setText(un[position]);
-            tv2.setText(story[position]);
+            class ImageLoadTask extends AsyncTask<Void, Void, Bitmap> {
+                private String url;
+                private ImageView imageView;
 
-//            String url=rimg[position];
+                public ImageLoadTask(String url, ImageView imageView) {
+                    this.url = url;
+                    this.imageView = imageView;
+                }
 
-
-//            class ImageLoadTask extends AsyncTask<Void, Void, Bitmap> {
-//                private String url;
-//                private ImageView imageView;
-//
-//                public ImageLoadTask(String url, ImageView imageView) {
-//                    this.url = url;
-//                    this.imageView = imageView;
-//                }
-//
-//                @Override
-//                protected Bitmap doInBackground(Void... params) {
-//                    try {
-//                        URL connection = new URL(url);
-//                        InputStream input = connection.openStream();
-//                        Bitmap myBitmap = BitmapFactory.decodeStream(input);
-//                        Bitmap resized = Bitmap.createScaledBitmap(myBitmap, 400, 400, true);
-//                        return resized;
-//                    } catch (Exception e) {
-//                        Toast.makeText(getContext(),e.getMessage(),Toast.LENGTH_LONG).show();
-//                    }
-//                    return null;
-//                }
-//                @Override
-//                protected void onPostExecute(Bitmap result) {
-//                    super.onPostExecute(result);
-//                    imageView.setImageBitmap(result);
-//
-//                }
-//            }
-//            ImageLoadTask obj=new ImageLoadTask(url,img);
-//            obj.execute();
+                @Override
+                protected Bitmap doInBackground(Void... params) {
+                    try {
+                        URL connection = new URL(url);
+                        InputStream input = connection.openStream();
+                        Bitmap myBitmap = BitmapFactory.decodeStream(input);
+                        Bitmap resized = Bitmap.createScaledBitmap(myBitmap, 400, 400, true);
+                        return resized;
+                    } catch (Exception e) {
+                        Toast.makeText(getContext(),e.getMessage(),Toast.LENGTH_LONG).show();
+                    }
+                    return null;
+                }
+                @Override
+                protected void onPostExecute(Bitmap result) {
+                    super.onPostExecute(result);
+                    imageView.setImageBitmap(result);
+                }
+            }
+            ImageLoadTask obj=new ImageLoadTask(url,img);
+            obj.execute();
 
             return row;
         }

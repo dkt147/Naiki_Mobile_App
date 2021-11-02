@@ -300,12 +300,9 @@ public class Background_Worker extends AsyncTask<String,Void,String> {
 
         if (type.equals("story")) {
             String reg_url = "http://lms-php.000webhostapp.com/naiki/story.php";
-            String un = params[2];
             String rid = params[1];
+            String un = params[2];
             String st = params[3];
-
-
-
 
 
             try {
@@ -321,9 +318,7 @@ public class Background_Worker extends AsyncTask<String,Void,String> {
 
                 String post_data = URLEncoder.encode("un", "UTF-8") + "=" + URLEncoder.encode(un, "UTF-8") +
                         URLEncoder.encode("rid", "UTF-8") + "=" + URLEncoder.encode(rid, "UTF-8") +
-                        URLEncoder.encode("st", "UTF-8") + "=" + URLEncoder.encode(st, "UTF-8");
-
-
+                        URLEncoder.encode("st", "UTF-8") + "=" + URLEncoder.encode(st, "UTF-8") ;
 
 
                 bufferedWriter.write(post_data);
@@ -350,7 +345,7 @@ public class Background_Worker extends AsyncTask<String,Void,String> {
 
                 httpURLConnection.disconnect();
 
-                alertDialog.setTitle("Registration Status");
+                alertDialog.setTitle("Status");
                 return result;
 
             } catch (MalformedURLException e) {
@@ -454,10 +449,11 @@ public class Background_Worker extends AsyncTask<String,Void,String> {
                     alertDialog.setMessage("Request Failed");
                     alertDialog.show();
                 } else {
-                    alertDialog.setMessage("Submitted Successfully");
-                    alertDialog.show();
-                    Intent intent = new Intent( context , home.class);
-                    context.startActivity(intent);
+                    Toast.makeText(context, "Submitted", Toast.LENGTH_SHORT).show();
+//                    alertDialog.setMessage("Submitted Successfully");
+//                    alertDialog.show();
+//                    Intent intent = new Intent( context , home.class);
+//                    context.startActivity(intent);
                 }
             }
 

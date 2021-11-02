@@ -308,6 +308,8 @@ public class home extends Fragment implements AdapterView.OnItemSelectedListener
 
 
 
+
+
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
@@ -378,6 +380,8 @@ public class home extends Fragment implements AdapterView.OnItemSelectedListener
                         InputStream input = connection.openStream();
                         Bitmap myBitmap = BitmapFactory.decodeStream(input);
                         Bitmap resized = Bitmap.createScaledBitmap(myBitmap, 400, 400, true);
+
+
                         return resized;
                     } catch (Exception e) {
                         Toast.makeText(getContext(),e.getMessage(),Toast.LENGTH_LONG).show();
@@ -391,11 +395,14 @@ public class home extends Fragment implements AdapterView.OnItemSelectedListener
 
                 }
             }
+
+
             ImageLoadTask obj=new ImageLoadTask(url,img);
             obj.execute();
 
             return row;
         }
+
     }
 
 
