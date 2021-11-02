@@ -125,7 +125,7 @@ public class story extends AppCompatActivity {
                     user_name = new String[ja.length()];
                     story = new String[ja.length()];
 
-                    image = new String[ja.length()];
+//                    image = new String[ja.length()];
 
                     for (int i = 0; i < ja.length(); i++) {
                         jo = ja.getJSONObject(i);
@@ -136,7 +136,7 @@ public class story extends AppCompatActivity {
                     }
 
 
-                    myadapter adptr = new myadapter(getApplication(), user_name, story , image );
+                    myadapter adptr = new myadapter(getApplication(), user_name, story );
 
                     listView1.setAdapter(adptr);
 
@@ -196,13 +196,13 @@ public class story extends AppCompatActivity {
         String rimg[];
 
 
-        myadapter(Context c, String un[], String st[], String rimg[])
+        myadapter(Context c, String un[], String st[])
         {
             super(c,R.layout.list_row,R.id.textView43,un);
             context=c;
             this.un=un;
 
-            this.rimg=rimg;
+
 
         }
         @NonNull
@@ -220,40 +220,40 @@ public class story extends AppCompatActivity {
             tv1.setText(un[position]);
             tv2.setText(story[position]);
 
-            String url=rimg[position];
+//            String url=rimg[position];
 
 
-            class ImageLoadTask extends AsyncTask<Void, Void, Bitmap> {
-                private String url;
-                private ImageView imageView;
-
-                public ImageLoadTask(String url, ImageView imageView) {
-                    this.url = url;
-                    this.imageView = imageView;
-                }
-
-                @Override
-                protected Bitmap doInBackground(Void... params) {
-                    try {
-                        URL connection = new URL(url);
-                        InputStream input = connection.openStream();
-                        Bitmap myBitmap = BitmapFactory.decodeStream(input);
-                        Bitmap resized = Bitmap.createScaledBitmap(myBitmap, 400, 400, true);
-                        return resized;
-                    } catch (Exception e) {
-                        Toast.makeText(getContext(),e.getMessage(),Toast.LENGTH_LONG).show();
-                    }
-                    return null;
-                }
-                @Override
-                protected void onPostExecute(Bitmap result) {
-                    super.onPostExecute(result);
-                    imageView.setImageBitmap(result);
-
-                }
-            }
-            ImageLoadTask obj=new ImageLoadTask(url,img);
-            obj.execute();
+//            class ImageLoadTask extends AsyncTask<Void, Void, Bitmap> {
+//                private String url;
+//                private ImageView imageView;
+//
+//                public ImageLoadTask(String url, ImageView imageView) {
+//                    this.url = url;
+//                    this.imageView = imageView;
+//                }
+//
+//                @Override
+//                protected Bitmap doInBackground(Void... params) {
+//                    try {
+//                        URL connection = new URL(url);
+//                        InputStream input = connection.openStream();
+//                        Bitmap myBitmap = BitmapFactory.decodeStream(input);
+//                        Bitmap resized = Bitmap.createScaledBitmap(myBitmap, 400, 400, true);
+//                        return resized;
+//                    } catch (Exception e) {
+//                        Toast.makeText(getContext(),e.getMessage(),Toast.LENGTH_LONG).show();
+//                    }
+//                    return null;
+//                }
+//                @Override
+//                protected void onPostExecute(Bitmap result) {
+//                    super.onPostExecute(result);
+//                    imageView.setImageBitmap(result);
+//
+//                }
+//            }
+//            ImageLoadTask obj=new ImageLoadTask(url,img);
+//            obj.execute();
 
             return row;
         }
