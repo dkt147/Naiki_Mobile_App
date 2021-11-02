@@ -29,6 +29,7 @@ import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
@@ -56,6 +57,7 @@ public class home extends Fragment implements AdapterView.OnItemSelectedListener
 
     private static String image[];
     String rid;
+    Bitmap result;
 
 
     public home() {
@@ -112,6 +114,7 @@ public class home extends Fragment implements AdapterView.OnItemSelectedListener
                 intent.putExtra("cat" , category[position]);
                 intent.putExtra("quantity" , quantity[position]);
                 intent.putExtra("phone" , phone[position]);
+                intent.putExtra("image" , result);
 
                 startActivity(intent);            }
         });
@@ -348,6 +351,7 @@ public class home extends Fragment implements AdapterView.OnItemSelectedListener
                 protected void onPostExecute(Bitmap result) {
                     super.onPostExecute(result);
                     imageView.setImageBitmap(result);
+
                 }
             }
             ImageLoadTask obj=new ImageLoadTask(url,img);

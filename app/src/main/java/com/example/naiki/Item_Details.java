@@ -25,6 +25,7 @@ public class Item_Details extends AppCompatActivity {
             String phone = i.getStringExtra( "phone");
 
 
+
             TextView t1 = findViewById(R.id.textView25);
             t1.setText(name);
 
@@ -39,6 +40,9 @@ public class Item_Details extends AppCompatActivity {
 
             TextView t5 = findViewById(R.id.textView29);
             t5.setText(phone);
+
+            ImageView im = findViewById(R.id.imageView4);
+
 
 
 
