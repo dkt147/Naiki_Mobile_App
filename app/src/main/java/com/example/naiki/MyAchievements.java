@@ -86,7 +86,6 @@ public class MyAchievements extends Fragment implements AdapterView.OnItemSelect
         fetch_data_into_array(listView1);
 
 
-        // Inflate the layout for this fragment
         return view;
     }
 
