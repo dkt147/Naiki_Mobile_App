@@ -42,8 +42,19 @@ public class write_story extends AppCompatActivity {
 
                 }
 
-                Background_Worker background_worker = new Background_Worker(getApplication());
-                background_worker.execute("story", rid , uname , story );
+                if (story.length() != 0)
+                {
+                    Background_Worker background_worker = new Background_Worker(getApplication());
+                    background_worker.execute("story", rid , uname , story );
+                }
+                else
+                {
+                    t1.requestFocus();
+                    t1.setError("Story cannot be Empty");
+
+                }
+
+
 
 
             }

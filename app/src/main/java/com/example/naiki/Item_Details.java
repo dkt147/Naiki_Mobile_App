@@ -8,6 +8,8 @@ import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+
 public class Item_Details extends AppCompatActivity {
 
     @Override
@@ -23,6 +25,7 @@ public class Item_Details extends AppCompatActivity {
             String cat = i.getStringExtra( "category");
             String qut = i.getStringExtra( "quantity");
             String phone = i.getStringExtra( "phone");
+            String image = i.getStringExtra( "image");
 
 
 
@@ -42,8 +45,8 @@ public class Item_Details extends AppCompatActivity {
             t5.setText(phone);
 
             ImageView im = findViewById(R.id.imageView4);
-            Bitmap bitmap = (Bitmap) getIntent().getParcelableExtra("BitmapImage");
-            im.setImageBitmap(bitmap);
+
+            Glide.with(getApplicationContext()).load(image).into(im);
 
 
 

@@ -54,7 +54,7 @@ public class MyAchievements extends Fragment implements AdapterView.OnItemSelect
     private static String points[];
     private static String image[];
     String rid;
-
+    String utype;
 
     public MyAchievements() {
         // Required empty public constructor
@@ -64,15 +64,23 @@ public class MyAchievements extends Fragment implements AdapterView.OnItemSelect
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        View view = inflater.inflate(R.layout.fragment_my_achievements, container, false);
+
         sharedPreferences = getContext().getSharedPreferences("userr" , Context.MODE_PRIVATE);
 
         if(sharedPreferences.contains("rid") && sharedPreferences.contains("uphone"))
         {
             rid = sharedPreferences.getString("rid", "0");
+            utype = sharedPreferences.getString("utype", "0");
 
         }
+        if (utype == "Request")
+        {
+            TextView t1 = view.findViewById(R.id.textView8);
+            t1.setText("Requests");
+        }
 
-        View view = inflater.inflate(R.layout.fragment_my_achievements, container, false);
         listView1 = view.findViewById(R.id.donation_list);
 
         fetch_data_into_array(listView1);

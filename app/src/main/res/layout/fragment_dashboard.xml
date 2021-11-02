@@ -34,6 +34,7 @@
                     app:srcCompat="@drawable/cdbdc360e98451bfb931d973864826db" />
 
                 <LinearLayout
+                    android:id="@+id/dashboard"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -129,10 +130,20 @@
 
                     </LinearLayout>
 
+                    <TextView
+                        android:id="@+id/textView35"
+                        android:layout_width="350dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="10dp"
+                        android:text="Read stories about kind and people who says about AJAR, AKHIRAH, POVERTY and voices of the Poor, They tell us about what they feel, what are they suffering from. They need Us!" />
+
                     <Button
                         android:id="@+id/story"
-                        android:layout_width="match_parent"
+                        android:layout_width="350dp"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="15dp"
                         android:text="Stories" />
 
                     <LinearLayout
@@ -164,6 +175,14 @@
                             android:layout_marginRight="20dp"
                             android:text="We are here to help you!!! Don't be afraid of finding items to here and there, Just add your story or find it in the lost Items to get your important documents get back!!! Hurrah! Now everything is available there :)"
                             android:textSize="16sp" />
+
+                        <Button
+                            android:id="@+id/button6"
+                            android:layout_width="350dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="10dp"
+                            android:text="Find out here !!!" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -193,6 +212,7 @@
                             android:orientation="horizontal">
 
                             <LinearLayout
+                                android:id="@+id/food_screen"
                                 android:layout_width="80dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
@@ -203,7 +223,7 @@
                                     android:id="@+id/imageView8"
                                     android:layout_width="50dp"
                                     android:layout_height="50dp"
-                                    app:srcCompat="@drawable/cdbdc360e98451bfb931d973864826db" />
+                                    app:srcCompat="@drawable/e" />
 
                                 <TextView
                                     android:id="@+id/textView37"
@@ -216,6 +236,7 @@
                             </LinearLayout>
 
                             <LinearLayout
+                                android:id="@+id/clothes_screen"
                                 android:layout_width="80dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
@@ -226,7 +247,7 @@
                                     android:id="@+id/imageView8"
                                     android:layout_width="50dp"
                                     android:layout_height="50dp"
-                                    app:srcCompat="@drawable/cdbdc360e98451bfb931d973864826db" />
+                                    app:srcCompat="@drawable/d" />
 
                                 <TextView
                                     android:id="@+id/textView37"
@@ -239,6 +260,7 @@
                             </LinearLayout>
 
                             <LinearLayout
+                                android:id="@+id/school_screen"
                                 android:layout_width="80dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
@@ -249,7 +271,7 @@
                                     android:id="@+id/imageView8"
                                     android:layout_width="50dp"
                                     android:layout_height="50dp"
-                                    app:srcCompat="@drawable/cdbdc360e98451bfb931d973864826db" />
+                                    app:srcCompat="@drawable/f" />
 
                                 <TextView
                                     android:id="@+id/textView37"
@@ -273,6 +295,7 @@
                             android:orientation="horizontal">
 
                             <LinearLayout
+                                android:id="@+id/household_screen"
                                 android:layout_width="80dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
@@ -283,7 +306,7 @@
                                     android:id="@+id/imageView8"
                                     android:layout_width="50dp"
                                     android:layout_height="50dp"
-                                    app:srcCompat="@drawable/cdbdc360e98451bfb931d973864826db" />
+                                    app:srcCompat="@drawable/b" />
 
                                 <TextView
                                     android:id="@+id/textView37"
@@ -297,6 +320,7 @@
                             </LinearLayout>
 
                             <LinearLayout
+                                android:id="@+id/blood_screen"
                                 android:layout_width="80dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
@@ -307,7 +331,7 @@
                                     android:id="@+id/imageView8"
                                     android:layout_width="50dp"
                                     android:layout_height="50dp"
-                                    app:srcCompat="@drawable/cdbdc360e98451bfb931d973864826db" />
+                                    app:srcCompat="@drawable/c" />
 
                                 <TextView
                                     android:id="@+id/textView37"
@@ -320,6 +344,7 @@
                             </LinearLayout>
 
                             <LinearLayout
+                                android:id="@+id/sadqah_screen"
                                 android:layout_width="80dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"

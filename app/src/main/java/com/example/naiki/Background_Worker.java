@@ -82,6 +82,69 @@ public class Background_Worker extends AsyncTask<String,Void,String> {
 
 
 
+
+
+        if (type.equals("story")) {
+            String reg_url = "http://lms-php.000webhostapp.com/naiki/story.php";
+            String rid = params[1];
+            String un = params[2];
+            String st = params[3];
+
+
+
+            try {
+                URL url = new URL(reg_url);
+                HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
+                httpURLConnection.setRequestMethod("POST");
+                httpURLConnection.setDoInput(true);
+                httpURLConnection.setDoOutput(true);
+
+                OutputStream outputStream = httpURLConnection.getOutputStream();
+                OutputStreamWriter outputStreamWriter = new OutputStreamWriter(outputStream);
+                BufferedWriter bufferedWriter = new BufferedWriter(outputStreamWriter);
+
+                String post_data =
+                        URLEncoder.encode("rid", "UTF-8") + "=" + URLEncoder.encode(rid, "UTF-8") +
+                                "&" + URLEncoder.encode("un", "UTF-8") + "=" + URLEncoder.encode(un, "UTF-8") +
+                                "&" + URLEncoder.encode("st", "UTF-8") + "=" + URLEncoder.encode(st, "UTF-8") ;
+
+
+
+                bufferedWriter.write(post_data);
+                bufferedWriter.flush();
+                bufferedWriter.close();
+                outputStreamWriter.close();
+                outputStream.close();
+
+
+                InputStream inputStream = httpURLConnection.getInputStream();
+                InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
+                BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+
+                String line = "";
+                String result = "";
+
+                while ((line = bufferedReader.readLine()) != null) {
+                    result += line;
+                }
+
+                bufferedReader.close();
+                inputStreamReader.close();
+                inputStream.close();
+
+                httpURLConnection.disconnect();
+
+
+                return result;
+
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+        }
+
         if (type.equals("donate")) {
             String reg_url = "http://lms-php.000webhostapp.com/naiki/donate.php";
             String rid = params[1];
@@ -298,63 +361,6 @@ public class Background_Worker extends AsyncTask<String,Void,String> {
 
         }
 
-        if (type.equals("story")) {
-            String reg_url = "http://lms-php.000webhostapp.com/naiki/story.php";
-            String rid = params[1];
-            String un = params[2];
-            String st = params[3];
-
-
-            try {
-                URL url = new URL(reg_url);
-                HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
-                httpURLConnection.setRequestMethod("POST");
-                httpURLConnection.setDoInput(true);
-                httpURLConnection.setDoOutput(true);
-
-                OutputStream outputStream = httpURLConnection.getOutputStream();
-                OutputStreamWriter outputStreamWriter = new OutputStreamWriter(outputStream);
-                BufferedWriter bufferedWriter = new BufferedWriter(outputStreamWriter);
-
-                String post_data = URLEncoder.encode("un", "UTF-8") + "=" + URLEncoder.encode(un, "UTF-8") +
-                        URLEncoder.encode("rid", "UTF-8") + "=" + URLEncoder.encode(rid, "UTF-8") +
-                        URLEncoder.encode("st", "UTF-8") + "=" + URLEncoder.encode(st, "UTF-8") ;
-
-
-                bufferedWriter.write(post_data);
-                bufferedWriter.flush();
-                bufferedWriter.close();
-                outputStreamWriter.close();
-                outputStream.close();
-
-
-                InputStream inputStream = httpURLConnection.getInputStream();
-                InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
-                BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
-
-                String line = "";
-                String result = "";
-
-                while ((line = bufferedReader.readLine()) != null) {
-                    result += line;
-                }
-
-                bufferedReader.close();
-                inputStreamReader.close();
-                inputStream.close();
-
-                httpURLConnection.disconnect();
-
-                alertDialog.setTitle("Status");
-                return result;
-
-            } catch (MalformedURLException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
-        }
 
 
         return null;
@@ -446,8 +452,8 @@ public class Background_Worker extends AsyncTask<String,Void,String> {
             {
 
                 if (s.equals("Failed")) {
-                    alertDialog.setMessage("Request Failed");
-                    alertDialog.show();
+                    Toast.makeText(context, "Request Failed", Toast.LENGTH_SHORT).show();
+
                 } else {
                     Toast.makeText(context, "Submitted", Toast.LENGTH_SHORT).show();
 //                    alertDialog.setMessage("Submitted Successfully");
@@ -461,13 +467,13 @@ public class Background_Worker extends AsyncTask<String,Void,String> {
             {
 
                 if (s.equals("Register-Failed")) {
-                    alertDialog.setMessage("Post Failed");
-                    alertDialog.show();
+                    Toast.makeText(context, "Posted Failed", Toast.LENGTH_SHORT).show();
+
                 } else {
                     Toast.makeText(context, "Posted Succesfully", Toast.LENGTH_SHORT).show();
 //                    alertDialog.setMessage("Post Successfully");
 //                    alertDialog.show();
-//                    Intent intent = new Intent( context , home.class);
+//                    Intent intent = new Intent(context, story.class);
 //                    context.startActivity(intent);
                 }
             }

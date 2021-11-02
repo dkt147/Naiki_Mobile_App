@@ -13,7 +13,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Naiki">
-        <activity android:name=".write_story"></activity>
+        <activity android:name=".Household"></activity>
+        <activity android:name=".School" />
+        <activity android:name=".Clothes" />
+        <activity android:name=".food_screen" />
+        <activity android:name=".write_story" />
         <activity android:name=".story" />
         <activity android:name=".registration" />
         <activity android:name=".Item_Details" />

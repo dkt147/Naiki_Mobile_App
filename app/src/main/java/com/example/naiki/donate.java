@@ -90,16 +90,18 @@ public class donate extends Fragment implements AdapterView.OnItemSelectedListen
 
 
 
-
         sharedPreferences = getContext().getSharedPreferences("userr" , Context.MODE_PRIVATE);
 
-        if(sharedPreferences.contains("rid") && sharedPreferences.contains("uphone") )
+        if(sharedPreferences.contains("rid") && sharedPreferences.contains("uphone"))
         {
             r_id = sharedPreferences.getString("rid", "0");
             type = sharedPreferences.getString("utype", "0");
 
-
-
+        }
+        if (type == "Request")
+        {
+            TextView t1 = view.findViewById(R.id.textView22);
+            t1.setText("Requests");
         }
 
         if(type == "Donor")
@@ -152,6 +154,7 @@ public class donate extends Fragment implements AdapterView.OnItemSelectedListen
                     ed3.requestFocus();
                     ed3.setError("FIELD CANNOT BE EMPTY");
                 }
+
 
                 else if (ed1.length()!=0 && ed2.length()!=0 && ed3.length()!=0) {
 

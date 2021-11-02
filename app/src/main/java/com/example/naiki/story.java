@@ -215,8 +215,8 @@ public class story extends AppCompatActivity {
             TextView tv1=row.findViewById(R.id.textView45);
             TextView tv2=row.findViewById(R.id.textView43);
 
-            tv1.setText(ttl[position]);
-            tv2.setText(dsc[position]);
+            tv2.setText(ttl[position]);
+            tv1.setText(dsc[position]);
 
             String url=rimg[position];
 

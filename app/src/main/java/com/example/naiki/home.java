@@ -61,6 +61,7 @@ public class home extends Fragment implements AdapterView.OnItemSelectedListener
     String rid;
     Bitmap result;
     String cat;
+    String url;
 
     EditText ed1;
 
@@ -132,7 +133,7 @@ public class home extends Fragment implements AdapterView.OnItemSelectedListener
                 intent.putExtra("cat" , category[position]);
                 intent.putExtra("quantity" , quantity[position]);
                 intent.putExtra("phone" , phone[position]);
-                intent.putExtra("image" , result);
+                intent.putExtra("image" , image[position]);
 
 
 
@@ -361,7 +362,7 @@ public class home extends Fragment implements AdapterView.OnItemSelectedListener
             tv1.setText(ttl[position]);
             tv2.setText(cat[position]);
 
-            String url=rimg[position];
+            url=rimg[position];
 
 
             class ImageLoadTask extends AsyncTask<Void, Void, Bitmap> {
