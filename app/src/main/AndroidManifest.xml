@@ -13,7 +13,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Naiki">
-        <activity android:name=".registration"></activity>
+        <activity android:name=".write_story"></activity>
+        <activity android:name=".story" />
+        <activity android:name=".registration" />
         <activity android:name=".Item_Details" />
         <activity android:name=".OTP" />
         <activity android:name=".Naviagtion" />

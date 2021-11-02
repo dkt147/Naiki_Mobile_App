@@ -11,8 +11,8 @@
 
     <ImageView
         android:id="@+id/imageView4"
-        android:layout_width="358dp"
-        android:layout_height="wrap_content"
+        android:layout_width="350dp"
+        android:layout_height="250dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="60dp"
         android:adjustViewBounds="true"

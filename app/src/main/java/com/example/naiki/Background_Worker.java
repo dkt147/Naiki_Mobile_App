@@ -233,6 +233,9 @@ public class Background_Worker extends AsyncTask<String,Void,String> {
             String ad = params[5];
             String tp = params[6];
             String im = params[7];
+            String a = params[8];
+            String b = params[9];
+
 
 
 
@@ -254,7 +257,72 @@ public class Background_Worker extends AsyncTask<String,Void,String> {
                                 "&" + URLEncoder.encode("ad", "UTF-8") + "=" + URLEncoder.encode(ad, "UTF-8") +
                                 "&" + URLEncoder.encode("ps", "UTF-8") + "=" + URLEncoder.encode(ps, "UTF-8")+
                                 "&" + URLEncoder.encode("tp", "UTF-8") + "=" + URLEncoder.encode(tp, "UTF-8")+
+                                "&" + URLEncoder.encode("a", "UTF-8") + "=" + URLEncoder.encode(ad, "UTF-8")+
+                                "&" + URLEncoder.encode("a", "UTF-8") + "=" + URLEncoder.encode(b, "UTF-8")+
                                 "&" + URLEncoder.encode("im", "UTF-8") + "=" + URLEncoder.encode(im, "UTF-8");
+
+
+
+                bufferedWriter.write(post_data);
+                bufferedWriter.flush();
+                bufferedWriter.close();
+                outputStreamWriter.close();
+                outputStream.close();
+
+
+                InputStream inputStream = httpURLConnection.getInputStream();
+                InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
+                BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+
+                String line = "";
+                String result = "";
+
+                while ((line = bufferedReader.readLine()) != null) {
+                    result += line;
+                }
+
+                bufferedReader.close();
+                inputStreamReader.close();
+                inputStream.close();
+
+                httpURLConnection.disconnect();
+
+                alertDialog.setTitle("Registration Status");
+                return result;
+
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+        }
+
+        if (type.equals("story")) {
+            String reg_url = "http://lms-php.000webhostapp.com/naiki/story.php";
+            String un = params[2];
+            String rid = params[1];
+            String st = params[3];
+
+
+
+
+
+            try {
+                URL url = new URL(reg_url);
+                HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
+                httpURLConnection.setRequestMethod("POST");
+                httpURLConnection.setDoInput(true);
+                httpURLConnection.setDoOutput(true);
+
+                OutputStream outputStream = httpURLConnection.getOutputStream();
+                OutputStreamWriter outputStreamWriter = new OutputStreamWriter(outputStream);
+                BufferedWriter bufferedWriter = new BufferedWriter(outputStreamWriter);
+
+                String post_data = URLEncoder.encode("un", "UTF-8") + "=" + URLEncoder.encode(un, "UTF-8") +
+                        URLEncoder.encode("rid", "UTF-8") + "=" + URLEncoder.encode(rid, "UTF-8") +
+                        URLEncoder.encode("st", "UTF-8") + "=" + URLEncoder.encode(st, "UTF-8");
+
 
 
 
@@ -392,6 +460,23 @@ public class Background_Worker extends AsyncTask<String,Void,String> {
                     context.startActivity(intent);
                 }
             }
+
+            if (type.equals("story"))
+            {
+
+                if (s.equals("Register-Failed")) {
+                    alertDialog.setMessage("Post Failed");
+                    alertDialog.show();
+                } else {
+                    Toast.makeText(context, "Posted Succesfully", Toast.LENGTH_SHORT).show();
+//                    alertDialog.setMessage("Post Successfully");
+//                    alertDialog.show();
+//                    Intent intent = new Intent( context , home.class);
+//                    context.startActivity(intent);
+                }
+            }
+
+
         }
 
 

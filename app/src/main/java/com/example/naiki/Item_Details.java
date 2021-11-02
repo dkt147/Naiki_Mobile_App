@@ -42,6 +42,9 @@ public class Item_Details extends AppCompatActivity {
             t5.setText(phone);
 
             ImageView im = findViewById(R.id.imageView4);
+            Bitmap bitmap = (Bitmap) getIntent().getParcelableExtra("BitmapImage");
+            im.setImageBitmap(bitmap);
+
 
 
 

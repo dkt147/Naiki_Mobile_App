@@ -60,6 +60,8 @@ public class registration extends AppCompatActivity implements AdapterView.OnIte
     String image_path;
     Bitmap bitmap;
 
+    String a;
+    String b;
     Spinner spinner;
     ArrayList<String> data = new ArrayList<>();
     FusedLocationProviderClient fusedLocationProviderClient;
@@ -163,7 +165,7 @@ public class registration extends AppCompatActivity implements AdapterView.OnIte
 //                        intent.putExtra("verificationId" , verificationId);
 
                         Background_Worker background_worker = new Background_Worker(getApplication());
-                        background_worker.execute("register", username ,phone , email , password , address_text , tp, image_path);
+                        background_worker.execute("register", username ,phone , email , password , address_text , tp, image_path , a , b);
 
 //                        intent.putExtra("user_text" , username);
 //                        intent.putExtra("pass_text" , password);
@@ -319,12 +321,13 @@ public class registration extends AppCompatActivity implements AdapterView.OnIte
 //                        textView2 = findViewById(R.id.textView6);
 //                        textView2.setText(Html.fromHtml("<font> Latitude : </font>"  +address.get(0).getCountryName()));
 //                        textView3 = findViewById(R.id.textView7);
-                        address1.get(0).getLongitude();
+                        a = String.valueOf(address1.get(0).getLongitude());
+                        b = String.valueOf(address1.get(0).getLatitude());
 //                        textView3.setText(Html.fromHtml("<font> Latitude : </font>"  +address.get(0).getLocality()));
-                        t35 = findViewById(R.id.textView35);
-                        t35.setText(Html.fromHtml("<font> Latitude : </font>"  +address1.get(0).getLatitude()));
-                        t36 = findViewById(R.id.textView36);
-                        t36.setText(Html.fromHtml("<font> Latitude : </font>"  +address1.get(0).getLongitude()));
+//                        t35 = findViewById(R.id.textView35);
+//                        t35.setText(Html.fromHtml("<font> Latitude : </font>"  +address1.get(0).getLatitude()));
+//                        t36 = findViewById(R.id.textView36);
+//                        t36.setText(Html.fromHtml("<font> Latitude : </font>"  +address1.get(0).getLongitude()));
 
                     } catch (IOException e) {
                         e.printStackTrace();

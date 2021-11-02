@@ -19,8 +19,10 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -58,6 +60,12 @@ public class home extends Fragment implements AdapterView.OnItemSelectedListener
     private static String image[];
     String rid;
     Bitmap result;
+    String cat;
+
+    EditText ed1;
+
+    Spinner sp;
+
 
 
     public home() {
@@ -76,14 +84,24 @@ public class home extends Fragment implements AdapterView.OnItemSelectedListener
 
         }
 
+
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         listView1 = view.findViewById(R.id.doante_list);
         Button b1 = view.findViewById(R.id.button4);
         Button b2 = view.findViewById(R.id.button5);
 
+
+
+
+
+
+
         b1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                donate_list_data.clear();
+
                 fetch_data_into_array(listView1);
             }
         });
@@ -92,11 +110,11 @@ public class home extends Fragment implements AdapterView.OnItemSelectedListener
         b2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                donate_list_data.clear();
                 fetch_data_into_array2(listView1);
             }
         });
-
-
 
 
 
@@ -116,6 +134,8 @@ public class home extends Fragment implements AdapterView.OnItemSelectedListener
                 intent.putExtra("phone" , phone[position]);
                 intent.putExtra("image" , result);
 
+
+
                 startActivity(intent);            }
         });
         // Inflate the layout for this fragment
@@ -126,6 +146,7 @@ public class home extends Fragment implements AdapterView.OnItemSelectedListener
     public void fetch_data_into_array(View view)
     {
 
+        donate_list_data.clear();
         class  dbManager extends AsyncTask<String,Void,String>
         {
             protected void onPostExecute(String data)
@@ -153,6 +174,7 @@ public class home extends Fragment implements AdapterView.OnItemSelectedListener
                     }
 
 
+
                     myadapter adptr = new myadapter(getActivity(), item_name, item_detail , image  , quantity , category , phone );
                     listView1.setAdapter(adptr);
 
@@ -165,19 +187,30 @@ public class home extends Fragment implements AdapterView.OnItemSelectedListener
             protected String doInBackground(String... strings)
             {
                 try {
+                    String sc = "";
                     URL url = new URL(strings[0]);
-                    HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-                    BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-
-                    StringBuffer data = new StringBuffer();
-                    String line;
-
-                    while ((line = br.readLine()) != null) {
-                        data.append(line + "\n");
+                    HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
+                    httpURLConnection.setRequestMethod("POST");
+                    httpURLConnection.setDoOutput(true);
+                    httpURLConnection.setDoInput(true);
+                    OutputStream outputStream = httpURLConnection.getOutputStream();
+                    BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(outputStream, "UTF-8"));
+                    String post_data = URLEncoder.encode("sc", "UTF-8") + "=" + URLEncoder.encode(sc, "UTF-8");
+                    bufferedWriter.write(post_data);
+                    bufferedWriter.flush();
+                    bufferedWriter.close();
+                    outputStream.close();
+                    InputStream inputStream = httpURLConnection.getInputStream();
+                    BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream, "iso-8859-1"));
+                    String result = "";
+                    String line = "";
+                    while ((line = bufferedReader.readLine()) != null) {
+                        result += line;
                     }
-                    br.close();
-
-                    return data.toString();
+                    bufferedReader.close();
+                    inputStream.close();
+                    httpURLConnection.disconnect();
+                    return result;
 
                 } catch (Exception ex) {
                     return ex.getMessage();
@@ -194,6 +227,8 @@ public class home extends Fragment implements AdapterView.OnItemSelectedListener
 
     public void fetch_data_into_array2(View view)
     {
+
+        donate_list_data.clear();
         class  dbManager extends AsyncTask<String,Void,String>
         {
             protected void onPostExecute(String data)
@@ -221,8 +256,8 @@ public class home extends Fragment implements AdapterView.OnItemSelectedListener
                     }
 
 
-                    myadapter adptr = new myadapter(getActivity(), item_name, item_detail , image  , quantity , category , phone );
 
+                    myadapter adptr = new myadapter(getActivity(), item_name, item_detail , image  , quantity , category , phone );
                     listView1.setAdapter(adptr);
 
                 } catch (Exception ex) {
@@ -234,31 +269,30 @@ public class home extends Fragment implements AdapterView.OnItemSelectedListener
             protected String doInBackground(String... strings)
             {
                 try {
-                    String id= strings[1];
+                    String sc = "";
                     URL url = new URL(strings[0]);
-                    HttpURLConnection httpURLConnection  = (HttpURLConnection) url.openConnection();
-                    BufferedReader br = new BufferedReader(new InputStreamReader(httpURLConnection .getInputStream()));
-
+                    HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
                     httpURLConnection.setRequestMethod("POST");
                     httpURLConnection.setDoOutput(true);
                     httpURLConnection.setDoInput(true);
                     OutputStream outputStream = httpURLConnection.getOutputStream();
                     BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(outputStream, "UTF-8"));
-                    String post_data = URLEncoder.encode("id", "UTF-8") + "=" + URLEncoder.encode(id, "UTF-8") + "&";
+                    String post_data = URLEncoder.encode("sc", "UTF-8") + "=" + URLEncoder.encode(sc, "UTF-8");
                     bufferedWriter.write(post_data);
                     bufferedWriter.flush();
                     bufferedWriter.close();
                     outputStream.close();
-
-                    StringBuffer data = new StringBuffer();
-                    String line;
-
-                    while ((line = br.readLine()) != null) {
-                        data.append(line + "\n");
+                    InputStream inputStream = httpURLConnection.getInputStream();
+                    BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream, "iso-8859-1"));
+                    String result = "";
+                    String line = "";
+                    while ((line = bufferedReader.readLine()) != null) {
+                        result += line;
                     }
-                    br.close();
-
-                    return data.toString();
+                    bufferedReader.close();
+                    inputStream.close();
+                    httpURLConnection.disconnect();
+                    return result;
 
                 } catch (Exception ex) {
                     return ex.getMessage();
@@ -268,9 +302,10 @@ public class home extends Fragment implements AdapterView.OnItemSelectedListener
 
         }
         dbManager obj=new dbManager();
-        obj.execute(apiurl2 , rid);
+        obj.execute(apiurl2 );
 
     }
+
 
 
     @Override
@@ -314,10 +349,12 @@ public class home extends Fragment implements AdapterView.OnItemSelectedListener
             LayoutInflater inflater=(LayoutInflater)getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             View row=inflater.inflate(R.layout.list_row,parent,false);
 
-            ImageView img=row.findViewById(R.id.item_image);
             TextView tv1=row.findViewById(R.id.item_name);
             TextView tv2=row.findViewById(R.id.item_details);
 
+
+
+            ImageView img= row.findViewById(R.id.item_image);
 
             tv1.setText(ttl[position]);
             tv2.setText(cat[position]);

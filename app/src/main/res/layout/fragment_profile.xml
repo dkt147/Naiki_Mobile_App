@@ -72,13 +72,13 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="15dp"
                     android:orientation="vertical">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="30dp"
+                        android:layout_marginTop="10dp"
                         android:orientation="vertical">
 
                         <TextView
@@ -94,7 +94,7 @@
                             android:id="@+id/textView19"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="10dp"
+                            android:layout_marginTop="5dp"
                             android:textSize="18sp"
                             android:textStyle="bold" />
 
@@ -113,7 +113,7 @@
                             android:id="@+id/textView20"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="10dp"
+                            android:layout_marginTop="5dp"
                             android:textSize="18sp"
                             android:textStyle="bold" />
 
@@ -132,7 +132,7 @@
                             android:id="@+id/textView22"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="10dp"
+                            android:layout_marginTop="5dp"
                             android:textSize="18sp"
                             android:textStyle="bold" />
 
@@ -151,7 +151,7 @@
                             android:id="@+id/textView24"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="10dp"
+                            android:layout_marginTop="5dp"
                             android:textSize="18sp"
                             android:textStyle="bold" />
 
@@ -159,7 +159,7 @@
                             android:id="@+id/textView21"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="20dp"
+                            android:layout_marginTop="30dp"
                             android:text="About Us"
                             android:textColor="#F44336"
                             android:textSize="18sp"

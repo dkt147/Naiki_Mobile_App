@@ -9,81 +9,93 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
-    <TextView
-        android:id="@+id/textView"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="Sign In"
-        android:textColor="#8BC34A"
-        android:textSize="30sp"
-        android:textStyle="bold" />
+        android:layout_height="match_parent">
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#FFFFFF"
-        app:hintTextColor="#E91E63">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/phoneid"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
-            android:background="#FFFFFF"
-            android:gravity="start"
-            android:hint="Phone"
-            android:inputType="number"
-            android:textColorHint="#E91E63"
-            android:textStyle="bold" />
-    </com.google.android.material.textfield.TextInputLayout>
+            android:orientation="vertical" >
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:passwordToggleEnabled="true">
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Sign In"
+                android:textColor="#8BC34A"
+                android:textSize="30sp"
+                android:textStyle="bold" />
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/passwordid"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:background="#FFFFFF"
-            android:gravity="start"
-            android:hint="Password"
-            android:textColorHighlight="#E91E63"
-            android:textStyle="bold" />
-    </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#FFFFFF"
+                app:hintTextColor="#E91E63">
 
-    <Button
-        android:id="@+id/button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:onClick="login"
-        android:text="Sign In"
-        android:textColor="#FFFFFF"
-        android:textStyle="bold"
-        app:backgroundTint="#8BC34A" />
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/phoneid"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="50dp"
+                    android:background="#FFFFFF"
+                    android:gravity="start"
+                    android:hint="Phone"
+                    android:inputType="number"
+                    android:textColorHint="#E91E63"
+                    android:textStyle="bold" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:gravity="right"
-        android:text="Don't have an Account?"
-        android:textColor="#000000" />
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:passwordToggleEnabled="true">
 
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="right"
-        android:onClick="signup"
-        android:text="Sign Up Here"
-        android:textColor="#E91E63"
-        android:textSize="18sp"
-        android:textStyle="bold" />
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/passwordid"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:background="#FFFFFF"
+                    android:gravity="start"
+                    android:hint="Password"
+                    android:textColorHighlight="#E91E63"
+                    android:textStyle="bold" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <Button
+                android:id="@+id/button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="50dp"
+                android:onClick="login"
+                android:text="Sign In"
+                android:textColor="#FFFFFF"
+                android:textStyle="bold"
+                app:backgroundTint="#8BC34A" />
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:onClick="signup"
+                android:text="Sign Up Here"
+                android:textColor="#E91E63"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:gravity="right"
+                android:text="Don't have an Account?"
+                android:textColor="#000000" />
+
+        </LinearLayout>
+    </ScrollView>
 
 </LinearLayout>
