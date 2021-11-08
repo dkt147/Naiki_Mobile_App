@@ -23,6 +23,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.github.dhaval2404.imagepicker.ImagePicker;
 import com.google.android.material.textfield.TextInputEditText;
@@ -57,6 +58,7 @@ public class donate extends Fragment implements AdapterView.OnItemSelectedListen
     String image_path;
     Uri uri;
     String type;
+
 
 
     SharedPreferences sharedPreferences;
@@ -98,20 +100,7 @@ public class donate extends Fragment implements AdapterView.OnItemSelectedListen
             type = sharedPreferences.getString("utype", "0");
 
         }
-        if (type == "Request")
-        {
-            TextView t1 = view.findViewById(R.id.textView22);
-            t1.setText("Requests");
-        }
 
-        if(type == "Donor")
-        {
-            bt1.setVisibility(View.GONE);
-        }
-        else{
-            bt2.setVisibility(View.GONE);
-            bt3.setVisibility(View.GONE);
-        }
 
         im.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -163,12 +152,18 @@ public class donate extends Fragment implements AdapterView.OnItemSelectedListen
                     note = ed3.getText().toString();
                     category = spinner.getSelectedItem().toString();
 
+                    if (uri == null)
+                    {
+                        Toast.makeText(getContext(), "Please upoad Image", Toast.LENGTH_SHORT).show();
+                    }
+                    else
+                    {
+                        image_path = encodedbitmap(bitmap);
+                        Background_Worker bgworker = new Background_Worker(getContext());
+                        bgworker.execute("donate" ,r_id, item_name , quantity , note, category, image_path);
+                    }
 
 
-                    image_path = encodedbitmap(bitmap);
-
-                    Background_Worker bgworker = new Background_Worker(getContext());
-                    bgworker.execute("donate" ,r_id, item_name , quantity , note, category, image_path);
 
 
                 }
@@ -207,12 +202,16 @@ public class donate extends Fragment implements AdapterView.OnItemSelectedListen
                     category = spinner.getSelectedItem().toString();
 
 
-
-                    image_path = encodedbitmap(bitmap);
-
-                    Background_Worker bgworker = new Background_Worker(getContext());
-                    bgworker.execute("request" ,r_id, item_name , quantity , note, category, image_path);
-
+                    if (uri == null)
+                    {
+                        Toast.makeText(getContext(), "Please upoad Image", Toast.LENGTH_SHORT).show();
+                    }
+                    else
+                    {
+                        image_path = encodedbitmap(bitmap);
+                        Background_Worker bgworker = new Background_Worker(getContext());
+                        bgworker.execute("request" ,r_id, item_name , quantity , note, category, image_path);
+                    }
 
                 }
             }
@@ -226,17 +225,26 @@ public class donate extends Fragment implements AdapterView.OnItemSelectedListen
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        Uri uri = data.getData();
-        try {
-            bitmap = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), uri);
-            im.setImageBitmap(bitmap);
+        uri = data.getData();
+        if (uri == null)
+        {
+            Toast.makeText(getContext(), "Please upoad Image", Toast.LENGTH_SHORT).show();
+        }
+        else
+        {
+            try {
+                bitmap = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), uri);
+                im.setImageBitmap(bitmap);
 //        t2.setText(uri1.toString());
 
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
+
+
     }
 
     public String encodedbitmap(Bitmap bitmap)

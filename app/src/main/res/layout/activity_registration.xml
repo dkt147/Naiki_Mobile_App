@@ -61,7 +61,6 @@
                     android:layout_height="80dp"
                     android:layout_marginLeft="30dp"
                     android:src="@drawable/ic_profile"
-                    tools:src="@drawable/ic_profile"
                     tools:srcCompat="@drawable/ic_profile" />
 
             </LinearLayout>

@@ -7,6 +7,7 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 
@@ -24,10 +25,8 @@ public class Item_Details extends AppCompatActivity {
             String detail = i.getStringExtra( "item_detail");
             String cat = i.getStringExtra( "category");
             String qut = i.getStringExtra( "quantity");
-            String phone = i.getStringExtra( "phone");
+            String d_id = i.getStringExtra( "d_id");
             String image = i.getStringExtra( "image");
-
-
 
             TextView t1 = findViewById(R.id.textView25);
             t1.setText(name);
@@ -41,17 +40,14 @@ public class Item_Details extends AppCompatActivity {
             TextView t4 = findViewById(R.id.textView28);
             t4.setText(qut);
 
-            TextView t5 = findViewById(R.id.textView29);
-            t5.setText(phone);
-
             ImageView im = findViewById(R.id.imageView4);
 
             Glide.with(getApplicationContext()).load(image).into(im);
 
-
-
-
-
+        }
+        else
+        {
+            Toast.makeText(this, "No record", Toast.LENGTH_SHORT).show();
         }
     }
 }

@@ -19,8 +19,8 @@ public class food_screen extends AppCompatActivity {
         b1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext() , donate.class);
-                startActivity(intent);
+//                Intent intent = new Intent(getApplicationContext() , home.class);
+//                startActivity(intent);
             }
         });
     }

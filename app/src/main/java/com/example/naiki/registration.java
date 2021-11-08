@@ -268,16 +268,24 @@ public class registration extends AppCompatActivity implements AdapterView.OnIte
         super.onActivityResult(requestCode, resultCode, data);
 
         Uri uri1 = data.getData();
-        try {
-            bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), uri1);
-            pr_up.setImageBitmap(bitmap);
+        if (uri1 == null)
+        {
+            Toast.makeText(getApplicationContext(), "Please upoad Image", Toast.LENGTH_SHORT).show();
+        }
+        else
+        {
+            try {
+                bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), uri1);
+                pr_up.setImageBitmap(bitmap);
 //        t2.setText(uri1.toString());
 
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
+
     }
 
     public String encodedbitmap(Bitmap bitmap)

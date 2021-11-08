@@ -18,6 +18,8 @@ public class Dashboard extends Fragment {
     Button b1 , b2;
     LinearLayout l1,l2,l3,l4;
 
+
+
     public Dashboard() {
         // Required empty public constructor
     }
@@ -34,6 +36,14 @@ public class Dashboard extends Fragment {
         l2= view.findViewById(R.id.clothes_screen);
         l3= view.findViewById(R.id.school_screen);
         l4= view.findViewById(R.id.household_screen);
+
+        b1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity() , story.class);
+                startActivity(intent);
+            }
+        });
 
         l1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -80,12 +90,9 @@ public class Dashboard extends Fragment {
         b2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                home fragment = new home();
-                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.dashboard, fragment);
-                fragmentTransaction.commit();
-
+//                
+//                Intent intent = new Intent(getActivity(), );
+//                startActivity(intent);
 
             }
         });

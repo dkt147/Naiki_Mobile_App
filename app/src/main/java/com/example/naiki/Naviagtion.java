@@ -3,6 +3,9 @@ package com.example.naiki;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Toast;
 
@@ -10,6 +13,7 @@ import com.etebarian.meowbottomnavigation.MeowBottomNavigation;
 
 public class Naviagtion extends AppCompatActivity {
 
+    SharedPreferences sharedPreferences;
     MeowBottomNavigation meowBottomNavigation;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,7 +61,7 @@ public class Naviagtion extends AppCompatActivity {
         });
 
         meowBottomNavigation.setCount(1 , "");
-        meowBottomNavigation.show(2 , true);
+        meowBottomNavigation.show(3 , true);
         meowBottomNavigation.setOnClickMenuListener(new MeowBottomNavigation.ClickListener() {
             @Override
             public void onClickItem(MeowBottomNavigation.Model item) {
@@ -75,5 +79,21 @@ public class Naviagtion extends AppCompatActivity {
 
     private void loadFragment(Fragment fragment) {
         getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout , fragment).commit();
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+
+        sharedPreferences = getSharedPreferences("userr" , Context.MODE_PRIVATE);
+
+        if(sharedPreferences.contains("rid") && sharedPreferences.contains("uphone"))
+        {
+            Intent intent = new Intent(this , Naviagtion.class);
+            startActivity(intent);
+
+
+        }
+
     }
 }

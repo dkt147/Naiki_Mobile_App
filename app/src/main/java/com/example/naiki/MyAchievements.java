@@ -47,6 +47,7 @@ public class MyAchievements extends Fragment implements AdapterView.OnItemSelect
 
     ArrayList<String> donate_list_data = new ArrayList<>();
 
+    private static String d_id[];
     private static String item_name[];
     private static String item_detail[];
     private static String category[];
@@ -85,6 +86,27 @@ public class MyAchievements extends Fragment implements AdapterView.OnItemSelect
 
         fetch_data_into_array(listView1);
 
+        listView1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+
+//                String s = listView1.getChildAt(position);
+                Bundle bundle = new Bundle();
+
+                Intent intent = new Intent(getContext(), Achievment_view.class);
+                intent.putExtra("name" , item_name[position]);
+                intent.putExtra("item_detail" , item_detail[position]);
+                intent.putExtra("cat" , category[position]);
+                intent.putExtra("quantity" , quantity[position]);
+                intent.putExtra("image" , image[position]);
+                intent.putExtra("d_id" , d_id[position]);
+
+
+
+                startActivity(intent);
+            }
+        });
 
         return view;
     }
@@ -93,7 +115,6 @@ public class MyAchievements extends Fragment implements AdapterView.OnItemSelect
     public void fetch_data_into_array(View view)
     {
 
-        donate_list_data.clear();
 
         class  dbManager extends AsyncTask<String,Void,String>
         {
@@ -108,6 +129,7 @@ public class MyAchievements extends Fragment implements AdapterView.OnItemSelect
                     category = new String[ja.length()];
                     quantity = new String[ja.length()];
                     points = new String[ja.length()];
+                    d_id = new String[ja.length()];
 
                     image = new String[ja.length()];
 
@@ -118,6 +140,7 @@ public class MyAchievements extends Fragment implements AdapterView.OnItemSelect
                         category[i] = jo.getString("category");
                         quantity[i] = jo.getString("quantity");
                         points[i] = jo.getString("points");
+                        d_id[i] = jo.getString("d_id");
 
 
                         image[i] ="http://lms-php.000webhostapp.com/naiki/images/" + jo.getString("item_image");;
@@ -125,7 +148,7 @@ public class MyAchievements extends Fragment implements AdapterView.OnItemSelect
 
 
 
-                    myadapter adptr = new myadapter(getActivity(), item_name, item_detail , image  , quantity , category , points  );
+                    myadapter adptr = new myadapter(getActivity(), item_name, item_detail , image  , quantity , category , points , d_id);
                     listView1.setAdapter(adptr);
 
                 } catch (Exception ex) {
@@ -199,9 +222,10 @@ public class MyAchievements extends Fragment implements AdapterView.OnItemSelect
         String qt[];
         String cat[];
         String points[];
+        String d_id[];
 
 
-        myadapter(Context c, String ttl[], String dsc[], String rimg[], String qt[] , String cat[] , String points[])
+        myadapter(Context c, String ttl[], String dsc[], String rimg[], String qt[] , String cat[] , String points[],String d_id[] )
         {
             super(c,R.layout.list_row,R.id.item_name,ttl);
             context=c;
@@ -211,6 +235,7 @@ public class MyAchievements extends Fragment implements AdapterView.OnItemSelect
             this.qt = qt;
             this.cat = cat;
             this.points =points;
+            this.d_id = d_id;
         }
         @NonNull
         @Override
