@@ -70,20 +70,20 @@ public class my_edit extends AppCompatActivity implements AdapterView.OnItemSele
                     t1.setError("FIELD CANNOT BE EMPTY");
                 }
 
-                else if(t2.length()==0)
-                {
-                    t2.requestFocus();
-                    t2.setError("FIELD CANNOT BE EMPTY");
-                }
-
                 else if(t3.length()==0)
                 {
                     t3.requestFocus();
                     t3.setError("FIELD CANNOT BE EMPTY");
                 }
 
+                else if(t3.length()==0)
+                {
+                    t4.requestFocus();
+                    t4.setError("FIELD CANNOT BE EMPTY");
+                }
 
-                else if (t1.length()!=0 && t2.length()!=0 && t3.length()!=0) {
+
+                else if (t1.length()!=0 && t3.length()!=0 && t4.length()!=0) {
 
                     String name1 = t1.getText().toString();
                     String cat1 = sp.getSelectedItem().toString();

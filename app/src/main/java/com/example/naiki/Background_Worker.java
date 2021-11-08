@@ -427,7 +427,118 @@ public class Background_Worker extends AsyncTask<String,Void,String> {
 
         }
 
+        if (type.equals("delete")) {
+            String reg_url = "http://lms-php.000webhostapp.com/naiki/delete.php";
+            String did = params[1];
+            String st = "Delete";
 
+            try {
+                URL url = new URL(reg_url);
+                HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
+                httpURLConnection.setRequestMethod("POST");
+                httpURLConnection.setDoInput(true);
+                httpURLConnection.setDoOutput(true);
+
+                OutputStream outputStream = httpURLConnection.getOutputStream();
+                OutputStreamWriter outputStreamWriter = new OutputStreamWriter(outputStream);
+                BufferedWriter bufferedWriter = new BufferedWriter(outputStreamWriter);
+
+                String post_data = URLEncoder.encode("st", "UTF-8") + "=" + URLEncoder.encode(st, "UTF-8") +
+                        URLEncoder.encode("did", "UTF-8") + "=" + URLEncoder.encode(did, "UTF-8");
+
+                bufferedWriter.write(post_data);
+                bufferedWriter.flush();
+                bufferedWriter.close();
+                outputStreamWriter.close();
+                outputStream.close();
+
+
+                InputStream inputStream = httpURLConnection.getInputStream();
+                InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
+                BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+
+                String line = "";
+                String result = "";
+
+                while ((line = bufferedReader.readLine()) != null) {
+                    result += line;
+                }
+
+                bufferedReader.close();
+                inputStreamReader.close();
+                inputStream.close();
+
+                httpURLConnection.disconnect();
+
+                alertDialog.setTitle("Status");
+                return result;
+
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+        }
+
+        if (type.equals("donated")) {
+            String reg_url = "http://lms-php.000webhostapp.com/naiki/donated.php";
+            String did = params[1];
+            String st = "Donated";
+
+
+            try {
+                URL url = new URL(reg_url);
+                HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
+                httpURLConnection.setRequestMethod("POST");
+                httpURLConnection.setDoInput(true);
+                httpURLConnection.setDoOutput(true);
+
+                OutputStream outputStream = httpURLConnection.getOutputStream();
+                OutputStreamWriter outputStreamWriter = new OutputStreamWriter(outputStream);
+                BufferedWriter bufferedWriter = new BufferedWriter(outputStreamWriter);
+
+                String post_data =
+                        URLEncoder.encode("st", "UTF-8") + "=" + URLEncoder.encode(st, "UTF-8") +
+                        URLEncoder.encode("did", "UTF-8") + "=" + URLEncoder.encode(did, "UTF-8");
+
+
+
+
+                bufferedWriter.write(post_data);
+                bufferedWriter.flush();
+                bufferedWriter.close();
+                outputStreamWriter.close();
+                outputStream.close();
+
+
+                InputStream inputStream = httpURLConnection.getInputStream();
+                InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
+                BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+
+                String line = "";
+                String result = "";
+
+                while ((line = bufferedReader.readLine()) != null) {
+                    result += line;
+                }
+
+                bufferedReader.close();
+                inputStreamReader.close();
+                inputStream.close();
+
+                httpURLConnection.disconnect();
+
+                alertDialog.setTitle("Registration Status");
+                return result;
+
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+        }
 
         return null;
 
@@ -509,6 +620,37 @@ public class Background_Worker extends AsyncTask<String,Void,String> {
 //                    alertDialog.setMessage("Registered Successfully");
 //                    alertDialog.show();
                     Toast.makeText(context, "Updated", Toast.LENGTH_SHORT).show();
+//                        Intent intent = new Intent(context, MainActivity.class);
+//                        context.startActivity(intent);
+                }
+            }
+
+            if (type.equals("donated")) {
+
+                if (s.equals("Failed")) {
+//                    alertDialog.setMessage("Regsiteration Failed Phone Number already Exists '\n' Please Login");
+//                    alertDialog.show();
+                    Toast.makeText(context, "Failed", Toast.LENGTH_SHORT).show();
+                } else {
+//                    alertDialog.setMessage("Registered Successfully");
+//                    alertDialog.show();
+                    Toast.makeText(context, "Donated", Toast.LENGTH_SHORT).show();
+//                        Intent intent = new Intent(context, MainActivity.class);
+//                        context.startActivity(intent);
+                }
+            }
+
+
+            if (type.equals("delete")) {
+
+                if (s.equals("Failed")) {
+//                    alertDialog.setMessage("Regsiteration Failed Phone Number already Exists '\n' Please Login");
+//                    alertDialog.show();
+                    Toast.makeText(context, "Delete Failed", Toast.LENGTH_SHORT).show();
+                } else {
+//                    alertDialog.setMessage("Registered Successfully");
+//                    alertDialog.show();
+                    Toast.makeText(context, "Deleted", Toast.LENGTH_SHORT).show();
 //                        Intent intent = new Intent(context, MainActivity.class);
 //                        context.startActivity(intent);
                 }

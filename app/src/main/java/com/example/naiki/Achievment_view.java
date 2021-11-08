@@ -81,23 +81,23 @@ public class Achievment_view extends AppCompatActivity {
             }
         });
 
-//        b1.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(getApplicationContext(), my_edit.class);
-//                startActivity(intent);
-//
-//            }
-//        });
-//
-//        b1.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(getApplicationContext(), my_edit.class);
-//                startActivity(intent);
-//
-//            }
-//        });
+        b2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Background_Worker bgworker = new Background_Worker(getApplication());
+                bgworker.execute("delete" ,d_id);
+
+            }
+        });
+
+        b3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Background_Worker bgworker = new Background_Worker(getApplication());
+                bgworker.execute("donated" ,d_id);
+
+            }
+        });
     }
 
 }
