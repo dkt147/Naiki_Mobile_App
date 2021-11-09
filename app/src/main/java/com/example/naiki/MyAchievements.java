@@ -152,7 +152,7 @@ public class MyAchievements extends Fragment implements AdapterView.OnItemSelect
                     listView1.setAdapter(adptr);
 
                 } catch (Exception ex) {
-                    Toast.makeText(getContext(), ex.getMessage(), Toast.LENGTH_LONG).show();
+//                    Toast.makeText(getContext(), ex.getMessage(), Toast.LENGTH_LONG).show();
                 }
             }
 

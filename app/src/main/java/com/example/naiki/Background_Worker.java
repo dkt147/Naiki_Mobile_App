@@ -383,11 +383,11 @@ public class Background_Worker extends AsyncTask<String,Void,String> {
                         URLEncoder.encode("un", "UTF-8") + "=" + URLEncoder.encode(un, "UTF-8") +
                                 "&" + URLEncoder.encode("ph", "UTF-8") + "=" + URLEncoder.encode(ph, "UTF-8") +
                                 "&" + URLEncoder.encode("em", "UTF-8") + "=" + URLEncoder.encode(em, "UTF-8") +
-                                "&" + URLEncoder.encode("ad", "UTF-8") + "=" + URLEncoder.encode(ad, "UTF-8") +
                                 "&" + URLEncoder.encode("ps", "UTF-8") + "=" + URLEncoder.encode(ps, "UTF-8")+
+                                "&" + URLEncoder.encode("ad", "UTF-8") + "=" + URLEncoder.encode(ad, "UTF-8")+
                                 "&" + URLEncoder.encode("tp", "UTF-8") + "=" + URLEncoder.encode(tp, "UTF-8")+
-                                "&" + URLEncoder.encode("a", "UTF-8") + "=" + URLEncoder.encode(ad, "UTF-8")+
-                                "&" + URLEncoder.encode("a", "UTF-8") + "=" + URLEncoder.encode(b, "UTF-8")+
+                                "&" + URLEncoder.encode("a", "UTF-8") + "=" + URLEncoder.encode(a, "UTF-8")+
+                                "&" + URLEncoder.encode("b", "UTF-8") + "=" + URLEncoder.encode(b, "UTF-8")+
                                 "&" + URLEncoder.encode("im", "UTF-8") + "=" + URLEncoder.encode(im, "UTF-8");
 
 
@@ -430,7 +430,6 @@ public class Background_Worker extends AsyncTask<String,Void,String> {
         if (type.equals("delete")) {
             String reg_url = "http://lms-php.000webhostapp.com/naiki/delete.php";
             String did = params[1];
-            String st = "Delete";
 
             try {
                 URL url = new URL(reg_url);
@@ -443,8 +442,7 @@ public class Background_Worker extends AsyncTask<String,Void,String> {
                 OutputStreamWriter outputStreamWriter = new OutputStreamWriter(outputStream);
                 BufferedWriter bufferedWriter = new BufferedWriter(outputStreamWriter);
 
-                String post_data = URLEncoder.encode("st", "UTF-8") + "=" + URLEncoder.encode(st, "UTF-8") +
-                        URLEncoder.encode("did", "UTF-8") + "=" + URLEncoder.encode(did, "UTF-8");
+                String post_data = URLEncoder.encode("did", "UTF-8") + "=" + URLEncoder.encode(did, "UTF-8");
 
                 bufferedWriter.write(post_data);
                 bufferedWriter.flush();
@@ -484,7 +482,6 @@ public class Background_Worker extends AsyncTask<String,Void,String> {
         if (type.equals("donated")) {
             String reg_url = "http://lms-php.000webhostapp.com/naiki/donated.php";
             String did = params[1];
-            String st = "Donated";
 
 
             try {
@@ -498,9 +495,7 @@ public class Background_Worker extends AsyncTask<String,Void,String> {
                 OutputStreamWriter outputStreamWriter = new OutputStreamWriter(outputStream);
                 BufferedWriter bufferedWriter = new BufferedWriter(outputStreamWriter);
 
-                String post_data =
-                        URLEncoder.encode("st", "UTF-8") + "=" + URLEncoder.encode(st, "UTF-8") +
-                        URLEncoder.encode("did", "UTF-8") + "=" + URLEncoder.encode(did, "UTF-8");
+                String post_data = URLEncoder.encode("did", "UTF-8") + "=" + URLEncoder.encode(did, "UTF-8");
 
 
 

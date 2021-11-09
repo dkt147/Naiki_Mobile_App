@@ -385,7 +385,7 @@ public class home extends Fragment implements AdapterView.OnItemSelectedListener
 
                         return resized;
                     } catch (Exception e) {
-                        Toast.makeText(getContext(),e.getMessage(),Toast.LENGTH_LONG).show();
+//                        Toast.makeText(getContext(),e.getMessage(),Toast.LENGTH_LONG).show();
                     }
                     return null;
                 }

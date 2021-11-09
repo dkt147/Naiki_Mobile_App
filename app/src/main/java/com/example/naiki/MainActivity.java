@@ -8,6 +8,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputEditText;
 
@@ -52,17 +53,30 @@ public class MainActivity extends AppCompatActivity {
             pass.setError("FIELD CANNOT BE EMPTY");
         }
 
-        else if (phone.length()!=0 && pass.length()!=0) {
+        else{
 
-            String user_text = phone.getText().toString();
-            String pass_text = pass.getText().toString();
+            if (phone.length() != 11)
+            {
+                Toast.makeText(this, "Enter correct mobile number", Toast.LENGTH_SHORT).show();
+            }
+            else if(pass.length() < 8)
+            {
+                Toast.makeText(this, "Please enter complete password", Toast.LENGTH_SHORT).show();
+            }
+            else
+            {
+                String user_text = phone.getText().toString();
+                String pass_text = pass.getText().toString();
 //            String type = "login";
 
-            Background_Worker background_worker = new Background_Worker(this);
-            background_worker.execute("login", user_text, pass_text);
+                Background_Worker background_worker = new Background_Worker(this);
+                background_worker.execute("login", user_text, pass_text);
+            }
+
 
 
         }
+
 
 
     }

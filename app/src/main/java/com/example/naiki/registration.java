@@ -65,6 +65,7 @@ public class registration extends AppCompatActivity implements AdapterView.OnIte
     Spinner spinner;
     ArrayList<String> data = new ArrayList<>();
     FusedLocationProviderClient fusedLocationProviderClient;
+    Uri uri1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -143,10 +144,10 @@ public class registration extends AppCompatActivity implements AdapterView.OnIte
                 } else if (ed4.length() == 0) {
                     ed4.requestFocus();
                     ed4.setError("FIELD CANNOT BE EMPTY");
-                } else if (ed2.length() != 10) {
+                } else if (ed2.length() != 11) {
                     ed2.requestFocus();
                     ed2.setError("Enter correct mobile number");
-                } else if (ed2.length() == 10 && ed4.length() != 0 && ed3.length() != 0 && ed1.length() != 0 && t1.length() != 0 && ed3.getText().toString().trim().matches(emailPattern)) {
+                } else if (ed2.length() == 11 && ed4.length() != 0 && ed3.length() != 0 && ed1.length() != 0 && t1.length() != 0 && ed3.getText().toString().trim().matches(emailPattern)) {
 
                     String username = ed1.getText().toString();
                     String phone = ed2.getText().toString();
@@ -154,7 +155,7 @@ public class registration extends AppCompatActivity implements AdapterView.OnIte
                     String password = ed4.getText().toString();
                     String address_text = t1.getText().toString();
                     String tp = spinner.getSelectedItem().toString();
-                    image_path = encodedbitmap(bitmap);
+
 
                     if (isValidPassword(password))
                     {
@@ -164,8 +165,18 @@ public class registration extends AppCompatActivity implements AdapterView.OnIte
 
 //                        intent.putExtra("verificationId" , verificationId);
 
-                        Background_Worker background_worker = new Background_Worker(getApplication());
-                        background_worker.execute("register", username ,phone , email , password , address_text , tp, image_path , a , b);
+
+                        if (uri1 == null)
+                        {
+                            Toast.makeText(getApplicationContext(), "Please upoad Image", Toast.LENGTH_SHORT).show();
+                        }
+                        else
+                        {
+                            image_path = encodedbitmap(bitmap);
+                            Background_Worker background_worker = new Background_Worker(getApplication());
+                            background_worker.execute("register", username ,phone , email , password , address_text , tp, image_path , a , b);
+                        }
+
 
 //                        intent.putExtra("user_text" , username);
 //                        intent.putExtra("pass_text" , password);
@@ -267,7 +278,7 @@ public class registration extends AppCompatActivity implements AdapterView.OnIte
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        Uri uri1 = data.getData();
+        uri1 = data.getData();
         if (uri1 == null)
         {
             Toast.makeText(getApplicationContext(), "Please upoad Image", Toast.LENGTH_SHORT).show();

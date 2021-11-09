@@ -28,7 +28,7 @@
                 android:layout_width="350dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginTop="30dp"
+                android:layout_margin="20dp"
                 android:text="Clothes"
                 android:textColor="#8BC34A"
                 android:textSize="24sp"
@@ -36,10 +36,10 @@
 
             <TextView
                 android:id="@+id/textView47"
-                android:layout_width="350dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginTop="30dp"
+                android:layout_margin="20dp"
                 android:lineSpacingExtra="10sp"
                 android:text="Clothes are the basic and early necessary for life. Everyone feel secure when they are fullly covered. They feel good and proud. There are lot of people who still suffer and don't have proper clothes to wear, Donate as much as you can, Take of your old clothes from out of cupbord and make it useful for someone. Get rewards and help others. Allah helps those who helps their people."
                 android:textColor="#000000" />
@@ -49,7 +49,7 @@
                 android:layout_width="350dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginTop="30dp"
+                android:layout_margin="20dp"
                 android:gravity="center"
                 android:text="Donate Now" />
         </LinearLayout>

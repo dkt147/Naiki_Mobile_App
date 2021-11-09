@@ -23,9 +23,9 @@ public class Item_Details extends AppCompatActivity {
         {
             String name = i.getStringExtra( "name");
             String detail = i.getStringExtra( "item_detail");
-            String cat = i.getStringExtra( "category");
+            String cat = i.getStringExtra( "cat");
             String qut = i.getStringExtra( "quantity");
-            String d_id = i.getStringExtra( "d_id");
+            String phone = i.getStringExtra( "phone");
             String image = i.getStringExtra( "image");
 
             TextView t1 = findViewById(R.id.textView25);
@@ -40,6 +40,9 @@ public class Item_Details extends AppCompatActivity {
             TextView t4 = findViewById(R.id.textView28);
             t4.setText(qut);
 
+            TextView t5 = findViewById(R.id.textView29);
+            t4.setText(phone);
+
             ImageView im = findViewById(R.id.imageView4);
 
             Glide.with(getApplicationContext()).load(image).into(im);
@@ -47,7 +50,6 @@ public class Item_Details extends AppCompatActivity {
         }
         else
         {
-            Toast.makeText(this, "No record", Toast.LENGTH_SHORT).show();
         }
     }
 }

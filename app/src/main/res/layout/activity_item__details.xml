@@ -14,7 +14,8 @@
         android:layout_width="350dp"
         android:layout_height="250dp"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="40dp"
         android:adjustViewBounds="true"
         android:visibility="visible"
         app:srcCompat="@drawable/img2" />
@@ -22,7 +23,6 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
         android:orientation="vertical">
 
         <ScrollView
@@ -39,7 +39,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="40dp"
-                    android:layout_marginTop="10dp"
                     android:layout_marginRight="20dp"
                     android:shadowColor="#7F7F7F"
                     android:text="Two pair of shoes"
@@ -67,8 +66,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="40dp"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginRight="20dp"
                     android:text="Quantity"
+                    android:textColor="#000000"
                     android:textStyle="bold" />
 
                 <TextView
@@ -79,7 +80,7 @@
                     android:layout_marginTop="5dp"
                     android:layout_marginRight="20dp"
                     android:text="TextView"
-                    android:textColor="#E91E63"
+                    android:textColor="#958A8E"
                     android:textStyle="bold" />
 
                 <TextView
@@ -87,9 +88,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="40dp"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="15dp"
                     android:layout_marginRight="20dp"
                     android:text="Detail"
+                    android:textColor="#000000"
                     android:textStyle="bold" />
 
                 <TextView
@@ -106,9 +108,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="40dp"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="15dp"
                     android:layout_marginRight="20dp"
                     android:text="Call now to the given number"
+                    android:textColor="#000000"
                     android:textStyle="bold" />
 
                 <TextView
@@ -120,7 +123,7 @@
                     android:layout_marginRight="20dp"
                     android:text="TextView"
                     android:textColor="#000000"
-                    android:textSize="18sp"
+                    android:textSize="16sp"
                     android:textStyle="bold" />
             </LinearLayout>
         </ScrollView>
