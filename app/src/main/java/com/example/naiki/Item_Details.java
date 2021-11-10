@@ -41,7 +41,7 @@ public class Item_Details extends AppCompatActivity {
             t4.setText(qut);
 
             TextView t5 = findViewById(R.id.textView29);
-            t4.setText(phone);
+            t5.setText(phone);
 
             ImageView im = findViewById(R.id.imageView4);
 

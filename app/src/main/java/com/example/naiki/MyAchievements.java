@@ -53,6 +53,7 @@ public class MyAchievements extends Fragment implements AdapterView.OnItemSelect
     private static String category[];
     private static String quantity[];
     private static String points[];
+    private static String type[];
     private static String image[];
     String rid;
     String utype;
@@ -76,11 +77,7 @@ public class MyAchievements extends Fragment implements AdapterView.OnItemSelect
             utype = sharedPreferences.getString("utype", "0");
 
         }
-        if (utype == "Request")
-        {
-            TextView t1 = view.findViewById(R.id.textView8);
-            t1.setText("Requests");
-        }
+
 
         listView1 = view.findViewById(R.id.donation_list);
 
@@ -100,6 +97,7 @@ public class MyAchievements extends Fragment implements AdapterView.OnItemSelect
                 intent.putExtra("cat" , category[position]);
                 intent.putExtra("quantity" , quantity[position]);
                 intent.putExtra("image" , image[position]);
+                intent.putExtra("type" , type[position]);
                 intent.putExtra("d_id" , d_id[position]);
 
 
@@ -129,6 +127,7 @@ public class MyAchievements extends Fragment implements AdapterView.OnItemSelect
                     category = new String[ja.length()];
                     quantity = new String[ja.length()];
                     points = new String[ja.length()];
+                    type = new String[ja.length()];
                     d_id = new String[ja.length()];
 
                     image = new String[ja.length()];
@@ -140,6 +139,7 @@ public class MyAchievements extends Fragment implements AdapterView.OnItemSelect
                         category[i] = jo.getString("category");
                         quantity[i] = jo.getString("quantity");
                         points[i] = jo.getString("points");
+                        type[i] = jo.getString("type");
                         d_id[i] = jo.getString("d_id");
 
 
@@ -148,7 +148,7 @@ public class MyAchievements extends Fragment implements AdapterView.OnItemSelect
 
 
 
-                    myadapter adptr = new myadapter(getActivity(), item_name, item_detail , image  , quantity , category , points , d_id);
+                    myadapter adptr = new myadapter(getActivity(), item_name, item_detail , image  , quantity , category , points, type, d_id);
                     listView1.setAdapter(adptr);
 
                 } catch (Exception ex) {
@@ -222,10 +222,11 @@ public class MyAchievements extends Fragment implements AdapterView.OnItemSelect
         String qt[];
         String cat[];
         String points[];
+        String type[];
         String d_id[];
 
 
-        myadapter(Context c, String ttl[], String dsc[], String rimg[], String qt[] , String cat[] , String points[],String d_id[] )
+        myadapter(Context c, String ttl[], String dsc[], String rimg[], String qt[] , String cat[] , String points[], String type[], String d_id[] )
         {
             super(c,R.layout.list_row,R.id.item_name,ttl);
             context=c;
@@ -235,7 +236,9 @@ public class MyAchievements extends Fragment implements AdapterView.OnItemSelect
             this.qt = qt;
             this.cat = cat;
             this.points =points;
+            this.type = type;
             this.d_id = d_id;
+
         }
         @NonNull
         @Override
@@ -247,9 +250,11 @@ public class MyAchievements extends Fragment implements AdapterView.OnItemSelect
             ImageView img=row.findViewById(R.id.item_image);
             TextView tv1=row.findViewById(R.id.item_name);
             TextView tv2=row.findViewById(R.id.item_details);
+            TextView tv3=row.findViewById(R.id.textView57);
 
             tv1.setText(ttl[position]);
             tv2.setText(cat[position]);
+            tv3.setText(type[position]);
 
             String url=rimg[position];
 

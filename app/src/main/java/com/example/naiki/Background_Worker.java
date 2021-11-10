@@ -535,6 +535,62 @@ public class Background_Worker extends AsyncTask<String,Void,String> {
 
         }
 
+        if (type.equals("recieved")) {
+            String reg_url = "http://lms-php.000webhostapp.com/naiki/recieved.php";
+            String did = params[1];
+
+
+            try {
+                URL url = new URL(reg_url);
+                HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
+                httpURLConnection.setRequestMethod("POST");
+                httpURLConnection.setDoInput(true);
+                httpURLConnection.setDoOutput(true);
+
+                OutputStream outputStream = httpURLConnection.getOutputStream();
+                OutputStreamWriter outputStreamWriter = new OutputStreamWriter(outputStream);
+                BufferedWriter bufferedWriter = new BufferedWriter(outputStreamWriter);
+
+                String post_data = URLEncoder.encode("did", "UTF-8") + "=" + URLEncoder.encode(did, "UTF-8");
+
+
+
+
+                bufferedWriter.write(post_data);
+                bufferedWriter.flush();
+                bufferedWriter.close();
+                outputStreamWriter.close();
+                outputStream.close();
+
+
+                InputStream inputStream = httpURLConnection.getInputStream();
+                InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
+                BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+
+                String line = "";
+                String result = "";
+
+                while ((line = bufferedReader.readLine()) != null) {
+                    result += line;
+                }
+
+                bufferedReader.close();
+                inputStreamReader.close();
+                inputStream.close();
+
+                httpURLConnection.disconnect();
+
+                alertDialog.setTitle("Registration Status");
+                return result;
+
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+        }
+
         return null;
 
     }
@@ -591,14 +647,16 @@ public class Background_Worker extends AsyncTask<String,Void,String> {
 // Register request Result
             if (type.equals("register")) {
 
-                if (s.equals("Register-Failed")) {
+                if (s.equals("Registered")) {
 //                    alertDialog.setMessage("Regsiteration Failed Phone Number already Exists '\n' Please Login");
 //                    alertDialog.show();
-                    Toast.makeText(context, "Regsiteration Failed Phone Number already Exists '\n'  Please Login", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, "Registered", Toast.LENGTH_SHORT).show();
+
+
                 } else {
 //                    alertDialog.setMessage("Registered Successfully");
 //                    alertDialog.show();
-                    Toast.makeText(context, "Registered", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, "Regsiteration Failed Phone Number already Exists '\n'  Please Login", Toast.LENGTH_SHORT).show();
 //                        Intent intent = new Intent(context, MainActivity.class);
 //                        context.startActivity(intent);
                     }
@@ -630,6 +688,21 @@ public class Background_Worker extends AsyncTask<String,Void,String> {
 //                    alertDialog.setMessage("Registered Successfully");
 //                    alertDialog.show();
                     Toast.makeText(context, "Donated", Toast.LENGTH_SHORT).show();
+//                        Intent intent = new Intent(context, MainActivity.class);
+//                        context.startActivity(intent);
+                }
+            }
+
+            if (type.equals("recieved")) {
+
+                if (s.equals("Registered")) {
+//                    alertDialog.setMessage("Regsiteration Failed Phone Number already Exists '\n' Please Login");
+//                    alertDialog.show();
+                    Toast.makeText(context, "Completed", Toast.LENGTH_SHORT).show();
+                } else {
+//                    alertDialog.setMessage("Registered Successfully");
+//                    alertDialog.show();
+                    Toast.makeText(context, "Failed", Toast.LENGTH_SHORT).show();
 //                        Intent intent = new Intent(context, MainActivity.class);
 //                        context.startActivity(intent);
                 }
