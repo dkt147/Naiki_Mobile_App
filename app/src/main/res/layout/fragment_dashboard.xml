@@ -67,7 +67,6 @@
                             android:orientation="vertical">
 
                             <ImageView
-                                android:id="@+id/imageView5"
                                 android:layout_width="50dp"
                                 android:layout_height="50dp"
                                 android:layout_weight="1"
@@ -75,7 +74,6 @@
                                 tools:srcCompat="@tools:sample/backgrounds/scenic" />
 
                             <TextView
-                                android:id="@+id/textView23"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
@@ -90,7 +88,6 @@
                             android:orientation="vertical">
 
                             <ImageView
-                                android:id="@+id/imageView5"
                                 android:layout_width="50dp"
                                 android:layout_height="50dp"
                                 android:layout_weight="1"
@@ -98,7 +95,6 @@
                                 tools:srcCompat="@tools:sample/backgrounds/scenic" />
 
                             <TextView
-                                android:id="@+id/textView23"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
@@ -113,7 +109,6 @@
                             android:orientation="vertical">
 
                             <ImageView
-                                android:id="@+id/imageView5"
                                 android:layout_width="50dp"
                                 android:layout_height="50dp"
                                 android:layout_weight="1"
@@ -121,7 +116,6 @@
                                 tools:srcCompat="@tools:sample/backgrounds/scenic" />
 
                             <TextView
-                                android:id="@+id/textView23"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
@@ -131,7 +125,6 @@
                     </LinearLayout>
 
                     <TextView
-                        android:id="@+id/textView35"
                         android:layout_width="300dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -220,13 +213,11 @@
                                 android:orientation="vertical">
 
                                 <ImageView
-                                    android:id="@+id/imageView8"
                                     android:layout_width="50dp"
                                     android:layout_height="50dp"
                                     app:srcCompat="@drawable/e" />
 
                                 <TextView
-                                    android:id="@+id/textView37"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="Food"
@@ -244,7 +235,6 @@
                                 android:orientation="vertical">
 
                                 <ImageView
-                                    android:id="@+id/imageView8"
                                     android:layout_width="50dp"
                                     android:layout_height="50dp"
                                     app:srcCompat="@drawable/d" />
@@ -268,13 +258,11 @@
                                 android:orientation="vertical">
 
                                 <ImageView
-                                    android:id="@+id/imageView8"
                                     android:layout_width="50dp"
-                                    android:layout_height="50dp"
+                                    android:layout_height="57dp"
                                     app:srcCompat="@drawable/f" />
 
                                 <TextView
-                                    android:id="@+id/textView37"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="School things"
@@ -303,13 +291,11 @@
                                 android:orientation="vertical">
 
                                 <ImageView
-                                    android:id="@+id/imageView8"
                                     android:layout_width="50dp"
                                     android:layout_height="50dp"
                                     app:srcCompat="@drawable/b" />
 
                                 <TextView
-                                    android:id="@+id/textView37"
                                     android:layout_width="80dp"
                                     android:layout_height="wrap_content"
                                     android:gravity="center"
@@ -320,7 +306,6 @@
                             </LinearLayout>
 
                             <LinearLayout
-                                android:id="@+id/blood_screen"
                                 android:layout_width="80dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
@@ -328,13 +313,11 @@
                                 android:orientation="vertical">
 
                                 <ImageView
-                                    android:id="@+id/imageView8"
                                     android:layout_width="50dp"
                                     android:layout_height="50dp"
                                     app:srcCompat="@drawable/c" />
 
                                 <TextView
-                                    android:id="@+id/textView37"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="Blood"
@@ -344,7 +327,6 @@
                             </LinearLayout>
 
                             <LinearLayout
-                                android:id="@+id/sadqah_screen"
                                 android:layout_width="80dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
@@ -352,13 +334,11 @@
                                 android:orientation="vertical">
 
                                 <ImageView
-                                    android:id="@+id/imageView8"
                                     android:layout_width="50dp"
                                     android:layout_height="50dp"
                                     app:srcCompat="@drawable/cdbdc360e98451bfb931d973864826db" />
 
                                 <TextView
-                                    android:id="@+id/textView37"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="Sadqah"

@@ -1,6 +1,8 @@
 package com.example.naiki;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -20,8 +22,11 @@ public class Clothes extends AppCompatActivity {
         b1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext() , donate.class);
-                startActivity(intent);
+//                Fragment f = new donate();
+//                getFragmentManager().beginTransaction()
+//                        .replace(R.id.container,f )
+//                        .addToBackStack(fragment1.class.getSimpleName())
+//                        .commit();
             }
         });
     }

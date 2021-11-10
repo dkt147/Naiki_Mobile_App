@@ -60,6 +60,7 @@
                     android:background="#FFFFFF"
                     android:gravity="start"
                     android:hint="Password"
+                    android:inputType="textPassword"
                     android:textColorHighlight="#E91E63"
                     android:textStyle="bold" />
             </com.google.android.material.textfield.TextInputLayout>

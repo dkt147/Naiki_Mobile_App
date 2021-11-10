@@ -56,6 +56,7 @@ public class home extends Fragment implements AdapterView.OnItemSelectedListener
     private static String phone[];
     private static String category[];
     private static String quantity[];
+    private static String type[];
 
     private static String image[];
     String rid;
@@ -133,6 +134,7 @@ public class home extends Fragment implements AdapterView.OnItemSelectedListener
                 intent.putExtra("cat" , category[position]);
                 intent.putExtra("quantity" , quantity[position]);
                 intent.putExtra("phone" , phone[position]);
+                intent.putExtra("type" , type[position]);
                 intent.putExtra("image" , image[position]);
 
 
@@ -161,6 +163,7 @@ public class home extends Fragment implements AdapterView.OnItemSelectedListener
                     category = new String[ja.length()];
                     quantity = new String[ja.length()];
                     phone = new String[ja.length()];
+                    type = new String[ja.length()];
                     image = new String[ja.length()];
 
                     for (int i = 0; i < ja.length(); i++) {
@@ -170,13 +173,14 @@ public class home extends Fragment implements AdapterView.OnItemSelectedListener
                         category[i] = jo.getString("category");
                         quantity[i] = jo.getString("quantity");
                         phone[i] = jo.getString("uphone");
+                        type[i] = jo.getString("type");
 
                         image[i] ="http://lms-php.000webhostapp.com/naiki/images/" + jo.getString("item_image");;
                     }
 
 
 
-                    myadapter adptr = new myadapter(getActivity(), item_name, item_detail , image  , quantity , category , phone );
+                    myadapter adptr = new myadapter(getActivity(), item_name, item_detail , image  , quantity , category , phone, type );
                     listView1.setAdapter(adptr);
 
                 } catch (Exception ex) {
@@ -252,13 +256,14 @@ public class home extends Fragment implements AdapterView.OnItemSelectedListener
                         category[i] = jo.getString("category");
                         quantity[i] = jo.getString("quantity");
                         phone[i] = jo.getString("uphone");
+                        type[i] = jo.getString("type");
 
                         image[i] ="http://lms-php.000webhostapp.com/naiki/images/" + jo.getString("item_image");;
                     }
 
 
 
-                    myadapter adptr = new myadapter(getActivity(), item_name, item_detail , image  , quantity , category , phone );
+                    myadapter adptr = new myadapter(getActivity(), item_name, item_detail , image  , quantity , category , phone, type);
                     listView1.setAdapter(adptr);
 
                 } catch (Exception ex) {
@@ -333,8 +338,9 @@ public class home extends Fragment implements AdapterView.OnItemSelectedListener
         String qt[];
         String cat[];
         String phone[];
+        String type[];
 
-        myadapter(Context c, String ttl[], String dsc[], String rimg[], String qt[] , String cat[] , String phone[])
+        myadapter(Context c, String ttl[], String dsc[], String rimg[], String qt[] , String cat[] , String phone[],String type[])
         {
             super(c,R.layout.list_row,R.id.item_name,ttl);
             context=c;
@@ -344,6 +350,7 @@ public class home extends Fragment implements AdapterView.OnItemSelectedListener
             this.qt = qt;
             this.cat = cat;
             this.phone = phone;
+            this.type = type;
         }
         @NonNull
         @Override
@@ -354,6 +361,7 @@ public class home extends Fragment implements AdapterView.OnItemSelectedListener
 
             TextView tv1=row.findViewById(R.id.item_name);
             TextView tv2=row.findViewById(R.id.item_details);
+            TextView tv3=row.findViewById(R.id.textView57);
 
 
 
@@ -361,6 +369,7 @@ public class home extends Fragment implements AdapterView.OnItemSelectedListener
 
             tv1.setText(ttl[position]);
             tv2.setText(cat[position]);
+            tv3.setText(type[position]);
 
             url=rimg[position];
 
