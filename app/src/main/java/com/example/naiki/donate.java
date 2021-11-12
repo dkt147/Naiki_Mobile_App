@@ -35,7 +35,6 @@ import java.util.ArrayList;
 
 public class donate extends Fragment implements AdapterView.OnItemSelectedListener {
 
-
     private Bitmap bmp;
 
     public donate() {

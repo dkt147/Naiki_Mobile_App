@@ -6,51 +6,58 @@
     android:layout_height="match_parent"
     tools:context=".Household">
 
-    <ScrollView
+    <FrameLayout
+        android:id="@+id/household"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <LinearLayout
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_height="match_parent">
 
-            <ImageView
-                android:id="@+id/imageView7"
-                android:layout_width="wrap_content"
-                android:layout_height="250dp"
-                android:layout_margin="20dp"
-                app:srcCompat="@drawable/househoold" />
-
-            <TextView
-                android:id="@+id/textView36"
-                android:layout_width="350dp"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_margin="20dp"
-                android:text="Household"
-                android:textColor="#8BC34A"
-                android:textSize="24sp"
-                android:textStyle="bold" />
+                android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/textView47"
-                android:layout_width="350dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_margin="20dp"
-                android:lineSpacingExtra="10sp"
-                android:text="Clothes are the basic and early necessary for life. Everyone feel secure when they are fullly covered. They feel good and proud. There are lot of people who still suffer and don't have proper clothes to wear, Donate as much as you can, Take of your old clothes from out of cupbord and make it useful for someone. Get rewards and help others. Allah helps those who helps their people."
-                android:textColor="#000000" />
+                <ImageView
+                    android:id="@+id/imageView7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="250dp"
+                    android:layout_margin="20dp"
+                    app:srcCompat="@drawable/househoold" />
 
-            <Button
-                android:id="@+id/button7"
-                android:layout_width="350dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_margin="20dp"
-                android:gravity="center"
-                android:text="Donate Now" />
-        </LinearLayout>
-    </ScrollView>
+                <TextView
+                    android:id="@+id/textView36"
+                    android:layout_width="350dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="20dp"
+                    android:text="Household"
+                    android:textColor="#8BC34A"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/textView47"
+                    android:layout_width="350dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="20dp"
+                    android:lineSpacingExtra="10sp"
+                    android:text="Clothes are the basic and early necessary for life. Everyone feel secure when they are fullly covered. They feel good and proud. There are lot of people who still suffer and don't have proper clothes to wear, Donate as much as you can, Take of your old clothes from out of cupbord and make it useful for someone. Get rewards and help others. Allah helps those who helps their people."
+                    android:textColor="#000000" />
+
+                <Button
+                    android:id="@+id/button7"
+                    android:layout_width="350dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="20dp"
+                    android:gravity="center"
+                    android:text="Donate Now" />
+            </LinearLayout>
+        </ScrollView>
+    </FrameLayout>
+
 </LinearLayout>

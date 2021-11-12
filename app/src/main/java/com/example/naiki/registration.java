@@ -162,7 +162,7 @@ public class registration extends AppCompatActivity implements AdapterView.OnIte
 
 //                        Intent intent = new Intent(registration.this , OTP.class);
 //                        intent.putExtra("mobile" , phone);
-
+//
 //                        intent.putExtra("verificationId" , verificationId);
 
 
@@ -170,12 +170,9 @@ public class registration extends AppCompatActivity implements AdapterView.OnIte
                         {
                             Toast.makeText(getApplicationContext(), "Please upoad Image", Toast.LENGTH_SHORT).show();
                         }
-                        else
-                        {
+                        else {
                             image_path = encodedbitmap(bitmap);
-                            Background_Worker background_worker = new Background_Worker(getApplication());
-                            background_worker.execute("register", username ,phone , email , password , address_text , tp, image_path , a , b);
-                        }
+
 
 
 //                        intent.putExtra("user_text" , username);
@@ -187,48 +184,46 @@ public class registration extends AppCompatActivity implements AdapterView.OnIte
 //
 //                        startActivity(intent);
 
-//                            PhoneAuthProvider.getInstance().verifyPhoneNumber(
-//                                    "+92" + phone,
-//                                    60,
-//                                    TimeUnit.SECONDS,
-//                                    registration.this,
-//                                    new PhoneAuthProvider.OnVerificationStateChangedCallbacks(){
-//                                        @Override
-//                                        public void onVerificationCompleted(@NonNull PhoneAuthCredential phoneAuthCredential) {
-//                                            progressBar.setVisibility(View.GONE);
-//                                            button.setVisibility(View.VISIBLE);
-//                                        }
-//
-//                                        @Override
-//                                        public void onVerificationFailed(@NonNull FirebaseException e) {
-//                                            progressBar.setVisibility(View.GONE);
-//                                            button.setVisibility(View.VISIBLE);
-//                                            Toast.makeText(registration.this , e.getMessage(), Toast.LENGTH_SHORT).show();
-//
-//
-//                                        }
-//
-//                                        @Override
-//                                        public void onCodeSent(@NonNull String verificationId, @NonNull PhoneAuthProvider.ForceResendingToken forceResendingToken) {
-//                                            progressBar.setVisibility(View.GONE);
-//                                            button.setVisibility(View.VISIBLE);
-//                                            Intent intent = new Intent(registration.this , OTP.class);
-//                                            intent.putExtra("mobile" , phone);
-//
-//                                            intent.putExtra("verificationId" , verificationId);
-//
-//
-//                                            intent.putExtra("user_text" , username);
-//                                            intent.putExtra("pass_text" , password);
-//                                            intent.putExtra("address_text" , address_text);
-//                                            intent.putExtra("email_text" , email);
-//                                            intent.putExtra("tp" , tp);
-//                                            intent.putExtra("image" , image_path);
-//
-//                                            startActivity(intent);
-//                                        }
-//                                    }
-//                            );
+                            PhoneAuthProvider.getInstance().verifyPhoneNumber(
+                                    "+92" + phone,
+                                    60,
+                                    TimeUnit.SECONDS,
+                                    registration.this,
+                                    new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
+                                        @Override
+                                        public void onVerificationCompleted(@NonNull PhoneAuthCredential phoneAuthCredential) {
+                                            progressBar.setVisibility(View.GONE);
+                                            button.setVisibility(View.VISIBLE);
+                                        }
+
+                                        @Override
+                                        public void onVerificationFailed(@NonNull FirebaseException e) {
+                                            progressBar.setVisibility(View.GONE);
+                                            button.setVisibility(View.VISIBLE);
+                                            Toast.makeText(registration.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+
+
+                                        }
+
+                                        @Override
+                                        public void onCodeSent(@NonNull String verificationId, @NonNull PhoneAuthProvider.ForceResendingToken forceResendingToken) {
+                                            progressBar.setVisibility(View.GONE);
+                                            button.setVisibility(View.VISIBLE);
+
+                                            Background_Worker background_worker = new Background_Worker(getApplication());
+                                            background_worker.execute("register", username, phone, email, password, address_text, tp, image_path, a, b);
+
+                                            Intent intent = new Intent(registration.this, OTP.class);
+                                            intent.putExtra("mobile", phone);
+
+                                            intent.putExtra("verificationId", verificationId);
+
+
+                                            startActivity(intent);
+                                        }
+                                    }
+                            );
+                        }
 
 
 
@@ -246,6 +241,7 @@ public class registration extends AppCompatActivity implements AdapterView.OnIte
 
             }
         });
+
 
 
     }

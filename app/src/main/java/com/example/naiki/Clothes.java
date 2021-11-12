@@ -22,11 +22,9 @@ public class Clothes extends AppCompatActivity {
         b1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Fragment f = new donate();
-//                getFragmentManager().beginTransaction()
-//                        .replace(R.id.container,f )
-//                        .addToBackStack(fragment1.class.getSimpleName())
-//                        .commit();
+                Fragment fragment = new donate();
+                FragmentManager fragmentManager = getSupportFragmentManager();
+                fragmentManager.beginTransaction().replace(R.id.clothes, fragment).commit();
             }
         });
     }

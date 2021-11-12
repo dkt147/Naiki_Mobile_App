@@ -90,9 +90,8 @@ public class Dashboard extends Fragment {
         b2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                
-//                Intent intent = new Intent(getActivity(), );
-//                startActivity(intent);
+                Intent intent = new Intent(getActivity() , donate.class);
+                startActivity(intent);
 
             }
         });

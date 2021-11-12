@@ -70,8 +70,8 @@
                                 android:layout_width="50dp"
                                 android:layout_height="50dp"
                                 android:layout_weight="1"
-                                app:srcCompat="@drawable/cdbdc360e98451bfb931d973864826db"
-                                tools:srcCompat="@tools:sample/backgrounds/scenic" />
+                                app:srcCompat="@drawable/donate"
+                                tools:srcCompat="@drawable/donate" />
 
                             <TextView
                                 android:layout_width="wrap_content"
@@ -91,7 +91,7 @@
                                 android:layout_width="50dp"
                                 android:layout_height="50dp"
                                 android:layout_weight="1"
-                                app:srcCompat="@drawable/fb40e0a9b402ca98d4e37da893958ff9"
+                                app:srcCompat="@drawable/donate"
                                 tools:srcCompat="@tools:sample/backgrounds/scenic" />
 
                             <TextView
@@ -112,7 +112,7 @@
                                 android:layout_width="50dp"
                                 android:layout_height="50dp"
                                 android:layout_weight="1"
-                                app:srcCompat="@drawable/fb40e0a9b402ca98d4e37da893958ff9"
+                                app:srcCompat="@drawable/donate"
                                 tools:srcCompat="@tools:sample/backgrounds/scenic" />
 
                             <TextView
@@ -365,7 +365,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="10dp"
-                            android:text="Donate to secure your rewards in AKHIRAH"
+                            android:text="Donate to make people happy :)"
                             android:textColor="#E91E63"
                             android:textSize="18sp"
                             android:textStyle="bold" />
