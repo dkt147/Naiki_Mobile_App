@@ -74,7 +74,6 @@ public class donate extends Fragment implements AdapterView.OnItemSelectedListen
         t2 = view.findViewById(R.id.textView20);
         bt2 = view.findViewById(R.id.button2);
         bt1 = view.findViewById(R.id.request_btn);
-        bt3 = view.findViewById(R.id.online);
 
         ed1 = view.findViewById(R.id.item_name);
         ed2 = view.findViewById(R.id.quantity);
