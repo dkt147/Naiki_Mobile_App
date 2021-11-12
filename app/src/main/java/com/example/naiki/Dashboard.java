@@ -90,11 +90,7 @@ public class Dashboard extends Fragment {
         b2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Fragment fragment2 = new home();
-                FragmentManager fragmentManager = getFragmentManager();
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.dashboard, fragment2);
-                fragmentTransaction.commit();
+
 
             }
         });
