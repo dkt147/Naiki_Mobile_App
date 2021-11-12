@@ -79,7 +79,7 @@ public class Achievment_view extends AppCompatActivity {
             public void onClick(View v) {
                 Bundle bundle = new Bundle();
 
-                Intent intent = new Intent(getApplicationContext(), my_edit.class);
+                Intent intent = new Intent( getApplicationContext(), my_edit.class);
                 intent.putExtra("name" , name);
                 intent.putExtra("item_detail" , detail);
                 intent.putExtra("cat" , cat);
