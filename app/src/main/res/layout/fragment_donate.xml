@@ -145,14 +145,6 @@
                         android:textStyle="bold"
                         app:backgroundTint="#E91E63" />
 
-                    <Button
-                        android:id="@+id/online"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Donate Online"
-                        android:textStyle="bold"
-                        app:backgroundTint="#8BC34A" />
-
                 </LinearLayout>
             </ScrollView>
         </LinearLayout>
