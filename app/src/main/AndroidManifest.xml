@@ -25,7 +25,9 @@
         <activity android:name=".registration" />
         <activity android:name=".Item_Details" />
         <activity android:name=".OTP" />
-        <activity android:name=".Naviagtion" />
+        <activity android:name=".Naviagtion" >
+
+        </activity>
         <activity android:name=".Register" />
         <activity android:name=".MainActivity">
             <intent-filter>

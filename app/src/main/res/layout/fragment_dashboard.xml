@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FFFFFF"
     tools:context=".Dashboard">
 
     <LinearLayout
@@ -21,17 +22,35 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                <ImageView
-                    android:id="@+id/imageView3"
+                <GridLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentTop="true"
-                    android:layout_weight="1"
-                    android:adjustViewBounds="true"
-                    android:baselineAlignBottom="false"
-                    android:scaleType="centerInside"
-                    app:srcCompat="@drawable/cdbdc360e98451bfb931d973864826db" />
+                    android:layout_height="250dp"
+                    android:background="@drawable/bg"
+                    android:padding="15dp">
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="0dp"
+                        android:layout_height="210dp"
+                        android:layout_columnWeight="1"
+                        app:cardCornerRadius="28dp"
+
+                        app:cardElevation="18dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center_horizontal"
+                            android:background="@drawable/header2"
+                            android:orientation="horizontal">
+
+
+
+                        </LinearLayout>
+
+                    </androidx.cardview.widget.CardView>
+
+
+                </GridLayout>
 
                 <LinearLayout
                     android:id="@+id/dashboard"
@@ -39,6 +58,253 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:orientation="vertical">
+
+                    <GridLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:layout_weight="8"
+                        android:columnCount="2"
+                        android:padding="15dp"
+                        android:rowCount="3">
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="70dp"
+                            android:layout_height="100dp"
+                            android:layout_rowWeight="1"
+                            android:layout_columnWeight="1"
+                            android:layout_marginLeft="16dp"
+                            android:layout_marginRight="16dp"
+                            android:layout_marginBottom="16dp"
+                            app:cardCornerRadius="8dp"
+                            app:cardElevation="8dp">
+
+                            <LinearLayout
+                                android:id="@+id/food_screen"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_horizontal|center_vertical"
+                                android:layout_margin="10dp"
+                                android:orientation="vertical"
+                                android:weightSum="10">
+
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="80dp"
+                                    android:layout_gravity="center"
+                                    android:layout_weight="8"
+                                    app:srcCompat="@drawable/food" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:layout_weight="2"
+                                    android:text="Food"
+                                    android:textColor="#000"
+                                    android:textSize="18sp"
+                                    android:textStyle="bold" />
+                            </LinearLayout>
+                        </androidx.cardview.widget.CardView>
+
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="70dp"
+                            android:layout_height="120dp"
+                            android:layout_rowWeight="1"
+                            android:layout_columnWeight="1"
+                            android:layout_marginLeft="16dp"
+                            android:layout_marginRight="16dp"
+                            android:layout_marginBottom="16dp"
+                            app:cardCornerRadius="8dp"
+                            app:cardElevation="8dp">
+
+                            <LinearLayout
+                                android:id="@+id/clothes_screen"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_horizontal|center_vertical"
+                                android:layout_margin="10dp"
+                                android:orientation="vertical"
+                                android:weightSum="10">
+
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="80dp"
+                                    android:layout_gravity="center"
+                                    android:layout_weight="8"
+                                    app:srcCompat="@drawable/clothes" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:layout_weight="2"
+                                    android:text="Clothes"
+                                    android:textColor="#000"
+                                    android:textSize="18sp"
+                                    android:textStyle="bold" />
+                            </LinearLayout>
+                        </androidx.cardview.widget.CardView>
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="70dp"
+                            android:layout_height="120dp"
+                            android:layout_rowWeight="1"
+                            android:layout_columnWeight="1"
+                            android:layout_marginLeft="16dp"
+                            android:layout_marginRight="16dp"
+                            android:layout_marginBottom="16dp"
+                            app:cardCornerRadius="8dp"
+                            app:cardElevation="8dp">
+
+                            <LinearLayout
+                                android:id="@+id/school_screen"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_horizontal|center_vertical"
+                                android:layout_margin="10dp"
+                                android:orientation="vertical"
+                                android:weightSum="10">
+
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="80dp"
+                                    android:layout_gravity="center"
+                                    android:layout_weight="8"
+                                    app:srcCompat="@drawable/book" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:layout_weight="2"
+                                    android:text="Study"
+                                    android:textColor="#000"
+                                    android:textSize="18sp"
+                                    android:textStyle="bold" />
+                            </LinearLayout>
+                        </androidx.cardview.widget.CardView>
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="70dp"
+                            android:layout_height="120dp"
+                            android:layout_rowWeight="1"
+                            android:layout_columnWeight="1"
+                            android:layout_marginLeft="16dp"
+                            android:layout_marginRight="16dp"
+                            android:layout_marginBottom="16dp"
+                            app:cardCornerRadius="8dp"
+                            app:cardElevation="8dp">
+
+                            <LinearLayout
+                                android:id="@+id/household_screen"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_horizontal|center_vertical"
+                                android:layout_margin="10dp"
+                                android:orientation="vertical"
+                                android:weightSum="10">
+
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="80dp"
+                                    android:layout_gravity="center"
+                                    android:layout_weight="8"
+                                    app:srcCompat="@drawable/home" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:layout_weight="2"
+                                    android:text="Household"
+                                    android:textColor="#000"
+                                    android:textSize="18sp"
+                                    android:textStyle="bold" />
+                            </LinearLayout>
+                        </androidx.cardview.widget.CardView>
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="70dp"
+                            android:layout_height="120dp"
+                            android:layout_rowWeight="1"
+                            android:layout_columnWeight="1"
+                            android:layout_marginLeft="16dp"
+                            android:layout_marginRight="16dp"
+                            android:layout_marginBottom="16dp"
+                            app:cardCornerRadius="8dp"
+                            app:cardElevation="8dp">
+
+                            <LinearLayout
+                                android:id="@+id/teacher"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_horizontal|center_vertical"
+                                android:layout_margin="10dp"
+                                android:orientation="vertical"
+                                android:weightSum="10">
+
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="80dp"
+                                    android:layout_gravity="center"
+                                    android:layout_weight="8"
+                                    app:srcCompat="@drawable/blood" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:layout_weight="2"
+                                    android:text="Blood"
+                                    android:textColor="#000"
+                                    android:textSize="18sp"
+                                    android:textStyle="bold" />
+                            </LinearLayout>
+                        </androidx.cardview.widget.CardView>
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="70dp"
+                            android:layout_height="120dp"
+                            android:layout_rowWeight="1"
+                            android:layout_columnWeight="1"
+                            android:layout_marginLeft="16dp"
+                            android:layout_marginRight="16dp"
+                            android:layout_marginBottom="16dp"
+                            app:cardCornerRadius="8dp"
+                            app:cardElevation="8dp">
+
+                            <LinearLayout
+                                android:id="@+id/boss"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_horizontal|center_vertical"
+                                android:layout_margin="10dp"
+                                android:orientation="vertical"
+                                android:weightSum="10">
+
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="80dp"
+                                    android:layout_gravity="center"
+                                    android:layout_weight="8"
+                                    app:srcCompat="@drawable/sadqah" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:layout_weight="2"
+                                    android:text="Sadqah"
+                                    android:textColor="#000"
+                                    android:textSize="18sp"
+                                    android:textStyle="bold" />
+                            </LinearLayout>
+                        </androidx.cardview.widget.CardView>
+
+
+                    </GridLayout>
 
                     <TextView
                         android:id="@+id/textView31"
@@ -51,332 +317,279 @@
                         android:textSize="18sp"
                         android:textStyle="bold" />
 
-                    <LinearLayout
+                    <GridLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginTop="10dp"
-                        android:gravity="center"
-                        android:orientation="horizontal">
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:gravity="center"
-                            android:orientation="vertical">
-
-                            <ImageView
-                                android:layout_width="50dp"
-                                android:layout_height="50dp"
-                                android:layout_weight="1"
-                                app:srcCompat="@drawable/donate"
-                                tools:srcCompat="@drawable/donate" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:text="Haris" />
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:gravity="center"
-                            android:orientation="vertical">
-
-                            <ImageView
-                                android:layout_width="50dp"
-                                android:layout_height="50dp"
-                                android:layout_weight="1"
-                                app:srcCompat="@drawable/donate"
-                                tools:srcCompat="@tools:sample/backgrounds/scenic" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:text="Sohail" />
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:gravity="center"
-                            android:orientation="vertical">
-
-                            <ImageView
-                                android:layout_width="50dp"
-                                android:layout_height="50dp"
-                                android:layout_weight="1"
-                                app:srcCompat="@drawable/donate"
-                                tools:srcCompat="@tools:sample/backgrounds/scenic" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:text="Ali" />
-                        </LinearLayout>
-
-                    </LinearLayout>
-
-                    <TextView
-                        android:layout_width="300dp"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginTop="10dp"
-                        android:text="Read stories about kind and people who says about AJAR, AKHIRAH, POVERTY and voices of the Poor, They tell us about what they feel, what are they suffering from. They need Us!" />
-
-                    <Button
-                        android:id="@+id/story"
-                        android:layout_width="350dp"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginTop="15dp"
-                        android:text="Stories" />
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:id="@+id/textView38"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="30dp"
-                            android:layout_marginTop="20dp"
-                            android:fontFamily="sans-serif"
-                            android:text="Lost Something ??? "
-                            android:textAlignment="textStart"
-                            android:textAllCaps="true"
-                            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-                            android:textSize="22sp"
-                            android:textStyle="bold|italic" />
-
-                        <TextView
-                            android:id="@+id/textView39"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="30dp"
-                            android:layout_marginTop="10dp"
-                            android:layout_marginRight="20dp"
-                            android:text="We are here to help you!!! Don't be afraid of finding items to here and there, Just add your story or find it in the lost Items to get your important documents get back!!! Hurrah! Now everything is available there :)"
-                            android:textSize="16sp" />
-
-                        <Button
-                            android:id="@+id/button6"
-                            android:layout_width="350dp"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:layout_marginTop="10dp"
-                            android:text="Find out here !!!" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:id="@+id/textView32"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="20dp"
-                            android:layout_marginTop="20dp"
-                            android:layout_marginBottom="10dp"
-                            android:text="Categories"
-                            android:textColor="#E91E63"
-                            android:textSize="18sp"
-                            android:textStyle="bold" />
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:layout_weight="1"
-                            android:gravity="center"
-                            android:orientation="horizontal">
-
-                            <LinearLayout
-                                android:id="@+id/food_screen"
-                                android:layout_width="80dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:gravity="center"
-                                android:orientation="vertical">
-
-                                <ImageView
-                                    android:layout_width="50dp"
-                                    android:layout_height="50dp"
-                                    app:srcCompat="@drawable/e" />
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="Food"
-                                    android:textColor="#8BC34A"
-                                    android:textSize="14sp"
-                                    android:textStyle="bold" />
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:id="@+id/clothes_screen"
-                                android:layout_width="80dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:gravity="center"
-                                android:orientation="vertical">
-
-                                <ImageView
-                                    android:layout_width="50dp"
-                                    android:layout_height="50dp"
-                                    app:srcCompat="@drawable/d" />
-
-                                <TextView
-                                    android:id="@+id/textView37"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="Clothes"
-                                    android:textColor="#8BC34A"
-                                    android:textSize="14sp"
-                                    android:textStyle="bold" />
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:id="@+id/school_screen"
-                                android:layout_width="80dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:gravity="center"
-                                android:orientation="vertical">
-
-                                <ImageView
-                                    android:layout_width="50dp"
-                                    android:layout_height="57dp"
-                                    app:srcCompat="@drawable/f" />
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="School things"
-                                    android:textColor="#8BC34A"
-                                    android:textSize="14sp"
-                                    android:textStyle="bold" />
-                            </LinearLayout>
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_gravity="center"
-                            android:layout_marginTop="15dp"
-                            android:layout_weight="1"
-                            android:gravity="center"
-                            android:orientation="horizontal">
-
-                            <LinearLayout
-                                android:id="@+id/household_screen"
-                                android:layout_width="80dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:gravity="center"
-                                android:orientation="vertical">
-
-                                <ImageView
-                                    android:layout_width="50dp"
-                                    android:layout_height="50dp"
-                                    app:srcCompat="@drawable/b" />
-
-                                <TextView
-                                    android:layout_width="80dp"
-                                    android:layout_height="wrap_content"
-                                    android:gravity="center"
-                                    android:text="Househoold and Furniture"
-                                    android:textColor="#8BC34A"
-                                    android:textSize="14sp"
-                                    android:textStyle="bold" />
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:layout_width="80dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:gravity="center"
-                                android:orientation="vertical">
-
-                                <ImageView
-                                    android:layout_width="50dp"
-                                    android:layout_height="50dp"
-                                    app:srcCompat="@drawable/c" />
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="Blood"
-                                    android:textColor="#8BC34A"
-                                    android:textSize="14sp"
-                                    android:textStyle="bold" />
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:layout_width="80dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:gravity="center"
-                                android:orientation="vertical">
-
-                                <ImageView
-                                    android:layout_width="50dp"
-                                    android:layout_height="50dp"
-                                    app:srcCompat="@drawable/cdbdc360e98451bfb931d973864826db" />
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="Sadqah"
-                                    android:textColor="#8BC34A"
-                                    android:textSize="14sp"
-                                    android:textStyle="bold" />
-                            </LinearLayout>
-
-                        </LinearLayout>
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="20dp"
+                        android:layout_height="180dp"
                         android:layout_marginTop="20dp"
-                        android:layout_marginRight="20dp"
-                        android:gravity="center"
-                        android:orientation="vertical">
+                        android:layout_weight="8"
+                        android:background="@drawable/bg"
+                        android:padding="15dp">
 
-                        <TextView
-                            android:id="@+id/textView40"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="10dp"
-                            android:text="Donate to make people happy :)"
-                            android:textColor="#E91E63"
-                            android:textSize="18sp"
-                            android:textStyle="bold" />
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="0dp"
+                            android:layout_height="80dp"
+                            android:layout_rowWeight="1"
+                            android:layout_columnWeight="1"
+                            android:layout_marginLeft="16dp"
+                            android:layout_marginRight="16dp"
+                            android:layout_marginBottom="16dp"
+                            app:cardCornerRadius="18dp"
+                            app:cardElevation="8dp">
 
-                        <TextView
-                            android:id="@+id/textView41"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="There are so many things in our life in our homes which is not important us, which are some there which gets dirt and are useless for us, BUT!!! These are too precious for someone who are still seeking kindness and help to get some blankets to get some foods to get your clothes to hide, they are begginf for even a one time food in there daily life. Show your kindness to those people who never asked anything to someone, they are still hoping for someone to be kind to them and donate them. Be the One's who get rewards in AKHIRAH, your good deeds will be count in Akhirah! Donate and Help People to make their lives good toand make them happy!  We have to donate :)"
-                            android:textSize="16sp" />
-                    </LinearLayout>
+                            <LinearLayout
+                                android:id="@+id/q1"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_horizontal"
+                                android:layout_marginTop="5dp"
+                                android:orientation="horizontal">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:gravity="center"
+                                    android:orientation="vertical">
+
+                                    <ImageView
+                                        android:layout_width="100dp"
+                                        android:layout_height="100dp"
+                                        android:layout_weight="1"
+                                        app:srcCompat="@drawable/donate"
+                                        tools:srcCompat="@drawable/pp"></ImageView>
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:text="Ali"
+                                        android:textSize="20dp"
+                                        android:textStyle="bold" />
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:gravity="center"
+                                    android:orientation="vertical">
+
+                                    <ImageView
+                                        android:layout_width="100dp"
+                                        android:layout_height="100dp"
+                                        android:layout_weight="1"
+                                        app:srcCompat="@drawable/donate"
+                                        tools:srcCompat="@drawable/pp"></ImageView>
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:text="Sohail"
+                                        android:textSize="20dp"
+                                        android:textStyle="bold" />
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:gravity="center"
+                                    android:orientation="vertical">
+
+                                    <ImageView
+                                        android:layout_width="100dp"
+                                        android:layout_height="100dp"
+                                        android:layout_weight="1"
+                                        app:srcCompat="@drawable/pp" />
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:text="Haris"
+                                        android:textSize="20dp"
+                                        android:textStyle="bold" />
+                                </LinearLayout>
+                            </LinearLayout>
+
+                        </androidx.cardview.widget.CardView>
+
+
+                    </GridLayout>
+
+
+                    <GridLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="190dp"
+                        android:background="@drawable/bg"
+                        android:padding="15dp">
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="0dp"
+                            android:layout_height="150dp"
+                            android:layout_columnWeight="1"
+                            android:layout_marginLeft="16dp"
+                            android:layout_marginRight="16dp"
+                            app:cardCornerRadius="18dp"
+                            app:cardElevation="8dp">
+
+                            <LinearLayout
+                                android:id="@+id/q3"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_gravity="center_horizontal"
+                                android:background="@drawable/header2"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:layout_weight="1"
+                                    android:paddingLeft="30dp"
+                                    android:paddingRight="30dp"
+                                    android:text="Read stories about AJAR, AKHIRAH, POVERTY. They need Us!"
+                                    android:textColor="#FDFDFD"
+                                    android:textSize="16sp"
+                                    android:textStyle="bold" />
+
+                                <Button
+                                    android:id="@+id/story"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="50dp"
+                                    android:layout_marginRight="40px"
+                                    android:shadowColor="#673AB7"
+                                    android:text="Stories"
+                                    android:textColor="@color/white"
+                                    android:textColorHighlight="#9C27B0"
+                                    android:textColorHint="#673AB7"
+                                    android:textColorLink="#673AB7"
+                                    app:backgroundTint="#00BCD4"
+                                    app:rippleColor="#9C27B0"
+                                    app:strokeColor="#673AB7" />
+                            </LinearLayout>
+
+                        </androidx.cardview.widget.CardView>
+
+
+                    </GridLayout>
+
+                    <GridLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="190dp"
+                        android:background="@drawable/bg"
+                        android:padding="15dp">
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:layout_rowWeight="1"
+                            android:layout_columnWeight="1"
+                            android:layout_marginLeft="16dp"
+                            android:layout_marginRight="16dp"
+                            android:layout_marginBottom="16dp"
+                            app:cardCornerRadius="18dp"
+
+                            app:cardElevation="8dp">
+
+                            <LinearLayout
+                                android:id="@+id/q2"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_gravity="center_horizontal"
+                                android:background="@drawable/grade2"
+                                android:orientation="horizontal">
+
+                                <Button
+                                    android:id="@+id/button6"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="40px"
+                                    android:layout_marginTop="50dp"
+                                    android:shadowColor="#673AB7"
+                                    android:text="Find Item"
+                                    android:textColor="@color/white"
+                                    android:textColorHighlight="#9C27B0"
+                                    android:textColorHint="#673AB7"
+                                    android:textColorLink="#673AB7"
+                                    app:backgroundTint="#00BCD4"
+                                    app:rippleColor="#9C27B0"
+                                    app:strokeColor="#673AB7" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:layout_weight="1"
+                                    android:paddingLeft="30dp"
+                                    android:paddingRight="30dp"
+                                    android:text="We are here to help you!!! Just post your needs or stories."
+                                    android:textColor="#FFFFFF"
+                                    android:textSize="16sp"
+                                    android:textStyle="bold" />
+
+                            </LinearLayout>
+
+                        </androidx.cardview.widget.CardView>
+
+
+                    </GridLayout>
+                    <GridLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="460dp"
+                        android:background="@drawable/bg"
+                        android:padding="15dp"
+                        android:layout_marginBottom="30dp"
+                        >
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="0dp"
+                            android:layout_height="427dp"
+                            android:layout_columnWeight="1"
+                            android:layout_marginLeft="16dp"
+                            android:layout_marginRight="16dp"
+                            android:paddingBottom="10dp"
+                            app:cardCornerRadius="20dp"
+                            app:cardElevation="10dp">
+
+                            <LinearLayout
+                                android:id="@+id/q4"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_horizontal"
+                                android:orientation="vertical">
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginBottom="10dp"
+                                    android:text="Donate to make people happy :)"
+                                    android:textColor="#E91E63"
+                                    android:layout_margin="20dp"
+                                    android:textSize="18sp"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:paddingLeft="30dp"
+                                    android:paddingRight="30dp"
+                                    android:text="There are so many things in our life in our homes which is not important us, which are some there which gets dirt and are useless for us, BUT!!! These are too precious for someone who are still seeking kindness and help to get some blankets to get some foods to get your clothes to hide, they are begginf for even a one time food in there daily life. Show your kindness to those people who never asked anything to someone, they are still hoping for someone to be kind to them and donate them. Be the One's who get rewards in AKHIRAH, your good deeds will be count in Akhirah! Donate and Help People to make their lives good toand make them happy!  We have to donate :)"
+                                    android:textColor="#000000"
+                                    android:textSize="16sp"
+                                    android:textStyle="bold" />
+
+                            </LinearLayout>
+
+                        </androidx.cardview.widget.CardView>
+
+
+                    </GridLayout>
+
+
+
 
                 </LinearLayout>
             </LinearLayout>

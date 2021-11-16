@@ -46,7 +46,7 @@ public class profile extends Fragment {
 
 
 //    Inititializing Labels and textboxes
-    TextView t19, t22, t24 , t20, t16;
+    TextView t19, t22, t24 , t20;
     ImageView pf;
 
     TextView lg;
@@ -82,7 +82,6 @@ public class profile extends Fragment {
         t20 = view.findViewById(R.id.textView20);
         t22 = view.findViewById(R.id.textView22);
         t24 = view.findViewById(R.id.textView24);
-        t16 = view.findViewById(R.id.textView16);
         pf = view.findViewById(R.id.profile_image);
         lg = view.findViewById(R.id.logout);
 
@@ -201,7 +200,6 @@ public class profile extends Fragment {
                                 t20.setText(uphone);
                                 t22.setText(uaddress);
                                 t24.setText(uemail);
-                                t16.setText(name);
 
                                 Glide.with(getContext()).load(image).into(pf);
 
